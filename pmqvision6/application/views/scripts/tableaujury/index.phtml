@@ -1,0 +1,79 @@
+<a target="_blank" href="<?php echo $this->baseUrl(); ?>/impression/tableaujuryscqp/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>" class="button print" >Imprimer</a>
+
+<table id="header" style="width:745px;" >
+	<tr>
+		<td rowspan="2" style="width: 200px; text-align: center;" >
+			<label><?php echo $this->titre; ?></label>
+		</td>
+		<td>
+			<label>Candidat</label>
+			<?php echo $this->nom; ?>
+		</td>
+		<td rowspan="3" style="text-align: center;" >
+			<label><?php echo $this->type; ?></label>
+		</td>
+		<td rowspan="3" style="width: 150px; text-align: center;" >
+			<label><?php echo $this->title; ?></label>
+		</td>
+		<td rowspan="3" style="text-align: center;" >
+			<img alt="Forthac" src="<?php echo $this->baseUrl(); ?>/img/forthac.jpg" style="width:105px;height:65px;" >
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<label>Entreprise</label>
+			<?php echo $this->entreprise; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>Organisme référent</label><br />
+			<?php echo $this->organisme_referent; ?>
+		</td>
+		<td>
+			<label>Branche</label>
+			<?php echo $this->branche; ?>
+		</td>
+	</tr>
+</table>
+
+<table id="notes" style="width:745px;" >
+	<tr>
+		<td style="width:110px; background-color:#D3D3D3;" rowspan="2" >
+			<label>Capacités</label>
+		</td>
+		<?php foreach( $this->capacites as $capacite ): ?>
+		<td style="max-width:<?php echo round( (745 - 110) / $this->nb_capacites ); ?>px; text-align: center;" >
+			<label><?php echo $capacite['capacite']; ?></label>
+		</td>
+		<?php endforeach; ?>
+	</tr>
+	<tr>
+		<?php foreach( $this->capacites as $capacite ): ?>
+		<td style="text-align: center; background-color: #007DC5;">
+			<label style="color:#FFFFFF;" ><?php echo $capacite['nom']; ?></label>
+		</td>
+		<?php endforeach; ?>
+	</tr>
+	<tr style="height:50px;" >
+		<td style="background-color:#D3D3D3;" >
+			<label>Bilan</label><br />
+			<?php echo $this->datebilan; ?>
+		</td>
+		<?php foreach( $this->bilan as $note): ?>
+		<td style="text-align: center;">
+			<?php echo $note; ?>
+		</td>
+		<?php endforeach; ?>
+	</tr>
+</table>
+
+<table>
+	<tr style="height:50px;" style="width:745px;" >
+		<td style="width: 110px; text-align: center; background-color:#D3D3D3;" >
+			<label>Commentaires du jury</label>
+		</td>
+		<td style="width: 635px; text-align: justify;" ><?php echo $this->commentaire; ?></td>
+	</tr>
+</table>

@@ -1,0 +1,1725 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("td#questionnaire:empty").css('background-color', 'lightgrey');
+
+		//$('.capacite_name').mbFlipText(false);
+	});
+</script>
+
+<style type="text/css" media="print">
+
+@media print
+{
+
+#header
+{
+font-family:arial;
+background-color:#D3D3D3;
+font-size: 12px;
+}
+
+#data
+{
+font-family:arial;
+font-size: 12px;
+}
+
+}
+
+
+</style>
+
+
+<!--<a href="#" class="button print" >Imprimer</a>-->
+
+<?php if( $this->demarche == "cqp" ): ?>
+
+	<a target="_blank" href="<?php echo $this->baseUrl(); ?>/impression/tableauresultatscqp/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>" class="button print" >Imprimer</a>
+	<a href="<?php echo $this->baseUrl(); ?>/saisie/index/metier/<?php echo $this->candidat_metier_id; ?>/" class="button add" >Saisie des notes</a>
+	
+	<br></br>
+	<table border=1 width="100%" style="border-collapse:collapse" id="header">
+
+		<tr>
+			<td rowspan="2" style="width: 200px; text-align: center;" >
+				<label><?php echo $this->titre; ?></label>
+			</td>
+			<td>
+				<label>Candidat</label>
+				<?php echo $this->nom; ?>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<label><?php echo $this->type; ?></label>
+				<br />
+				<a href="<?php echo $this->baseUrl(); ?>/tableauresultats/index/?id=<?php echo $this->candidat_metier_id; ?>&passage=
+					<?php if( $this->passage == 1 ) echo 2; ?>
+					<?php if( $this->passage == 2 ) echo 1; ?>
+				" class="button refresh" style="height: 15px; width: 25px;"
+					<?php if( $this->passage == 1 ) echo ' title="Evaluation" '; ?>
+					<?php if( $this->passage == 2 ) echo ' title="Positionnement" '; ?>
+				></a>
+			</td>
+			<td rowspan="3" style="width: 150px; text-align: center;" >
+				<label><?php echo $this->title; ?></label>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<img src="<?php echo $this->baseUrl(); ?>/img/PMQ_logo.jpg" alt="PMQ" style="width:65px;height:65px;" >
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Entreprise</label>
+				<?php echo $this->entreprise; ?>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Organisme référent</label><br />
+				<?php echo $this->organisme_referent; ?>
+			</td>
+			<td>
+				<label>Branche</label>
+				<?php echo $this->branche; ?>
+			</td>
+		</tr>
+	</table>
+<br>
+
+<?php 
+$hauteur_mini = number_format((700/(count($this->capacites))),0);
+ $hauteur_maxi  = ($hauteur_mini*(count($this->capacites)));
+ 
+
+
+
+$nb_aquis = count($this->livretacquis);
+
+
+		if( $nb_aquis >0)
+		{
+				 $acq = 0;$total_aquis =0;
+			
+			
+			$total_aquis = number_format($this->livretacquis_total,'2');
+			 
+
+			$acq = 0;$total_obs =0;
+			
+			 foreach( $this->observations_aquis as $observation ):
+			
+			 if( isset( $observation['pourcent'] ) && $observation['total'] >0 ): 
+			$acq++;
+			 endif; 
+			
+			$total_obs = $observation['pourcent']+$total_obs;
+			$total_obs = number_format($total_obs,'2');	
+			
+		
+			
+			endforeach; 
+			
+			if($total_obs !='0')
+			{
+			$total_obs = $total_obs/$acq;
+			}else{
+				$total_obs = 0;
+			}
+			
+			
+			$total_obs = number_format($total_obs,'2');
+			
+			
+			
+
+
+				 $acq = 0;$total_ques =0;
+		
+		$total_ques = $this->questionnaire_total_acquis;
+		$total_ques = number_format($total_ques,2);
+			
+			
+					
+			
+			 $l=0;$total_note=0; $acq = 0;$total_ent =0;
+				
+			 $m = 0;
+
+			 foreach( $this->entretien_aquis as $note): 
+							
+							$total_note+=$note;
+							$l++;
+							
+							if($note =='100'){
+								$note_affiche = '?';
+							}else{
+								$note_affiche = $note;
+							}
+							
+							if($note !='100')
+							{		
+								$total_ent = $note_affiche+$total_ent;
+								
+								
+							}
+							
+							$m++;
+							 endforeach;
+						 
+
+							if($m !=0 && $total_ent != 0)
+							{
+			$total_ent = $total_ent/$m;
+			}else{
+				$total_ent = 0;
+			}
+
+		}			
+
+		
+							?>	
+
+
+<?php if($nb_aquis >0){?>
+	<center><a  href="<?php echo $this->baseUrl(); ?>/aquistableauresultats/index/?id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>" class="button" >Tableau acquis de base</a>
+</center>
+<?php }?>
+<br>
+	<table border="0" width="100%" style="border-spacing: 0px;border-width:1px;padding:0px;" >
+		<tr>
+		
+<td style="width:450px;border-width:1px;padding:0px;" valign="top">
+		<?php 	echo '<center><span style="font-size: 12px;font-weight: bold"><big><big>RESULTATS</big></big></span>';?>
+</td>
+</tr>
+</table>
+		<table border="0" width="100%" style="border-spacing: 0px;border-width:1px;padding:0px;" >
+		<tr>
+<td style="border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;">
+				
+			</td>
+			</tr>
+			<?php foreach( $this->capacites as $capacite ): ?>
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;background-color:#D3D3D3;width:100px;" >
+				<label>
+					<a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&capacite_id=<?php echo $capacite['num']; ?>&passage=<?php echo $this->passage; ?>" title="Fiche pédagogique" ><?php echo $capacite['nom']; ?></a>
+				</label>
+			</td>
+			</tr>
+			<?php endforeach; ?>
+			<?php if($nb_aquis >0){?>
+			<tr><td style="text-align: center;height: 30px;background-color:#D3D3D3;width:100px;" >
+				&nbsp;
+			</td>
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;background-color:#D3D3D3;width:100px;" >
+				<label>
+					Total
+				</label>
+			</td>
+			</tr>
+			<?php }?>
+		</table>
+</td>
+		
+<td style="width:402px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;" colspan="2" >
+				<label><big><big>Capacités</big></big></label>
+				<br><label>Livret&nbsp;:</label>
+				<?php echo $this->datelivret; ?>
+			</td>
+			</tr>
+			<?php foreach( $this->capacites as $capacite ): ?>
+			<?php if($nb_aquis > 0){?>
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;width: 402px;" colspan="2" >
+				<label>
+					<a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&capacite_id=<?php echo $capacite['num']; ?>&passage=<?php echo $this->passage; ?>" title="Fiche pédagogique" >
+					<?php echo $capacite['capacite']; ?></a>
+				</label>
+			</td>
+			</tr>
+			<?php }else{?>
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;width: 402px;" colspan="2" >
+				<label>
+					<a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&capacite_id=<?php echo $capacite['num']; ?>&passage=<?php echo $this->passage; ?>" title="Fiche pédagogique" >
+					<?php echo $capacite['capacite']; ?></a>
+				</label>
+			</td>
+			</tr>
+			
+			<?php }?>
+			<?php endforeach; ?>
+			<?php if($nb_aquis > 0){?>
+			
+			<tr><td style="background-color:#D3D3D3;"></td><td  style="text-align: center;height: 30px;background-color:#D3D3D3;" >Livret acquis de base</td></tr>	
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+				<label>
+					Total Acquis de base
+				</label>
+			</td><td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+			
+				<table style="width:100%; height:40px;"  >
+					<tr>
+						<td style="width:50%; text-align: center; border:none; border-right-style: dotted;" ><?php if(($total_aquis)<40){echo '0';}if(($total_aquis)>69){echo '1';} if(($total_aquis)<=69 && ($total_aquis)>=40  ){echo '?';}?></td>
+						<td style="width:50%; text-align: center; border: none;" ><?php echo $total_aquis; ?> %</td>
+					</tr>
+				</table>
+				
+			
+			</td></tr>
+			<?php }?>
+		</table>
+</td>
+	
+
+<td style="width:100px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;">
+				<label>Questionnaire technique</label><br />
+				<?php echo $this->datequestionnaire; ?>
+			</td>
+	</tr>
+			<?php foreach( $this->questionnaire as $question ): 
+			
+							if($this->passage == 1)
+	{
+	?>	
+			
+			
+	<tr>
+			<td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+				<table style="width:100%; height:30px;" >
+					<tr>
+						<td style="width:20px; text-align: center; border:none; border-right-style: dotted;" ><?php echo $question['caractere']; ?></td>
+						<td style="width:20px; text-align: center; border: none;" ><?php echo $question['pourcent']; ?> %</td>
+					</tr>
+				</table>
+			</td>
+	</tr>
+	<?php }else{?>
+	<tr><td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;background-color:#D3D3D3;" >
+			
+			</td></tr>
+	<?php }
+		?>	
+		
+			<?php endforeach; ?>	
+			<?php if($nb_aquis >0){?>
+				<tr><td  style="text-align: center;height: 30px;background-color:#D3D3D3;" >Questionnaire acquis de base</td></tr>	
+				<tr><td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+			
+				<table style="width:100%; height:40px;"  >
+					<tr>
+						<td style="width:50%; text-align: center; border:none; border-right-style: dotted;" ><?php if(($total_ques)<40){echo '0';}if(($total_ques)>69){echo '1';} if(($total_ques)<=69 && ($total_ques)>=40  ){echo '?';}?></td>
+						<td style="width:50%; text-align: center; border: none;" ><?php echo $total_ques; ?> %</td>
+					</tr>
+				</table>
+				
+			
+			</td></tr>
+			<?php }?>		
+</table>
+</td>	
+	
+<td style="width:100px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+			<tr>
+			<td style="background-color:#D3D3D3;height:50px;border-spacing: 0px;">
+				<label>Observation/Projet pro</label><br />
+				<?php echo $this->dateobservation; ?>
+			</td>
+			</tr>
+			<?php foreach( $this->observations as $observation ): ?>
+			
+				
+			<tr><td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+			<?php if( isset( $observation['pourcent'] ) && $observation['pourcent'] != '' ){ ?>
+				<table style="width:100%; height:40px;"  >
+					<tr>
+						<td style="width:50%; text-align: center; border:none; border-right-style: dotted;" ><?php echo $observation['caractere']; ?></td>
+						<td style="width:50%; text-align: center; border: none;" ><?php echo $observation['pourcent']; ?> %</td>
+					</tr>
+				</table>
+				
+			<?php }else{ ?>
+				<table style="width:100%; height:40px;"  >
+					<tr>
+						<td style="width:50%; text-align: center; border:none; border-right-style: dotted;" >0</td>
+						<td style="width:50%; text-align: center; border: none;" >0 %</td>
+					</tr>
+				</table>
+				
+			<?php } ?>
+
+
+			</td></tr>
+			
+		
+		
+			
+			
+			
+			<?php endforeach; ?>
+			<?php if($nb_aquis >0){?>
+							<tr><td  style="text-align: center;height: 30px;background-color:#D3D3D3;" >Observation acquis de base</td></tr>	
+			<tr><td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+		
+				<table style="width:100%; height:40px;"  >
+					<tr>
+					<td style="width:50%; text-align: center; border:none; border-right-style: dotted;" >
+						<?php if(($total_obs)<40){echo '0';}if(($total_obs)>69){echo '1';} if(($total_obs)<=69 && ($total_obs)>=40  ){echo '?';}?>
+					</td>
+						<td style="width:50%; text-align: center; border: none;" ><?php echo $total_obs; ?> %</td>
+					</tr>
+				</table>
+				
+			
+			</td></tr>
+			<?php }?>
+</table>
+</td>	
+
+
+<td style="width:95px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;">
+				<label>Entretien technique</label><br />
+				<?php echo $this->dateentretien; $l=0;$total_note=0;?>
+			</td>
+	</tr>		
+			<?php foreach( $this->entretien as $note): ?>
+							<?php 
+							$total_note+=$note;
+							$l++;
+							
+							if($note =='100'){
+								$note_affiche = '?';
+							}else{
+								$note_affiche = $note;
+							}
+							 ?>
+	 <tr>
+	 		<td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+				<?php echo $note_affiche; ?>
+			</td>		
+	</tr>
+							<?php endforeach; ?>	
+							<?php if($nb_aquis >0){
+							$total_ent = $total_ent*100;
+							
+							
+							
+								?>
+				<tr><td  style="text-align: center;height: 30px;background-color:#D3D3D3;" >Entretien acquis de base</td></tr>				
+								
+						<tr><td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+			
+				<table style="width:100%; height:40px;"  >
+					<tr>
+						
+						<td style="width:50%; text-align: center; border:none; border-right-style: dotted;" ><?php if(($total_ent)<40){echo '0';}if(($total_ent)>69){echo '1';} if(($total_ent)<=69 && ($total_ent)>=40  ){echo '?';}?></td>
+						<td style="width:50%; text-align: center; border: none;" ><?php echo  number_format(($total_ent),'2'); ?>%</td>
+
+	</tr>
+				</table>
+				
+			
+			</td></tr>	
+			<?php }?>				
+</table>
+</td>	
+
+
+</tr>
+
+<?php 
+if($nb_aquis >0){
+if(($total_ent)<40){$total_ent_valid='0';}if(($total_ent)>69){$total_ent_valid = '1';} if(($total_ent)<=69 && ($total_ent)>=40  ){$total_ent_valid =  '?';}
+
+$total_note = $total_note+$total_ent_valid;
+$l++;
+
+}
+
+
+
+							if($total_note == $l)
+							{
+								$tempo = "Admissible";
+							}
+							if($total_note < $l)
+							{
+								$tempo = "Non Admissible";
+							}
+							if($total_note > $l || $note_affiche=='')
+							{
+								$tempo = "A compl&eacute;ter";
+							}
+
+
+		
+
+?>
+
+	</table>
+	
+	<table border="0" width="100%" style="border-spacing: 0px;border-width:1px;padding:0px;" >
+		<tr>
+		
+<td style="width:450px;border-width:1px;padding:0px;" valign="top">
+		<?php 	echo '<center><span style="font-size: 12px;font-weight: bold"><big><big>Bilan : '.$tempo.'</big></big></span>';?>
+</td>
+</tr>
+</table>
+
+							
+	
+<?php if($nb_aquis >0){?>
+	
+	<br>
+	<center><a  href="<?php echo $this->baseUrl(); ?>/aquistableauresultats/index/?id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>" class="button" >Tableau acquis de base</a>
+</center>
+<br>
+<?php }?>
+<br>
+		<table border=1 width="100%" style="border-collapse:collapse">
+		<tr>
+			<td style="width: 110px; background-color:#D3D3D3;" >
+				<label>Commentaires Positionnement</label>
+			</td>
+			<td style="text-align: justify;" ><?php echo $this->commentaire; ?></td>
+		</tr>
+		<tr>
+			<td style="width: 110px; background-color:#D3D3D3;" >
+				<label>Commentaires Evaluation</label>
+			</td>
+			<td style="text-align: justify;" ><?php echo $this->commentaire2; ?></td>
+		</tr>
+		<tr>
+			<td style="background-color:#D3D3D3;">
+				<label>Informations complémentaires</label>
+			</td>
+			<td style="background-color:#D3D3D3;">
+				Référent évaluateur entreprise : <?php echo $this->evaluateur; ?><br />
+				Expert métier : <?php echo $this->expert; ?><br />
+				Poste occupé par le candidat : <?php echo $this->poste; ?><br />
+				<?php echo $this->nb_heures; ?>
+			</td>
+		</tr>
+	</table>
+<?php elseif( $this->demarche == "ccsp" ): ?>
+<a href="#" OnClick="javascript:window.print()"  class="button print" >Imprimer</a> 
+<br></br>
+<table border=1 width="100%" style="border-collapse:collapse" id="header">
+		<tr>
+			<td rowspan="2" style="width: 200px; text-align: center;" >
+				<label><?php echo $this->titre; ?></label>
+			</td>
+			<td>
+				<label>Candidat</label>
+				<?php echo $this->nom; ?>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<label><?php echo $this->type; ?></label>
+				<br />
+				
+			</td>
+			<td rowspan="3" style="width: 150px; text-align: center;" >
+				<label><?php echo $this->title; ?></label>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<img src="<?php echo $this->baseUrl(); ?>/img/logo_ccsp.jpg" style="width:65px;height:65px;" >
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Entreprise</label>
+				<?php echo $this->entreprise; ?>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Organisme référent</label><br />
+				<?php echo $this->organisme_referent; ?>
+			</td>
+			<td>
+				<label>Branche</label>
+				<?php echo $this->branche; ?>
+			</td>
+		</tr>
+	</table>
+<br>
+<br>
+	<table border=1 width="100%" style="border-collapse:collapse" id="data">
+<tr>
+          <td style="text-align:center;width:80px" valign="top">
+				<label>Modules</br></label>
+			</td>
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M1">M1<br>Oral</br></a></label>
+			</td>
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M2">M2<br>Ecrit</br></a></label>
+			</td>
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M3">M3<br>Calcul</br></a></label>
+			</td>
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M4">M4<br>Espace/Temps</br></a></label>
+			</td>	
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M5">M5<br>Informatique</br></a></label>
+			</td>
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M6">M6<br>Attitudes et<br>comportements</br></a></label>
+			</td>
+			<td style="text-align:center;width:80px" valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M7">M7<br>Gestes, Postures,<br>Observation</br></a></label>
+			</td>
+			<td style="text-align:center;width:100px"valign="top">
+				<label><a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>&module=M8">M8<br>R&egrave;glementaire</br></a></label>
+			</td>
+			
+</tr>			
+			
+			
+			<?php 
+		    $module_ent ='';
+			$note_question = 0;
+			$note_observation = 0;
+			$note_entretien = 0;
+			$total = 0;
+			$note_question_M1 = '';
+			$note_question_M1_total = '';
+			$note_question_M2 = '';
+			$note_question_M2_total = '';
+			$note_question_M3 ='';
+			$note_question_M3_total = '';
+			$note_question_M4 = '';
+			$note_question_M4_total = '';
+			$note_question_M5 = '';
+			$note_question_M5_total = '';
+			$note_question_M6 = '';
+			$note_question_M6_total = '';
+			$note_question_M7 = '';
+			$note_question_M7_total = '';
+			$note_question_M8 = '';
+			$note_question_M8_total = '';
+			$note_observation_M1= '';
+			$note_observation_M1_total= '';
+			$note_observation_M2= '';
+			$note_observation_M2_total= '';
+			$note_observation_M3= '';
+			$note_observation_M3_total= '';
+			$note_observation_M4= '';
+			$note_observation_M4_total= '';
+			$note_observation_M5= '';
+			$note_observation_M5_total= '';
+			$note_observation_M6= '';
+			$note_observation_M6_total= '';
+			$note_observation_M7= '';
+			$note_observation_M7_total= '';
+			$note_observation_M8= '';
+			$note_observation_M8_total= '';
+			$note_entretien_M1= '';
+			$note_entretien_M1_total= '';
+			$note_entretien_M2= '';
+			$note_entretien_M2_total= '';
+			$note_entretien_M3= '';
+			$note_entretien_M3_total= '';
+			$note_entretien_M4= '';
+			$note_entretien_M4_total= '';
+			$note_entretien_M5= '';
+			$note_entretien_M5_total= '';
+			$note_entretien_M6= '';
+			$note_entretien_M6_total= '';
+			$note_entretien_M7= '';
+			$note_entretien_M7_total= '';
+			$note_entretien_M8= '';
+			$note_entretien_M8_total= '';
+			
+			
+			
+foreach($this->listeEntretiens as $index => $entretien):
+			if($this->listeObservation['actif'][$index]=='actif' && $entretien['nom_module'] == 'M1' )
+				{		
+						$note_observation_M1+= $this->listeObservation['notes'][$index];
+						$note_observation_M1_total+=$this->listeObservation['total'][$index];
+				}
+			if($this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M1' )
+				{							
+						$note_question_M1+=$this->listeQuestionaire['notes'][$index];
+						$note_question_M1_total+=$this->listeQuestionaire['total'][$index];
+				}
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M1')
+				{
+					$note_entretien_M1+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M1_total+=$this->listeEntretien['total'][$index];
+				}
+
+				
+			if($this->listeObservation['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M2')
+					{
+					$note_observation_M2+= $this->listeObservation['notes'][$index];
+					$note_observation_M2_total+=$this->listeObservation['total'][$index];
+					}
+			if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M2')
+				{
+					$note_entretien_M2+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M2_total+=$this->listeEntretien['total'][$index];
+				}
+			if( $this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M2')
+				{	
+					$note_question_M2+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M2_total+=$this->listeQuestionaire['total'][$index];
+				}
+					
+			if($this->listeObservation['actif'][$index]=='actif' && $entretien['nom_module'] == 'M3')
+				{
+					$note_observation_M3+= $this->listeObservation['notes'][$index];
+					$note_observation_M3_total+=$this->listeObservation['total'][$index];
+				}
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M3')
+				{
+					$note_entretien_M3+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M3_total+=$this->listeEntretien['total'][$index];
+				}
+			if($this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M3')
+				{
+					$note_question_M3+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M3_total+=$this->listeQuestionaire['total'][$index];
+				}
+				
+				if($this->listeObservation['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M4')
+				{
+					$note_observation_M4+= $this->listeObservation['notes'][$index];
+					$note_observation_M4_total+=$this->listeObservation['total'][$index];
+				}
+				
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M4')
+				{
+					$note_entretien_M4+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M4_total+=$this->listeEntretien['total'][$index];
+				}
+				if($this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M4')
+				{
+					$note_question_M4+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M4_total+=$this->listeQuestionaire['total'][$index];
+				}
+				
+				if($this->listeObservation['actif'][$index] =='actif' && $entretien['nom_module'] == 'M5')
+				{
+					$note_observation_M5+= $this->listeObservation['notes'][$index];
+					$note_observation_M5_total+=$this->listeObservation['total'][$index];
+				}
+				if( $this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M5')
+				{
+					$note_question_M5+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M5_total+=$this->listeQuestionaire['total'][$index];
+				}
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M5')
+				{
+					$note_entretien_M5+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M5_total+=$this->listeEntretien['total'][$index];
+				}
+				
+				if($this->listeObservation['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M6')
+				{
+					$note_observation_M6+= $this->listeObservation['notes'][$index];
+					$note_observation_M6_total+=$this->listeObservation['total'][$index];
+				}
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M6')
+				{
+					$note_entretien_M6+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M6_total+=$this->listeEntretien['total'][$index];
+				}
+					if($this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M6')
+				{
+					$note_question_M6+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M6_total+=$this->listeQuestionaire['total'][$index];
+				}
+				if( $this->listeObservation['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M7')
+				{
+					$note_observation_M7+= $this->listeObservation['notes'][$index];
+					$note_observation_M7_total+=$this->listeObservation['total'][$index];
+				}
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M7')
+				{
+					$note_entretien_M7+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M7_total+=$this->listeEntretien['total'][$index];
+				}
+				
+				
+				if($this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M7')
+				{
+					$note_question_M7+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M7_total+$this->listeQuestionaire['total'][$index];
+				}
+				if($this->listeObservation['actif'][$index] == 'actif'  && $entretien['nom_module'] == 'M8')
+				{
+					
+					$note_observation_M8+= $this->listeObservation['notes'][$index];
+					$note_observation_M8_total+=$this->listeObservation['total'][$index];
+				
+				}
+				if($this->listeQuestionaire['actif'][$index]=='actif' && $entretien['nom_module'] == 'M8')
+				{
+					$note_question_M8+=$this->listeQuestionaire['notes'][$index];
+					$note_question_M8_total+=$this->listeQuestionaire['total'][$index];
+				}
+
+				if($this->listeEntretien['actif'][$index] == 'actif' && $entretien['nom_module'] == 'M8')
+				{
+					$note_entretien_M8+=$this->listeEntretien['notes'][$index];
+					$note_entretien_M8_total+=$this->listeEntretien['total'][$index];
+				}
+					
+
+			endforeach;
+		
+			$note_moyenne_M1 = $note_question_M1+$note_observation_M1;
+			$note_moyenne_M1_total= $note_question_M1_total+$note_observation_M1_total;
+			$note_moyenne_M1_af = $note_entretien_M1;
+			$note_moyenne_M1_total_af= $note_entretien_M1_total;
+				
+			$note_moyenne_M2 = $note_question_M2+$note_observation_M2;
+			$note_moyenne_M2_total= $note_question_M2_total+$note_observation_M2_total;
+			$note_moyenne_M2_af = $note_entretien_M2;
+			$note_moyenne_M2_total_af= $note_entretien_M2_total;
+			
+			$note_moyenne_M3 = $note_question_M3+$note_observation_M3;
+			$note_moyenne_M3_total= $note_question_M3_total+$note_observation_M3_total;
+			$note_moyenne_M3_af = $note_entretien_M3;
+			$note_moyenne_M3_total_af= $note_entretien_M3_total;
+			
+			$note_moyenne_M4 = $note_question_M4+$note_observation_M4;
+			$note_moyenne_M4_total= $note_question_M4_total+$note_observation_M4_total;
+			$note_moyenne_M4_af = $note_entretien_M4;
+			$note_moyenne_M4_total_af= $note_entretien_M4_total;
+			
+			$note_moyenne_M5 = $note_question_M5+$note_observation_M5;
+			$note_moyenne_M5_total= $note_question_M5_total+$note_observation_M5_total;
+			$note_moyenne_M5_af = $note_entretien_M5;
+			$note_moyenne_M5_total_af= $note_entretien_M5_total;
+			
+			$note_moyenne_M6 = $note_question_M6+$note_observation_M6;
+			$note_moyenne_M6_total= $note_question_M6_total+$note_observation_M6_total;
+			$note_moyenne_M6_af = $note_entretien_M6;
+			$note_moyenne_M6_total_af= $note_entretien_M6_total;
+			
+			$note_moyenne_M7 = $note_question_M7+$note_observation_M7;
+			$note_moyenne_M7_total= $note_question_M7_total+$note_observation_M7_total;
+			$note_moyenne_M7_af = $note_entretien_M7;
+			$note_moyenne_M7_total_af= $note_entretien_M7_total;
+			
+			$note_moyenne_M8 = $note_question_M8+$note_observation_M8;
+			$note_moyenne_M8_total= $note_question_M8_total+$note_observation_M8_total;
+			$note_moyenne_M8_af = $note_entretien_M8;
+			$note_moyenne_M8_total_af= $note_entretien_M8_total;
+			?>
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Questionnaire</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+				<?php if($note_question_M1_total!=0){echo number_format($note_question_M1*100/$note_question_M1_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_question_M2_total!=0){echo number_format($note_question_M2*100/$note_question_M2_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_question_M3_total!=0){echo number_format($note_question_M3*100/$note_question_M3_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_question_M4_total!=0){echo number_format($note_question_M4*100/$note_question_M4_total,0).'%';}else{echo '--';}?>
+			</td>	
+			<td style="text-align:center;width:80px">
+				<?php if($note_question_M5_total!=0){echo number_format($note_question_M5*100/$note_question_M5_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_question_M6_total!=0){echo number_format($note_question_M6*100/$note_question_M6_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_question_M7_total!=0){echo number_format($note_question_M7*100/$note_question_M7_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:100px">
+				<?php if($note_question_M8_total!=0){echo number_format($note_question_M8*100/$note_question_M8_total,0).'%';}else{echo '--';}?>
+			</td>
+			
+</tr>	
+
+
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Observation</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+				<?php if($note_observation_M1_total!=0){echo number_format($note_observation_M1*100/$note_observation_M1_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_observation_M2_total!=0){echo number_format($note_observation_M2*100/$note_observation_M2_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_observation_M3_total!=0){echo number_format($note_observation_M3*100/$note_observation_M3_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php  if($note_observation_M4_total!=0){echo number_format($note_observation_M4*100/$note_observation_M4_total,0).'%';}else{echo '--';}?>
+			</td>	
+			<td style="text-align:center;width:80px">
+				<?php if($note_observation_M5_total!=0){echo number_format($note_observation_M5*100/$note_observation_M5_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_observation_M6_total!=0){echo number_format($note_observation_M6*100/$note_observation_M6_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_observation_M7_total!=0){echo number_format($note_observation_M7*100/$note_observation_M7_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:100px">
+				<?php if($note_observation_M8_total!=0){echo number_format($note_observation_M8*100/$note_observation_M8_total,0).'%';}else{echo '--';}?>
+			</td>
+			
+</tr>		
+
+
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Moyenne avant formation</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+					<?php if($note_moyenne_M1_total!=0){echo number_format($note_moyenne_M1*100/$note_moyenne_M1_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M2_total!=0){echo number_format($note_moyenne_M2*100/$note_moyenne_M2_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M3_total!=0){echo number_format($note_moyenne_M3*100/$note_moyenne_M3_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M4_total!=0){echo number_format($note_moyenne_M4*100/$note_moyenne_M4_total,0).'%';}else{echo '--';}?>
+			</td>	
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M5_total!=0){echo number_format($note_moyenne_M5*100/$note_moyenne_M5_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M6_total!=0){echo number_format($note_moyenne_M6*100/$note_moyenne_M6_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M7_total!=0){echo number_format($note_moyenne_M7*100/$note_moyenne_M7_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:100px">
+					<?php if($note_moyenne_M8_total!=0){echo number_format($note_moyenne_M8*100/$note_moyenne_M8_total,0).'%';}else{echo '--';}?>
+			</td>
+			
+</tr>	
+
+
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Acquis avant formation ?</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+				 <?php if($note_moyenne_M1_total!=0){
+				 	if(number_format($note_moyenne_M1*100/$note_moyenne_M1_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				 <?php if($note_moyenne_M2_total!=0){
+				 	if(number_format($note_moyenne_M2*100/$note_moyenne_M2_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				 <?php if($note_moyenne_M3_total!=0){
+				 	if(number_format($note_moyenne_M3*100/$note_moyenne_M3_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M4_total!=0){
+				 	if(number_format($note_moyenne_M4*100/$note_moyenne_M4_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>	
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M5_total!=0){
+				 	if(number_format($note_moyenne_M5*100/$note_moyenne_M5_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M6_total!=0){
+				 	if(number_format($note_moyenne_M6*100/$note_moyenne_M6_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M7_total!=0){
+				 	if(number_format($note_moyenne_M7*100/$note_moyenne_M7_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:100px">
+				<?php if($note_moyenne_M8_total!=0){
+				 	if(number_format($note_moyenne_M8*100/$note_moyenne_M8_total,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			
+</tr>
+<tr>
+<td colspan="9">
+</td>
+</tr>
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Entretien</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+				<?php if($note_entretien_M1_total!=0){echo number_format($note_entretien_M1*100/$note_entretien_M1_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_entretien_M2_total!=0){echo number_format($note_entretien_M2*100/$note_entretien_M2_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_entretien_M3_total!=0){echo number_format($note_entretien_M3*100/$note_entretien_M3_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_entretien_M4_total!=0){echo number_format($note_entretien_M4*100/$note_entretien_M4_total,0).'%';}else{echo '--';}?>
+			</td>	
+			<td style="text-align:center;width:80px">
+				<?php if($note_entretien_M5_total!=0){echo number_format($note_entretien_M5*100/$note_entretien_M5_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_entretien_M6_total!=0){echo number_format($note_entretien_M6*100/$note_entretien_M6_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_entretien_M7_total!=0){echo number_format($note_entretien_M7*100/$note_entretien_M7_total,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:100px">
+				<?php if($note_entretien_M8_total!=0){echo number_format($note_entretien_M8*100/$note_entretien_M8_total,0).'%';}else{echo '--';}?>
+			</td>
+			
+</tr>	
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Moyenne apr&egrave;s formation</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+					<?php if($note_moyenne_M1_total_af!=0){echo number_format($note_moyenne_M1_af*100/$note_moyenne_M1_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M2_total_af!=0){echo number_format($note_moyenne_M2_af*100/$note_moyenne_M2_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M3_total_af!=0){echo number_format($note_moyenne_M3_af*100/$note_moyenne_M3_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M4_total_af!=0){echo number_format($note_moyenne_M4_af*100/$note_moyenne_M4_total_af,0).'%';}else{echo '--';}?>
+			</td>	
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M5_total_af!=0){echo number_format($note_moyenne_M5_af*100/$note_moyenne_M5_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M6_total_af!=0){echo number_format($note_moyenne_M6_af*100/$note_moyenne_M6_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:80px">
+					<?php if($note_moyenne_M7_total_af!=0){echo number_format($note_moyenne_M7_af*100/$note_moyenne_M7_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			<td style="text-align:center;width:100px">
+					<?php if($note_moyenne_M8_total_af!=0){echo number_format($note_moyenne_M8_af*100/$note_moyenne_M8_total_af,0).'%';}else{echo '--';}?>
+			</td>
+			
+</tr>	
+
+
+<tr>
+          <td style="text-align:center;width:80px" >
+				<label>Acquis apr&egrave;s formation ?</label>
+			</td>
+			<td style="text-align:center;width:80px" >
+				 <?php if($note_moyenne_M1_total_af!=0){
+				 	if(number_format($note_moyenne_M1_af*100/$note_moyenne_M1_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				 <?php if($note_moyenne_M2_total_af!=0){
+				 	if(number_format($note_moyenne_M2_af*100/$note_moyenne_M2_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				 <?php if($note_moyenne_M3_total_af!=0){
+				 	if(number_format($note_moyenne_M3_af*100/$note_moyenne_M3_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M4_total_af!=0){
+				 	if(number_format($note_moyenne_M4_af*100/$note_moyenne_M4_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>	
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M5_total_af!=0){
+				 	if(number_format($note_moyenne_M5_af*100/$note_moyenne_M5_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M6_total_af!=0){
+				 	if(number_format($note_moyenne_M6_af*100/$note_moyenne_M6_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:80px">
+				<?php if($note_moyenne_M7_total_af!=0){
+				 	if(number_format($note_moyenne_M7_af*100/$note_moyenne_M7_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			<td style="text-align:center;width:100px">
+				<?php if($note_moyenne_M8_total_af!=0){
+				 	if(number_format($note_moyenne_M8_af*100/$note_moyenne_M8_total_af,0)>=70){
+				 		echo '1';}else{echo '0';}
+				 }else{
+				 echo '0';
+				 }?>
+			</td>
+			
+</tr>
+
+
+
+
+
+	
+			
+			
+			</table>
+			<br>
+	<table border=1 width="100%" style="border-collapse:collapse" id="data"> 
+		<tr>
+			<td rowspan="6" style="width:130px; text-align:center;" >
+				<label>Repérage</label>
+			</td>
+			<td style="width:130px; text-align:center;" >Compréhension orale</td>
+			<td><?php echo $this->core; ?></td>
+		</tr>
+		<tr>
+			<td style="width:130px; text-align:center;" >Expression orale</td>
+			<td><?php echo $this->eore; ?></td>
+		</tr>
+		<tr>
+			<td style="width:130px; text-align:center;" >Compréhension écrite</td>
+			<td><?php echo $this->cere; ?></td>
+		</tr>
+		<tr>
+			<td style="width:130px; text-align:center;" >Expression écrite</td>
+			<td><?php echo $this->eere; ?></td>
+		</tr>
+		<tr>
+			<td style="width:130px; text-align:center;" >Raisonnement cognitif, logique et numérique</td>
+			<td><?php echo $this->rclnre; ?></td>
+		</tr>
+		<tr>
+			<td style="width:130px; text-align:center;" >Repères spatio-temporels</td>
+			<td><?php echo $this->rstre; ?></td>
+		</tr>
+	</table>
+	<br>
+	<table border=1 width="100%" style="border-collapse:collapse" id="data"> 
+		<tr>
+			<td rowspan="6" style="width:130px; text-align:center;" >
+				<label>Commentaires</label>
+			</td>
+			<td style="width:130px; text-align:center;display: none;" >Compréhension orale</td>
+			<td style="width:130px; text-align:center;" >Commentaire</td>
+			<td><?php echo $this->co; ?></td>
+		</tr>
+		<tr style="display: none;">
+			<td style="width:130px; text-align:center;" >Expression orale</td>
+			<td><?php echo $this->eo; ?></td>
+		</tr>
+		<tr style="display: none;">
+			<td style="width:130px; text-align:center;" >Compréhension écrite</td>
+			<td><?php echo $this->ce; ?></td>
+		</tr>
+		<tr style="display: none;">
+			<td style="width:130px; text-align:center;" >Expression écrite</td>
+			<td><?php echo $this->ee; ?></td>
+		</tr>
+		<tr style="display: none;">
+			<td style="width:130px; text-align:center;" >Raisonnement cognitif, logique et numérique</td>
+			<td><?php echo $this->rcln; ?></td>
+		</tr>
+		<tr style="display: none;">
+			<td style="width:130px; text-align:center;" >Repères spatio-temporels</td>
+			<td><?php echo $this->rst; ?></td>
+		</tr>
+	</table>
+
+<?php elseif( $this->demarche == "diplome" ): ?>
+
+	<a target="_blank" href="<?php echo $this->baseUrl(); ?>/impression/tableauresultatsdiplome/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>" class="button print" >Imprimer</a>
+	<a href="<?php echo $this->baseUrl(); ?>/saisie/index/metier/<?php echo $this->candidat_metier_id; ?>/" class="button add" >Saisie des notes</a>
+	
+	<br></br>
+	<table border=1 width="100%" style="border-collapse:collapse" id="header">
+
+		<tr>
+			<td rowspan="2" style="width: 200px; text-align: center;" >
+				<label><?php echo $this->titre; ?></label>
+			</td>
+			<td>
+				<label>Candidat</label>
+				<?php echo $this->nom; ?>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<label><?php echo $this->etat_libelle; ?></label>
+				<br />
+				
+				
+			</td>
+			<td rowspan="3" style="width: 150px; text-align: center;" >
+				<label><?php echo $this->title; ?></label>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<img src="<?php echo $this->baseUrl(); ?>/img/PMQ_logo.jpg" alt="PMQ" style="width:65px;height:65px;" >
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Entreprise</label>
+				<?php echo $this->entreprise; ?>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Organisme référent</label><br />
+				<?php echo $this->organisme_referent; ?>
+			</td>
+			<td>
+				<label>Branche</label>
+				<?php echo $this->branche; ?>
+			</td>
+		</tr>
+	</table>
+<br>
+
+
+<table border=1 width="100%" style="border-collapse:collapse" id="header">
+
+		<tr>
+			<td style="width:200px;"><label>Livret 1</label></td>
+			<td style="background-color:white;">Date : <?php echo $this->date_livret1diplome?></td>
+		</tr>
+			<tr>
+			<td  style="width:200px;">	<label>Livret 2</label></td>
+			<td style="background-color:white;">Date : <?php echo $this->date_livret2diplome?></td> 
+		</tr>
+</table>
+<br><br>
+<table border=1 width="100%" style="border-collapse:collapse;width:745px;" id="header">
+	<tr>
+		<td style="vertical-align:middle;text-align: center;" colspan="2">
+			Unit&eacute;s
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			Modules
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table border=0 width="100%" style="border-collapse:collapse" >
+				<tr><td style="height:60px;"">R&eacute;sultats<br>questionnaire<br>technique</td></tr>
+				<tr><td style="height:20px;;background-color:white;"><?php echo $this->date_questiondiplome;?></td></tr>	
+			</table>
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table border=0 width="100%" style="border-collapse:collapse" >
+				<tr><td style="height:60px;">R&eacute;sultats<br>Observation en<br>situation de<br>travail</td></tr>
+				<tr><td style="height:20px;;background-color:white;"><?php echo $this->date_observationdiplome;?></td></tr>	
+			</table>
+			
+			
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table border=0 width="100%" style="border-collapse:collapse" >
+				<tr><td style="height:60px;">R&eacute;sultats<br>Entretien<br>technique<br>final</td></tr>
+				<tr><td style="height:20px;;background-color:white;"><?php echo $this->date_entretiendiplome;?></td></tr>	
+			</table>
+
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table border=0 width="100%" style="border-collapse:collapse" >
+				<tr><td style="height:60px;">Bilan</td></tr>
+				<tr><td style="height:20px;background-color:white;"><?php echo $this->date_bilandiplome;?></td></tr>	
+			</table>
+		</td>
+	</tr>
+	
+	
+
+	<?php 
+			
+			$j = 1;
+			$var='';
+			$k = 0;
+			$l = 0;
+			$m = 0;
+			$o = 0;
+			$total_bian = 0;
+			$nb_module = count($this->listeModule);
+			
+			$hauteur_mini = number_format((700/(count($this->listeModule))),0);
+			
+			
+			foreach($this->listeModule as $index => $listeModule):
+			$nom_unite = '';
+			
+			
+
+			?>
+			<?php if($var != $listeModule['numero_unite'])	{
+				$tableauDeResultat = new Model_Resultat();
+				$resultat = $tableauDeResultat->connaitreunite($listeModule['id_unite'],$this->num_diplome);
+					
+			?>
+			<tr>
+		<td style="vertical-align:middle;text-align: center;width:40px;;">
+			<?php echo $listeModule['numero_unite']; ?>
+		</td>
+		<td style="vertical-align:middle;text-align: center;width:180px;">
+			<?php echo $listeModule['nom_unite']; ?>
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table width="100%" style="border-collapse:collapse">
+				<?php 
+				foreach($resultat as  $modules):
+				?>
+					<tr><td style="background-color:white;height:<?php echo $hauteur_mini;?>px;width:200px;"><?php echo $j;?> - <?php echo $modules['nom_module']; $j++;?></td></tr>
+					
+				<?php endforeach;
+				?>
+			
+			</table>
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+		<table width="100%" style="border-collapse:collapse">
+			<?php 
+				foreach($resultat as  $modules):
+								if($modules['questionnaire'] == 'non')
+				{
+					?>
+					<tr><td style="background-color:lightgrey;height:<?php echo $hauteur_mini;?>px;width:70px;">
+					</td></tr>
+					<?php 
+				}else{
+				?>
+					<tr><td style="background-color:white;height:<?php echo $hauteur_mini;?>px;width:70px;"><?php echo number_format($this->resultatquestion[$o],0);?>%</td></tr>
+					
+				<?php }
+				$o++;
+				endforeach;
+				?>
+			
+			</table>
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table width="100%" style="border-collapse:collapse;border:0px;"> 
+			<?php 
+				foreach($resultat as  $modules):
+				
+				if($modules['observation'] == 'non')
+				{
+					?>
+					<tr><td style="background-color:lightgrey;height:<?php echo $hauteur_mini;?>px;width:70px;">
+					</td></tr>
+					<?php 
+				}else{
+				?>
+					
+					<tr><td style="background-color:white;height:<?php echo $hauteur_mini;?>px;width:70px;">
+					<?php if($this->resultatobservation[$k] == 1){?><img src="<?php echo $this->baseUrl(); ?>/img/yes6gi.png" width="20" border="0"><?php }else{?><img src="<?php echo $this->baseUrl(); ?>/img/no5fg.png" width="20" border="0"><?php }?>
+					<?php $k++;
+						
+					?>
+					</td></tr>
+
+				<?php
+
+				}
+				endforeach;
+				?>
+			
+			</table>
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table width="100%" style="border-collapse:collapse">
+			<?php 
+				foreach($resultat as  $modules):
+				
+					if($modules['entretien'] == 'non')
+				{
+					?>
+					<tr><td style="background-color:lightgrey;height:<?php echo $hauteur_mini;?>px;width:70px;">
+					</td></tr>
+					<?php 
+				}else{
+				?>
+					<tr><td style="background-color:white;height:<?php echo $hauteur_mini;?>px;width:70px;">
+					
+					<?php if($this->resultatentretien[$l] == 1){?><img src="<?php echo $this->baseUrl(); ?>/img/yes6gi.png" width="20" border="0"><?php }else{?><img src="<?php echo $this->baseUrl(); ?>/img/no5fg.png" width="20" border="0"><?php }?>
+					<?php $l++;?>
+					
+					</td></tr>
+					
+				<?php }endforeach;
+				?>
+			
+			</table>
+		</td>
+		<td style="vertical-align:middle;text-align: center;">
+			<table width="100%" style="border-collapse:collapse">
+			<?php 
+				foreach($resultat as  $modules):
+				
+					if($modules['bilan'] == 'non')
+				{
+					?>
+					<tr><td style="background-color:lightgrey;height:<?php echo $hauteur_mini;?>px;width:70px;">
+					</td></tr>
+					<?php 
+				}else{
+				?>
+					<tr><td style="background-color:white;height:<?php echo $hauteur_mini;?>px;width:70px;">
+				
+					<?php if($this->resultatbilan[$m] ==1){?><img src="<?php echo $this->baseUrl(); ?>/img/yes6gi.png" width="20" border="0"><?php }else{?><img src="<?php echo $this->baseUrl(); ?>/img/no5fg.png" width="20" border="0"><?php }?>
+					<?php 
+					$total_bian = $total_bian+$this->resultatbilan[$m];
+				}$m++;?>
+				</td></tr>
+					
+				<?php 
+				
+				endforeach;
+				?>
+			
+			</table>
+		</td>
+	
+			
+			<?php 	
+			}
+			$var = $listeModule['numero_unite'];
+			?>	
+	
+	<?php 
+			
+			endforeach;
+			
+			
+			if($total_bian/($m) ==1)
+			{
+				$image_bilan = '<img src="'.$this->baseUrl().'/img/yes6gi.png" width="20" border="0">';
+				$text_bilan = 'Valid&eacute;';
+			}else{
+				
+				$image_bilan = '<img src="'.$this->baseUrl().'/img/no5fg.png" width="20" border="0">';
+				$text_bilan = 'Non Valid&eacute;';
+				
+			}
+			
+			
+			?>		
+	
+	<tr>
+			<td  style="vertical-align:middle;text-align: center;" colspan="7"><b><label style="font-size:16px;">Bilan : <?php echo $image_bilan;?> <?php echo $text_bilan;?></label></b>
+			</td>
+			</tr>
+		</table>
+	</tr>
+</table>
+
+<br /><table border="1" cellpadding="0" style="border-width:1px;border-collapse:collapse;" cellspacing="0">
+			<tr>
+			<td style="width: 180px; background-color:#D3D3D3;height:40px;" >
+			<label style="font-size: 10px;">Commentaires /Appr&eacute;ciation g&eacute;n&eacute;rale de syth&egrave;se</label>
+			</td>
+			<td style="text-align: justify;width: 555px" ><label style="font-size: 10px;"></label>
+			<?php echo $this->resultatcommentaire;?>
+			</td>
+			</tr>
+			<tr>
+			<td style="background-color:#D3D3D3;width: 180px;height:30px;">
+			<label style="font-size: 10px;">Informations compl&eacute;mentaires</label>
+			</td>
+			<td style="background-color:#D3D3D3;width: 555px;height:50px;">
+			<label style="font-size: 10px;">				
+			Expert m&eacute;tier: <?php echo $this->expertDiplome; ?><br />
+			Poste occup&eacute; par le candidat : <?php echo $this->poste; ?><br />
+			Accompagnateur Greta: <?php echo $this->referentvae; ?><br />
+			Anciennet&eacute; dans le poste : <?php echo $this->anciennete; ?><br />
+		</label>
+			</td>
+			</tr>
+			</table>
+
+
+
+
+<?php endif; ?>
+
+
+
+
+
+
+
+
+<!--<a href="#" class="button print" >Imprimer</a>-->
+
+<?php if( $this->demarche == "cqpbranche" ): ?>
+
+	<a target="_blank" href="<?php echo $this->baseUrl(); ?>/impression/tableauresultatscqpbranche/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&passage=<?php echo $this->passage; ?>" class="button print" >Imprimer</a>
+	<a href="<?php echo $this->baseUrl(); ?>/saisie/index/metier/<?php echo $this->candidat_metier_id; ?>/" class="button add" >Saisie des notes</a>
+	
+	<br></br>
+	<table border=1 width="100%" style="border-collapse:collapse" id="header">
+
+		<tr>
+			<td rowspan="2" style="width: 200px; text-align: center;" >
+				<label><?php echo $this->titre; ?></label>
+			</td>
+			<td>
+				<label>Candidat</label>
+				<?php echo $this->nom; ?>
+			</td>
+			
+			<td rowspan="3" style="width: 150px; text-align: center;" >
+				<label><?php echo $this->title; ?></label>
+			</td>
+			<td rowspan="3" style="text-align: center;" >
+				<img src="<?php echo $this->baseUrl(); ?>/img/cqp3.jpg" alt="PMQ" style="width:65px;height:65px;" >
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Entreprise</label>
+				<?php echo $this->entreprise; ?>
+			</td>
+		</tr>
+
+		<tr>
+			<td>
+				<label>Organisme référent</label><br />
+				<?php echo $this->organisme_referent; ?>
+			</td>
+			<td>
+				<label>Branche</label>
+				<?php echo $this->branche; ?>
+			</td>
+		</tr>
+	</table>
+<br>
+
+<?php 
+$hauteur_mini = number_format((700/(count($this->capacites))),0);
+ $hauteur_maxi  = ($hauteur_mini*(count($this->capacites)));	?>	
+
+
+<br>
+	<table border="0" width="100%" style="border-spacing: 0px;border-width:1px;padding:0px;" >
+		<tr>
+		
+<td style="width:450px;border-width:1px;padding:0px;" valign="top">
+		<?php 	echo '<center><span style="font-size: 12px;font-weight: bold"><big><big>Tableau de résultats</big></big></span>';?>
+</td>
+</tr>
+</table>
+		<table border="0" width="100%" style="border-spacing: 0px;border-width:1px;padding:0px;" >
+		<tr>
+<td style="border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;">
+				
+			</td>
+			</tr>
+			<?php foreach( $this->capacites as $capacite ): ?>
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;background-color:#D3D3D3;width:100px;" >
+				<label>
+				<?php echo $capacite['nom']; ?>
+				</label>
+			</td>
+			</tr>
+			<?php endforeach; ?>
+			
+		</table>
+</td>
+		
+<td style="width:402px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;" colspan="2" >
+				<label><big><big>Capacités</big></big></label>
+				<br><label>Date entretien&nbsp;:</label>
+				<?php echo $this->date_entretien_branche; ?>
+			</td>
+			</tr>
+			<?php foreach( $this->capacites as $capacite ): ?>
+
+			<tr><td style="text-align: center;height: <?php echo $hauteur_mini;?>px;width: 402px;" colspan="2" >
+				<label>
+					<a href="<?php echo $this->baseUrl(); ?>/fichepedago/index/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>&capacite_id=<?php echo $capacite['num']; ?>&passage=<?php echo $this->passage; ?>" title="Fiche pédagogique" >
+					<?php echo $capacite['capacite']; ?></a>
+				</label>
+			</td>
+			</tr>
+			<?php endforeach; ?>
+		</table>
+</td>
+	
+
+
+<td style="width:95px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px; width:95px;border-spacing: 0px;">
+				<label>Appréciation</label><br />
+				<?php $l=0;$total_note=0;?>
+			</td>
+	</tr>		
+			<?php foreach( $this->entretienBranche['notes'] as $entretienBranche2): ?>
+	 <tr>
+	 		<td  style="text-align: center;height: <?php echo $hauteur_mini;?>px;" >
+				<?php 
+				if($entretienBranche2['notes'] == '1') echo '<p style="color:green;font-size:12px">Acquise</p>';
+				if($entretienBranche2['notes'] == '0') echo '<p style="color:red;font-size:12px">En cours d\'acquisition</p>';
+				?>
+			</td>		
+	</tr>
+							<?php endforeach; ?>	
+											
+</table>
+</td>	
+
+
+<td style="width:200px;border-width:0px;padding:0px;" valign="top">
+		<table style="border-spacing: 0px;">
+	<tr>
+			<td style="background-color:#D3D3D3;height: 50px;border-spacing: 0px;width:200px">
+				<label>Commentaires</label><br />
+				
+			</td>
+	</tr>		
+<?php foreach( $this->entretienBranche['commentaire'] as $entretienBranche2): ?>
+	 <tr>
+	 		<td  style="text-align: left;height: <?php echo $hauteur_mini;?>px;" >
+				<?php 
+					echo nl2br(stripslashes($entretienBranche2));
+				?>
+			</td>		
+	</tr>
+							<?php endforeach; ?>	
+											
+</table>
+</td>	
+
+
+
+
+
+</tr>
+
+
+	</table>
+	
+	<table border="0" width="100%" style="border-spacing: 0px;border-width:1px;padding:0px;" >
+		<tr>
+		
+<td style="width:450px;border-width:1px;padding:0px;" valign="top">
+		<?php 
+		
+		
+		echo '<center><span style="font-size: 12px;font-weight: bold"><big><big>Bilan : '.$this->etat.'</big></big></span>';?>
+</td>
+</tr>
+</table>
+
+							
+<br>
+		<table border=1 width="100%" style="border-collapse:collapse">
+		<tr>
+			<td style="width: 110px; background-color:#D3D3D3;" >
+				<label>Commentaires en formation</label>
+			</td>
+			<td style="text-align: justify;" ><?php echo $this->commentaire; ?></td>
+		</tr>
+		<tr>
+			<td style="width: 110px; background-color:#D3D3D3;" >
+				<label>Commentaires évaluation</label>
+			</td>
+			<td style="text-align: justify;" ><?php echo $this->commentaire2; ?></td>
+		</tr>
+		<tr>
+			<td style="background-color:#D3D3D3;">
+				<label>Informations complémentaires</label>
+			</td>
+			<td style="background-color:#D3D3D3;">
+				
+				Expert métier : <?php echo $this->expert; ?><br />
+				Poste occupé par le candidat : <?php echo $this->poste; ?><br />
+				<?php echo $this->nb_heures; ?>
+			</td>
+		</tr>
+	</table>
+<?php endif;?>
+
+
+
+
+

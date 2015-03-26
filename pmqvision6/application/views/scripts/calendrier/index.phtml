@@ -1,0 +1,112 @@
+
+<?php 
+	$entite_id = "";
+	if($_SESSION['Zend_Auth']['storage']->role !='forthac'){
+		$auth = Zend_Auth::getInstance();
+		if($auth->hasIdentity()){
+			$entite_id = $auth->getStorage()->read()->entite_id;
+		}
+	}else {
+		$entite_id = "forthac";
+	}
+	
+	
+?>
+<script type="text/javascript">
+$(document).ready(function() {
+	setEntityId('<?php echo $entite_id;?>');
+});
+
+
+</script>
+
+<div id='selectTypeDate'>
+	<label>Type de date : </label>
+	<select id='selectType'>
+			<option value='0'>Choix du type de date</option>
+		<optgroup label="Dates clés">
+			<option value='2'>Dates des opérations</option>
+			<option value='3'>Dates d'envoi des dossiers</option>
+			<option value='4'>Dates jurys</option>
+			<option value='all' class='cles' style='font-style: italic; margin-left: 10px;'>Afficher toutes les dates clés</option>
+		</optgroup>
+		
+		<optgroup label="Dates outils CQP">
+		<?php $i=5; foreach($this->outilsCqp AS $outil):?>
+			<option value='outils' class='<?php echo $outil->outil_id;?>'><?php echo ucfirst($outil->outil_libelle);?></option>
+		<?php $i++; endforeach;?>
+			<option value='all' class='cqp' style='font-style: italic; margin-left: 10px;'>Afficher toutes les dates CQP</option>
+		</optgroup>
+		
+		<optgroup label="Dates outils Diplôme">
+		<?php foreach($this->outilsDip AS $outil):?>
+			<option value='outils' class='<?php echo $outil->outil_id;?>'><?php echo ucfirst($outil->outil_libelle);?></option>
+		<?php $i++; endforeach;?>
+			<option value='all' class='diplome' style='font-style: italic; margin-left: 10px;'>Afficher toutes les dates Diplômes</option>
+		</optgroup>
+		
+		<optgroup label="Dates outils CCSP">
+		<?php foreach($this->outilsCcsp AS $outil):?>
+			<option value='outils' class='<?php echo $outil->outil_id;?>'><?php echo ucfirst($outil->outil_libelle);?></option>
+		<?php $i++; endforeach;?>
+			<option value='all' class='ccsp' style='font-style: italic; margin-left: 10px;'>Afficher toutes les dates CCSP</option>
+		</optgroup>
+	</select>
+</div>
+
+<div id='selectDate'>
+	<label>Mois : </label>
+	<select id='selectMois'>
+		<option value='0'></option>
+		<option value='1'>Janvier</option>
+		<option value='2'>Février</option>
+		<option value='3'>Mars</option>
+		<option value='4'>Avril</option>
+		<option value='5'>Mai</option>
+		<option value='6'>Juin</option>
+		<option value='7'>Juillet</option>
+		<option value='8'>Août</option>
+		<option value='9'>Septembre</option>
+		<option value='10'>Octobre</option>
+		<option value='11'>Novembre</option>
+		<option value='12'>Décembre</option>
+	</select>
+	
+	<label>Année : </label>
+	<select id='selectAnnee'>
+	
+	</select>
+</div>
+
+<br class='clear'/>
+
+<div id='calendar'></div>
+
+<div id='legend'>
+	<div class='itemLegend'><span class='legendCouleur' style='background-color: red;'></span><span class='legendLabel' >Opérations</span></div>
+	<div class='itemLegend'><span class='legendCouleur' style='background-color: blue;'></span><span class='legendLabel' >Envoi des dossiers</span></div>
+	<div class='itemLegend'><span class='legendCouleur' style='background-color: green;'></span><span class='legendLabel' >Jurys</span></div>
+	<div class='itemLegend'><span class='legendCouleur' style='background-color: #004a75;'></span><span class='legendLabel' >Outils</span></div>
+</div>
+
+<br class='clear'/>
+<br class='clear'/>
+
+
+<div id="refresh" style="display:none;color:#000;width:100%;height:100%;background-color: rgb(255, 255, 255); opacity: 0.85;position:absolute;top:0px;left:0px;z-index:999999;">
+	<div style="margin-left:auto;margin-right:auto;width:100px;padding-left:50px;margin-top:300px;">
+	<img alt="" src="<?php echo $this->BaseUrl();?>/img/ajax-loader.gif">
+	<br />
+	<br />
+	</div>
+	<div style="margin-left:auto;margin-right: auto;width:150px;text-align: center">
+		<span style="font-family:Arial;font-size:10pt;color:gray;font-weight:bold;">Chargement en cours</span>
+	</div>
+</div>
+
+<div id="tooltips" >
+	<span id='tips_haut'><img id='closeToolTip' src='<?php echo $this->BaseUrl();?>/img/cancel.png' alt="Fermer" /></span>
+	<span id='tips_content'></span>
+	<span id='tips_bas'></span>
+</div>
+

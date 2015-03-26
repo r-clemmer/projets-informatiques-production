@@ -1,0 +1,53 @@
+/* Page */
+html {
+  font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
+  width: 745px;
+  overflow-x: hidden;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Tahoma, Arial, Helvetica, FreeSans, sans-serif;
+  font-size: 7pt; /* À adapter pour la police choisie. (3) */
+  line-height: 1.4; /* À adapter au design. (4) */
+  color: #4C4C4C;
+}
+
+.clear {
+	clear: both;
+}
+
+/*table{
+	width: 745px;
+}*/
+
+td{
+	border: 1px solid #007DC5;
+}
+
+td label{
+	font-weight: bolder;
+	color: #007DC5;
+}
+
+#header td {
+	background-color: #D3D3D3;
+}
+
+a{
+	color: black;
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration:underline;
+}
+
+label.capacite_name{
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=4);
+	-webkit-transform: rotate(-90deg);
+	-moz-transform:rotate(-90deg);
+	display:block;
+	text-align:center;
+/*	vertical-align: middle;*/
+}

@@ -1,0 +1,8 @@
+a.button.add, a.button.details, a.button.modif, a.button.delete, a.button.record, a.button.return, a.button.logout, a.button.attribute, a.button.home, a.button.wrench, a.button.document, a.button.search, a.button.script, a.button.print, a.button.mail, a.button.refresh{
+	font-size: 7pt;
+	color: white;
+	background-image: url("../img/forthac/btn_recherche.gif");
+	border: none;
+	width: 130px;
+	height: 20px;
+}

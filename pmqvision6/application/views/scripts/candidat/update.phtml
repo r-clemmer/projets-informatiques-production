@@ -1,0 +1,355 @@
+<?php if( !$this->operation_id ): ?>
+
+	<script type="text/javascript">
+		$(document).ready(
+			function(){
+
+				$("input#personne_nom").change(function(){
+					if( $("input#personne_nom").val() == '' ) $(".error#personne_nom").show(); else $(".error#personne_nom").hide();
+				}).trigger('change');
+
+				$("input#personne_prenom").change(function(){
+					if( $("input#personne_prenom").val() == '' ) $(".error#personne_prenom").show(); else $(".error#personne_prenom").hide();
+				}).trigger('change');
+
+				$("input#personne_date_naissance").change(function(){
+					if($("input#personne_date_naissance").val() == ""){
+						$(".error#personne_date_naissance").show();
+					}else{
+						var regle = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)([0-9][0-9])";
+						if($('input#personne_date_naissance').regex(regle) == true){
+							$(".error#personne_date_naissance").hide();
+						}else{
+							$(".error#personne_date_naissance").show();
+						}
+					}
+				}).trigger('change');
+
+				$("input#candidat_anciennete").change(function(){
+					if($("input#candidat_anciennete").val() == ""){
+						$(".error#candidat_anciennete").show();
+					}else{
+						var regle = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)([0-9][0-9])";
+						if($('input#candidat_anciennete').regex(regle) == true){
+							$(".error#candidat_anciennete").hide();
+						}else{
+							$(".error#candidat_anciennete").show();
+						}
+					}
+				}).trigger('change');
+
+				$("select#candidat_contrat").change(function(){
+					if( $("select#candidat_contrat").val() == 'Nr' ) $(".error#candidat_contrat").show(); else $(".error#candidat_contrat").hide();
+				}).trigger('change');
+
+				$("input#personne_poste").change(function(){
+					if( $("input#personne_poste").val() == '' ) $(".error#personne_poste").show(); else $(".error#personne_poste").hide();
+				}).trigger('change');
+
+				
+				
+
+			}
+		);
+
+		function verif(){
+			var test = $("span.error:not([style])").length;
+			if(test == 0){
+				
+				document.forms['updateCandidatForm'].submit();
+			}else{
+				alert(test);
+				alert("Certains champs saisis ne sont pas correct !");
+			}
+		}
+	</script>
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+		</div>
+		<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<form name="updateCandidatForm" method="POST" action="<?php echo $this->baseUrl(); ?>/candidat/update/?id=<?php echo $this->candidat_id; ?>" >
+
+				<input type="hidden" name="candidat_id" value="<?php echo $this->candidat_id; ?>" />
+				<input type="hidden" name="personne_id" value="<?php echo $this->personne_id; ?>" />
+
+				<table width="630px" border="0" cellspacing="0" cellpadding="0">
+					<tr>
+						<td style="width:180px;" valign="top">Civilité :</td>
+						<td style="width:210px;" valign="top">
+							<select name="civilite_id" id="civilite_id">
+								<?php echo $this->civilite; ?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<td>Nom :</td>
+						<td><input type="text" name="personne_nom" id="personne_nom" value="<?php echo $this->nom; ?>" /></td>
+						<td><span class="error" id="personne_nom">Vous devez saisir un nom de famille.</span></td>
+					</tr>
+					<tr>
+						<td>Prénom :</td>
+						<td><input type="text" name="personne_prenom" id="personne_prenom" value="<?php echo $this->prenom; ?>" /></td>
+						<td><span class="error" id="personne_prenom">Vous devez saisir un prénom.</span></td>
+					</tr>
+					<tr>
+						<td>Code :</td>
+						<td><input type="text" name="candidat_code" id="candidat_code" value="<?php echo $this->code; ?>" /></td>
+					</tr>
+					<tr>
+						<td>Date de naissance :</td>
+						<td><input type="text" name="personne_date_naissance" id="personne_date_naissance" class="datepicker" value="<?php echo $this->date_naissance; ?>" /></td>
+						<td><span class="error" id="personne_date_naissance">Vous devez saisir une date valide (JJ/MM/AAAA).</span></td>
+					</tr>
+					<tr>
+						<td>Date d'entrée dans l'entreprise :</td>
+						<td><input type="text" name="candidat_anciennete" id="candidat_anciennete" class="datepicker" value="<?php echo $this->date_anciennete; ?>" /></td>
+						<td><span class="error" id="candidat_anciennete">Vous devez saisir une date valide (JJ/MM/AAAA).</span></td>
+					</tr>
+					<tr>
+						<td>Type de contrat :</td>
+						<td>
+						<select name="candidat_contrat" id="candidat_contrat">
+								<?php echo $this->contrat; ?>
+							</select>
+						
+						</td>
+						<td><span class="error" id="candidat_contrat">Vous devez saisir un type de contrat.</span></td>
+					</tr>
+					<tr>
+						<td>Poste :</td>
+						<td><input type="text" name="personne_poste" id="personne_poste" value="<?php echo $this->poste; ?>" /></td>
+						<td><span class="error" id="personne_poste" >Vous devez saisir un poste.</span></td>
+					</tr>
+					<tr>
+						<td >Premi&egrave;re certification ? :</td>
+						<td><input type="radio" name="candidat_cursus" <?php if( $this->cursus == 'oui' ) echo 'checked="checked"'; ?> value="oui"/> oui <input type="radio" value="non" name="candidat_cursus" <?php if( $this->cursus == 'non' ) echo 'checked="checked"'; ?> /> non</td>
+						<td></td>
+					</tr>
+					<tr>
+						<td>Fichiers :</td>
+						<td colspan="2">
+							<ul>
+								<?php echo $this->files; ?>
+								<li>
+									<form enctype="multipart/form-data" action="<?php echo $this->baseUrl(); ?>/outils/upload" method="POST" name="uploadForm" >
+										<input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+										<input type="hidden" id='dir_pathUp' name="dir_pathUp" value="./documents/candidats/" />
+										<input name="uploadedfile" type="file" />
+										<input type="submit" value="Telecharger" />
+										<input type="name" name="operation_id" value="<?php echo $this->operation_id; ?>">
+									</form>
+									<a href="#" onclick="javascript:document.forms['uploadForm'].submit();" >Upload</a>
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+
+			</form>
+
+		</div>
+	</div>
+	<a href="#" onclick="javascript:verif();" class="button record" >Enregistrer</a>
+	<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" class="button return" >Annuler</a>
+
+<?php else: ?>
+
+	<script type="text/javascript">
+	$(document).ready(
+		function(){
+
+			$("select#metier_id").change(
+				function(){
+					//experts
+					$.ajax({
+						type: "POST",
+						url: baseUrl+'/ajax/getexpertsselectelement/',
+						data: 'metier_id='+$("select#metier_id").val(),
+						async: false,
+						success: function( data ){
+							$("select#expert_id").html( data );
+						}
+					});
+					//evaluateurs
+					$.ajax({
+						type: "POST",
+						url: baseUrl+'/ajax/getevaluateursselectelement/',
+						data: 'metier_id='+$("select#metier_id").val(),
+						async: false,
+						success: function( data ){
+							$("select#tuteur_id").html( data );
+						}
+					});
+				}
+			);
+
+			$("a.record").click(
+				function(){
+					$.ajax({
+						type: 'POST',
+						url: baseUrl+'/ajax/updatecandidatmetier/',
+						data: 'candidat_metier_id='+<?php echo $this->candidat_metier_id; ?>+'&metier_id='+$("select#metier_id").val()+'&tuteur_id='+$("select#tuteur_id").val()+'&expert_id='+$("select#expert_id").val()+'&candidat_metier_fiche_enquete='+$("input#candidat_metier_fiche_enquete:checked").val()+'&abandon='+$("input#abandon:checked").val()+'&raison_id='+$("select#raison_id").val()+'&formation_id='+$("select#formation_id").val()+'&candidat_metier_formation_duree_estimee='+$("input#candidat_metier_formation_duree_estimee").val()+'&candidat_metier_formation_duree_realisee='+$("input#candidat_metier_formation_duree_realisee").val()+'&candidat_metier_formation_remarque='+$("textarea#candidat_metier_formation_remarque").val()+'&org_formation_id='+$("select#org_formation_id").val()+'&formateur_id='+$("select#formateur_id").val()+'&jury_id='+$("select#jury_id").val()+'&resultat_commentaire_jury='+$("textarea#resultat_commentaire_jury").val()+'&candidat_metier_formation_remarque2='+$("textarea#candidat_metier_formation_remarque2").val(),
+						async: false,
+						success: function(){
+							document.location.href = baseUrl + '/candidat/details/?id=<?php echo $this->candidat_id; ?>&operation_id=<?php echo $this->operation_id; ?>';
+						}
+					});
+				}
+			);
+
+			$("input#abandon").change(
+				function(){
+					if( $(this).attr("checked") == false ){
+						$("select#raison_id").attr("disabled", "disabled");
+					}else{
+						$("input#abandon").attr("disabled", "disabled");
+						$("select#raison_id").removeAttr("disabled");
+					}
+				}
+			);
+
+			$("select#org_formation_id").change(
+				function(){
+					if( $("select#org_formation_id").val() > 0 ){
+						$.ajax({
+							type: 'POST',
+							url: baseUrl+'/ajax/getformateurs/',
+							data: 'entite_id='+$("select#org_formation_id").val(),
+							async: false,
+							success: function( data ){
+								$("select#formateur_id").html( data );
+							}
+						});
+						$("select#formateur_id").removeAttr("disabled");
+					}else{
+						$("select#formateur_id").html( '<option value="0" >Aucun</option>' );
+						$("select#formateur_id").attr("disabled", "disabled");
+					}
+				}
+			);
+
+		}
+	);
+</script>
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"><?php echo $this->nom; ?></span>
+
+		</div>
+		<div id="ficheCand" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="max-width:250px;" valign="top">
+						<ul>
+							<li>Âge : <?php echo $this->age; ?></li>
+							<li>Ancienneté : <?php echo $this->anciennete; ?></li>
+							<li>Code : <?php echo $this->code; ?></li>
+							<li>Entité : <?php echo $this->entite; ?>
+								<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->entite_id; ?>">
+									<p class="ui-icon ui-icon-zoomin" style="margin: 0pt; display: inline-block; vertical-align: middle;" title="Détails" ></p>
+								</a>
+							</li>
+							<li>Poste occupé : <?php echo $this->poste; ?></li>
+							<li>Type de contrat : <?php echo $this->contrat; ?></li>
+						</ul>
+					</td>
+					<td  style="max-width:450px;" valign="top">
+						<ul>
+							<li>Titres : <?php echo $this->titres; ?></li>
+							<li>Formations effectuées : <?php echo $this->formations; ?></li>
+						</ul>
+					</td>
+				</tr>
+			</table>
+
+			<ul>
+				<li>
+					Fichiers :
+					<?php echo $this->files; ?>
+				</li>
+			</ul>
+
+		</div>
+	</div>
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+			<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;">Opération n°<?php echo $this->operation_id; ?></span>
+		</div>
+
+		<div id="operation" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0" style="margin-left:auto; margin-right: auto;" >
+				<tr>
+					<td>Titre :</td>
+					<td><select name="metier_id" id="metier_id" ><?php echo $this->select_titres; ?></select></td>
+				</tr>
+				<tr>
+					<td>Expert métier :</td>
+					<td><select name="expert_id" id="expert_id" ><?php echo $this->experts; ?></select></td>
+				</tr>
+				<?php
+
+				echo $this->titre2 ;if($this->titre2 !='cqpbranche'){?>
+				<tr>
+				
+					<td>Référent évaluteur :</td>
+					<td><select name="tuteur_id" id="tuteur_id" ><?php echo $this->evaluateurs; ?></select></td>
+				</tr>
+				<?php }?>
+				<tr>
+					<td>Fiche enquête :</td>
+					<td><input type="checkbox" name="candidat_metier_fiche_enquete" id="candidat_metier_fiche_enquete" <?php echo $this->check_fe; ?> /></td>
+				</tr>
+				<tr>
+					<td>Abandon :</td>
+					<td>
+						<input type="checkbox" name="abandon" id="abandon" <?php echo $this->abandon; ?> />
+						Raison : <select name="raison_id" id="raison_id" <?php echo $this->select_raison; ?> ><?php echo $this->raisons; ?></select>
+					</td>
+				</tr>
+			</table>
+
+			Formation :
+			<ul>
+				<li>Libellé : <select name="formation_id" id="formation_id" ><?php echo $this->select_formations; ?></select></li>
+				<li>Organisme de formation : <select name="org_formation_id" id="org_formation_id" ><?php echo $this->orgs_formation; ?></select></li>
+				<li>Formateur : <select name="formateur_id" id="formateur_id" <?php echo $this->select_formateur; ?> ><?php echo $this->formateurs; ?></select></li>
+				<li>Durée estimée : <input type="text" name="candidat_metier_formation_duree_estimee" id="candidat_metier_formation_duree_estimee" value="<?php echo $this->duree_estimee; ?>" size="5" />h</li>
+				<li>Durée réalisée : <input type="text" name="candidat_metier_formation_duree_realisee" id="candidat_metier_formation_duree_realisee" value="<?php echo $this->duree_realisee; ?>" size="5" />h</li>
+				
+				<?php if($this->titre2 !='cqpbranche'){?>
+				<li>Remarque Positionnement: <textarea cols="75" rows="3" name="candidat_metier_formation_remarque" id="candidat_metier_formation_remarque" ><?php echo $this->remarque; ?></textarea></li>
+				<li>Remarque Evaluation: <textarea cols="75" rows="3" name="candidat_metier_formation_remarque2" id="candidat_metier_formation_remarque2" ><?php echo $this->remarque2; ?></textarea></li>
+				<?php }else{?>
+				<li>Remarque Formation: <textarea cols="75" rows="3" name="candidat_metier_formation_remarque" id="candidat_metier_formation_remarque" ><?php echo $this->remarque; ?></textarea></li>
+				<li>Remarque évaluation: <textarea cols="75" rows="3" name="candidat_metier_formation_remarque2" id="candidat_metier_formation_remarque2" ><?php echo $this->remarque2; ?></textarea></li>
+				<?php }?>
+				
+				
+			</ul>
+			
+			
+			Jury :
+			<ul>
+				<li><select name="jury_id" id="jury_id" ><?php echo $this->jury; ?></select></li>
+				<li>Commentaire : <textarea cols="75" rows="3" name="resultat_commentaire_jury" id="resultat_commentaire_jury" ><?php echo $this->commentaire_jury; ?></textarea></li>
+			</ul>
+
+			<br />
+			<a href="#" class="button record" >Enregistrer</a>
+			<a href="<?php echo $this->baseUrl(); ?>/candidat/details/?id=<?php echo $this->candidat_id; ?>&operation_id=<?php echo $this->operation_id; ?>" class="button return" >Annuler</a>
+
+		</div>
+	</div>
+
+<?php endif; ?>

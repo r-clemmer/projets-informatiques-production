@@ -1,0 +1,41 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		jQuery("#list").jqGrid({        
+		   	url: baseUrl + '/ajax/getlistejurys/',
+			datatype: "json",
+			mtype: 'POST',
+		   	colNames:['Date','Ville', 'Branche', 'Actions'],
+		   	colModel:[
+		   		{name:'jury_date',index:'jury_date', width: 70, align: 'center'},
+		   		{name:'jury_ville',index:'jury_ville'},
+		   		{name:'branche_id',index:'branche_id'},
+		   		{name:'actions',index:'actions', sortable:false, width: 120}
+		   	],
+		   	rowNum:10,
+		   	rowList:[10,20,30],
+		   	pager: '#pager',
+		   	sortname: 'jury_date',
+		    viewrecords: true,
+		    sortorder: "DESC",
+		    caption:"Liste des jurys",
+		    loadonce: false,
+		    height: "100%",
+			width: 650
+		}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+	});
+
+</script>
+<?php if($this->role != 'organisme référent' && $this->role != 'organisme de formation' && $this->role != 'greta')
+{?>
+<a href="<?php echo $this->baseUrl(); ?>/jurys/add/" class="button add" >Ajouter un jury</a>
+
+<?php 
+}else{?>
+
+<?php 
+}?>
+
+<table id="list"></table>
+<div id="pager"></div>
+

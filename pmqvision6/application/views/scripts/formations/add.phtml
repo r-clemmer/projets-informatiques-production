@@ -1,0 +1,86 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$("input#formation_libelle").keyup(
+			function(){
+				if($("input#formation_libelle").val().length == 0){
+					$( "span.error#formation_libelle").text("Obligatoire !").show();
+				}else{
+					$( "span.error#formation_libelle").text("").hide();
+				}
+			}
+		);
+
+		$("input#formation_formacode").keyup(
+			function(){
+				if($("input#formation_formacode").val().length == 0){
+					$("span.error#formation_formacode").text("Obligatoire !").show();
+				}else{
+					$("span.error#formation_formacode").text("").hide();
+				}
+			}
+		);
+
+		$("select#entite_id").change(
+			function(){
+				if( $("select#entite_id option:selected").val() != null ){
+					$("span.error#entite_id").text("").hide();
+				}
+			}
+		).trigger('change');
+		
+	});
+	
+	function verif(){
+		var test = $("span.error:not([style])").length;
+		if(test == 0){
+			document.forms['addFormationForm'].submit();
+		}else{
+			alert("Certains champs saisis ne sont pas correct !");
+		}
+	}
+	
+</script>
+
+<form name="addFormationForm" method="POST" action="<?php echo $this->baseUrl(); ?>/formations/add/" >
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"></span>
+
+		</div>
+		<div id="formation" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="width:210px;" valign="top">Libellé de la formation :</td>
+					<td style="width:210px;" valign="top"><input name="formation_libelle" id="formation_libelle" /></td>
+					<td style="width:210px;" valign="top"><span class="error" id="formation_libelle" >Obligatoire !</span></td>
+				</tr>
+				<tr>
+					<td>Formacode :</td>
+					<td><input name="formation_formacode" id="formation_formacode" /></td>
+					<td><span class="error" id="formation_formacode" >Obligatoire !</span></td>
+				</tr>
+				<tr>
+					<td>Organismes de formations :</td>
+					<td>
+						<select name="entite_id[]" id="entite_id" multiple size="3" >
+							<?php foreach( $this->entites as $entite ): ?>
+								<option value="<?php echo $entite['entite_id']; ?>" ><?php echo $entite['entite_nom']; ?></option>
+							<?php endforeach; ?>
+						</select>
+					</td>
+					<td><span class="error" id="entite_id" >Obligatoire !</span></td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+	
+</form>
+
+<a href="#" onclick="javascript:verif();" class="button record" >Enregistrer</a>
+<a href="<?php echo $this->baseUrl(); ?>/formations/" class="button return" >Retour</a>

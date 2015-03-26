@@ -1,0 +1,198 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$(".error li#personne").hide();
+
+		$("input#personne_nom").blur(
+			function(){
+				if( $("input#personne_nom").val() == '' ) error( 'nom', true );
+				else error( 'nom', false );
+
+				if( $("input#personne_nom").val() != '' && $("input#personne_prenom").val() != '' ){
+					checkPersonne();
+				}
+
+			}
+		);
+		$("input#personne_prenom").blur(
+			function(){
+				if( $("input#personne_prenom").val() == '' ) error( 'prenom', true );
+				else error( 'prenom', false );
+
+				if( $("input#personne_nom").val() != '' && $("input#personne_prenom").val() != '' ){
+					checkPersonne();
+				}
+
+			}
+		);
+		$("input#candidat_anciennete").change(
+			function(){
+				if( $("input#candidat_anciennete").val() == '' ) error( 'anciennete', true );
+				else error( 'anciennete', false );
+			}
+		);
+		$("select#candidat_contrat").change(
+			function(){
+				if( $("select#candidat_contrat").val() == 'Nc' ) error( 'contrat', true );
+				else error( 'contrat', false );
+			}
+		);
+		$("input#personne_poste").blur(
+				function(){
+					if( $("input#personne_poste").val() == '' ) error( 'poste', true );
+					else error( 'poste', false );
+				}
+			);
+
+		$("input#check_cursus").change(function(){
+			if( $("input#check_cursus").attr("checked") == true ){
+				$("input#candidat_cursus").removeAttr("readonly");
+				error('cursus', true);
+			}else{
+				$("input#candidat_cursus").val("");
+				$("input#candidat_cursus").attr("readonly","readonly");
+				error('cursus', false);
+			}
+		}).trigger("change");
+
+		$("a.add").live(
+			"click",
+			function(){
+				candidat_id = $(this).attr("id");
+				metier_id = $("select#metier_id").val();
+				alert( "candidat : "+candidat_id+" metier : "+metier_id );
+				$.ajax({
+					type: "POST",
+					url: baseUrl + "/ajax/addexistcandidat/",
+					data: "candidat_id="+candidat_id+"&metier_id="+metier_id,
+					success: function(){
+						window.location.href = baseUrl + "/operations/visu/num/<?php echo $this->operation_id; ?>#ui-tabs-5";
+					}
+				});
+			}
+		);
+
+	});
+
+	function error( id, value ){
+		if( value == true ){
+			$(".error li#"+id).show();
+		}else{
+			$(".error li#"+id).hide();
+		}
+	}
+
+	function checkPersonne(){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+"/ajax/checkpersonneexist",
+			data: 'nom='+$("input#personne_nom").val()+'&prenom='+$("input#personne_prenom").val(),
+			success: function( data ){
+				if( data != '' ){
+					$(".error li#personne").html( "Peut-&ecirc;tre est-ce l'une de ces personnes ? <br />" + data ).show();
+				}else{
+					$(".error li#personne").hide();
+				}
+			}
+		});
+	}
+
+	function verif(){
+		if( $(".error[style='display:none']").text() == '' ){
+			//submit
+			document.forms['addCandidatForm'].submit();
+		}
+	}
+
+</script>
+
+<form name="addCandidatForm" method="POST" action="<?php echo $this->baseUrl(); ?>/operations/addnewcandidat/?operation_id=<?php echo $this->operation_id; ?>">
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " >
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+		</div>
+		<div id="fiche" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<table>
+				<tr>
+					<td colspan="2">Choisissez quel titre vous voulez faire passer au candidat : </td>
+					<td>
+						<select name="metier_id" id="metier_id" WIDTH="300">
+							<?php echo $this->metiers; ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Civilit&eacute; :</td>
+					<td><select name="civilite_id"><?php echo $this->civilites; ?></select></td>
+				</tr>
+				<tr>
+					<td>Nom : </td>
+					<td><input name="personne_nom" id="personne_nom" value="" /></td>
+				</tr>
+				<tr>
+					<td>Pr&eacute;nom : </td>
+					<td><input name="personne_prenom" id="personne_prenom" value="" /></td>
+				</tr>
+				<tr>
+					<td>Code : </td>
+					<td><input name="candidat_code" id="candidat_code" value="" /></td>
+				</tr>
+				<tr>
+					<td>Date de naissance : </td>
+					<td><input name="personne_date_naissance" id="personne_date_naissance" value="" class="datepicker" /></td>
+				</tr>
+				<tr>
+					<td>Date d'entr&eacute;e dans l'entreprise : </td>
+					<td><input name="candidat_anciennete" id="candidat_anciennete" value="" class="datepicker" /></td>
+				</tr>
+				<tr>
+					<td>Poste : </td>
+					<td><input name="personne_poste" id="personne_poste" value="" /></td>
+				</tr>
+				<tr>
+					<td>Contrat : </td>
+					<td><select name="candidat_contrat" id="candidat_contrat">
+<option value="Nc">Nc</option>
+<option value="CDD">CDD</option>
+<option value="CDI">CDI</option>
+<option value="Contrat Pro">Contrat Pro</option>
+<option value="Interimaire">Interimaire</option>
+<option value="Autre">Autre</option>
+</select></td>
+				</tr>
+				<tr>
+						<td >Premi&egrave;re certification ? :</td>
+						<td><input type="radio" name="candidat_cursus" <?php if( $this->cursus == 'oui' ) echo 'checked="checked"'; ?> value="oui"/> oui <input type="radio" value="non" name="candidat_cursus" <?php if( $this->cursus == 'non' ) echo 'checked="checked"'; ?> /> non</td>
+						<td></td>
+					</tr>
+				<tr>
+					<td>Entreprise : </td>
+					<td>
+						<input type="text" id="inputString" name="entite_nom" value="<?php if(isset($this->entite_nom_auto))echo $this->entite_nom_auto;?>" readonly="readonly"/>
+						<input type="hidden" id="entite_id" name="entite_id" value="<?php if(isset($this->entite_id_auto))echo $this->entite_id_auto;?>" />
+					</td>
+					<td><span class="info"></span></td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+
+</form>
+
+<ul class="error">
+	<li id="nom">Un nom de famille doit &ecirc;tre saisi.</li>
+	<li id="prenom">Un pr&eacute;nom doit &ecirc;tre saisi.</li>
+	<li id="anciennete">Une date d'entr&eacute;e valide doit &ecirc;tre saisie.</li>
+	<li id="contrat">Le contrat doit &ecirc;tre saisi.</li>
+	<li id="poste">Un poste doit &ecirc;tre saisie.</li>
+	<li id="personne"></li>
+</ul>
+
+<a href="#" onclick="javascript:verif();" class="button record" >Enregistrer</a>
+<a href="<?php echo $this->baseUrl(); ?>/operations/visu/num/<?php echo $this->operation_id; ?>#ui-tabs-5" class="button return" >Annuler</a>

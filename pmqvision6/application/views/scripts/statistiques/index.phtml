@@ -1,0 +1,248 @@
+<script type="text/javascript">
+
+
+
+	$(document).ready(function(){
+
+		$("select#in_demarche").change(function(){
+			$.ajax({
+				url: baseUrl + '/ajax/getlistebloc1/',
+				type: 'POST',
+				data : 'demarche_id=' + $("select#in_demarche").val(),
+				success: function( data ){
+					$("select#in_titre").html( '<option value="" >Aucun</option>' + data );
+				}
+			});
+		}).trigger("change");
+
+		$("select#in_branche").change(function(){
+			$.ajax({
+				url: baseUrl + '/ajax/getentreprisesbybranche/',
+				type: 'POST',
+				data: 'branche_id='+$("select#in_branche").val(),
+				success: function( data ){
+					$("select#in_entreprise").html( '<option value="" >Aucune</option>' + data );
+				}
+			});
+		}).trigger('change');
+
+	});
+
+
+
+	function boutonAffiche()
+	{
+
+		$("#boutonAffiche").css("display","none");
+
+
+
+
+ if (confirm('Demande de Création du fichier ...\n\merci de patienter\nPour régénerer des statistiques merci cliquer à nouveau sur le menu')) { // Clic sur OK
+ 			document.forms['formExport'].submit();
+           return true;
+       }else{
+       	return false;
+       }
+		
+
+	}
+
+</script>
+
+<style type="text/css">
+	select{
+		max-width: 150px;
+	}
+</style>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;">Synthèse</span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; height: auto;">
+
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td width="50%" >
+					<ul>
+						<li><?php echo $this->nb_entreprises; ?> entreprises référencées</li>
+						<li><?php echo $this->nb_operations; ?> opérations créées</li>
+					</ul>
+				</td>
+				<td width="50%" >
+					<ul>
+						<li><?php echo $this->nb_candidatures; ?> candidatures dont :
+							<ul>
+								<li><?php echo $this->nb_c_positionnement; ?> en positionnement</li>
+								<li><?php echo $this->nb_c_formation; ?> en formation</li>
+								<li><?php echo $this->nb_c_evaluation; ?> en évaluation</li>
+								<li><?php echo $this->nb_c_admissible; ?> admissibles</li>
+								<li><?php echo $this->nb_c_certifie; ?> certifiés</li>
+								<li><?php echo $this->nb_c_abandon; ?> ont abandonés</li>
+							</ul>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+</div>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;">Export Excel</span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; height: auto;">
+
+		<form method="POST" name="formExport" action="<?php echo $this->baseUrl(); ?>/statistiques/export/" >
+			<table style="width:100%;" >
+				<tr>
+					<td style="width:60%;" >
+						<fieldset>
+							<legend>Paramètres d'entrée : </legend>
+
+							<table style="width:250px; margin-left: auto; margin-right: auto;" >
+								<tr>
+									<td style="width:50%;" >N° d'opération : </td>
+									<td style="width:50%;" ><input type="text" name="in_operation" id="in_operation" size="5" maxlength="5" value="<?php echo $this->s_in_operation; ?>" /></td>
+								</tr>
+								<tr>
+									<td>Date de création : </td>
+									<td>
+										de <input type="text" name="in_date1" id="in_date1" size="10" maxlength="10" class="datepicker" value="<?php echo $this->s_in_date1; ?>" />
+										<br />
+										à &nbsp;&nbsp;<input type="text" name="in_date2" id="in_date2" size="10" maxlength="10" class="datepicker"  value="<?php echo $this->s_in_date2; ?>" />
+									</td>
+								</tr>
+								<tr>
+									<td>Démarche : </td>
+									<td>
+										<select name="in_demarche" id="in_demarche" ><?php echo $this->select_demarches; ?></select>
+									</td>
+								</tr>
+								<tr>
+									<td>Titre : </td>
+									<td>
+										<select name="in_titre" id="in_titre" ></select>
+									</td>
+								</tr>
+								<tr>
+									<td>Organisme référent : </td>
+									<td>
+										<select name="in_org_referent" id="in_org_referent" ><?php echo $this->select_org_referents; ?></select>
+									</td>
+								</tr>
+								<tr>
+									<td>Entité Opcalia : </td>
+									<td>
+										<select name="in_delegation" id="in_delegation" ><?php echo $this->select_delegations; ?></select>
+									</td>
+								</tr>
+								<tr>
+									<td>Branche : </td>
+									<td>
+										<select name="in_branche" id="in_branche" ><?php echo $this->select_branches; ?></select>
+									</td>
+								</tr>
+								<tr>
+									<td>Entreprise : </td>
+									<td>
+										<select name="in_entreprise" id="in_entreprise" ><?php echo $this->select_entreprises; ?></select>
+									</td>
+								</tr>
+								<tr>
+									<td>Région : </td>
+									<td>
+										<select name="in_region" id="in_region" >
+											<option value="" >Aucune</option>
+											<option value="alsace" >Alsace</option>
+											<option value="aquitaine" >Aquitaine</option>
+											<option value="auvergne" >Auvergne</option>
+											<option value="basse-normandie" >Basse-Normandie</option>
+											<option value="bourgogne" >Bourgogne</option>
+											<option value="bretagne" >Bretagne</option>
+											<option value="centre" >Centre</option>
+											<option value="champagne-ardenne" >Champagne-Ardenne</option>
+											<option value="collectivites-et-territoires-d-outre-mer" >Collectivités et territoires d'Outre-Mer</option>
+											<option value="corse" >Corse</option>
+											<option value="departements-d-outre-mer" >Départements d'Outre-Mer</option>
+											<option value="franche-comte" >Franche-Comté</option>
+											<option value="haute-normandie" >Haute-Normandie</option>
+											<option value="ile-de-france" >Ile-de-France</option>
+											<option value="languedoc-roussillon" >Languedoc-Roussillon</option>
+											<option value="limousin" >Limousin</option>
+											<option value="lorraine" >Lorraine</option>
+											<option value="midi-pyrenees" >Midi-Pyrénées</option>
+											<option value="nord-pas-de-calais" >Nord-Pas-de-Calais</option>
+											<option value="pays-de-la-loire" >Pays de la Loire</option>
+											<option value="picardie" >Picardie</option>
+											<option value="poitou-charentes" >Poitou-Charentes</option>
+											<option value="provence-alpes-cote-d-azur" >Provence-Alpes-Côte-d'Azur</option>
+											<option value="rhone-alpes" >Rhône-Alpes</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>Etat candidat : </td>
+									<td>
+										<select name="in_etat" id="in_etat" ><?php echo $this->select_etats; ?></select>
+									</td>
+								</tr>
+							</table>
+
+						</fieldset>
+					</td>
+
+					<td style="width:40%;">
+
+						<div class="ui-widget" >
+							<div class="ui-state-highlight  ui-corner-all" style="padding: 0 .7em;">
+								<p style="text-align: justify;" ><span class="ui-icon ui-icon-info" style="float: left; margin-right: .3em;"></span>
+								<strong>Attention :</strong><br />Selon le nombre de données à traiter, l'export peut mettre plusieurs minutes à aboutir.</p>
+							</div>
+						</div>
+
+						<fieldset>
+							<legend>Données en sortie : </legend>
+
+							<input type="checkbox" checked="checked" name="out_operations" /> Opérations
+							<br />
+							<input type="checkbox" checked="checked" name="out_organismes" /> Organismes
+							<br />
+							<input type="checkbox" checked="checked" name="out_entreprises" /> Entreprises
+							<br />
+							<input type="checkbox" checked="checked" name="out_dossiers" /> Dossiers
+							<br />
+							<input type="checkbox" checked="checked" name="out_candidats" /> Candidats
+							<br />
+							<input type="checkbox" checked="checked" name="out_formations" /> Formation
+							<br />
+							<input type="checkbox" checked="checked" name="out_jurys" /> Jury
+							<br />
+							<input type="checkbox" checked="checked" name="out_resultats" /> Résultats
+							<br />
+
+						</fieldset>
+						
+					</td>
+				</tr>
+			</table>
+
+		</form>
+
+		<div class="ui-widget" id="error" <?php if( !isset( $this->error ) ) echo 'style="display:none;"'; ?>>
+			<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;">
+				<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span>
+				<strong>Erreur :</strong> <?php echo $this->error; ?></p>
+			</div>
+		</div>
+
+	</div>
+	<a href="#" onclick="return boutonAffiche();" class="button record"  id="boutonAffiche" >Démarrer l'export</a>
+</div>

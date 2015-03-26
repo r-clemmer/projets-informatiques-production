@@ -1,0 +1,182 @@
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/buttons.js','text/javascript'); ?>
+
+<script type="text/javascript" >
+
+
+
+function rafraichir()
+{
+	window.location.reload();
+}
+
+
+	$(document).ready(function(){
+
+		$("select#objectif").hide();
+		$("textarea#remarque").hide();
+		$("input#acces_candidats").removeAttr("disabled");
+		$("input#fiche_projet").click(
+				function(){
+					$.post(
+						baseUrl + "/ajax/updateoperation/",
+						{
+							fiche_id : <?php echo $this->operation->fiche_id; ;?>,
+							field : 'fiche_projet'
+						},rafraichir()
+					);
+					
+				}
+		);
+
+		
+			
+		
+		$("input#acces_candidats").click(
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'fiche_acces_candidats'
+					},rafraichir()
+				);
+
+				
+			}
+		);
+
+	
+		$("p#objectif").toggle(
+			function(){
+				$("select#objectif").show();
+				$("select#objectif + em").hide();
+				$("p#objectif").removeClass('ui-icon-pencil').addClass('ui-icon-check').attr('title', 'Enregistrer');
+			},
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'objectif_id',
+						value : $("select#objectif").val()
+					},function( data ){
+						$("select#objectif + em").text(data);
+					}
+				);
+				$("select#objectif").hide();
+				$("select#objectif + em").show();
+				$("p#objectif").removeClass('ui-icon-check').addClass('ui-icon-pencil').attr('title', 'Modifier');
+			}
+		);
+
+		$("p#remarque").toggle(
+			function(){
+				$("textarea#remarque").show();
+				$("textarea#remarque + em").hide();
+				$("p#remarque").removeClass('ui-icon-pencil').addClass('ui-icon-check').attr('title', 'Enregistrer');
+			},
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'fiche_remarque',
+						value : $("textarea#remarque").val()
+					},function( data ){
+						$("textarea#remarque + em").text(data);
+					}
+				);
+				$("textarea#remarque").hide();
+				$("textarea#remarque + em").show();
+				$("p#remarque").removeClass('ui-icon-check').addClass('ui-icon-pencil').attr('title', 'Modifier');
+			}
+		);
+
+		//supprimer l operation
+		$("a.button.delete").click(
+			function(){
+				operation_id = <?php echo $this->operation->fiche_id; ?>;
+				$.post(
+					baseUrl + '/ajax/deleteoperation/',
+					{
+						operation_id : operation_id
+					},
+					function( data ){
+						if( data == 'delete' ){
+							location.href=baseUrl;
+						}else{
+							$("span.error").text( data ).show();
+						}
+					}
+				);
+			}
+		);
+		//$("a:contains(Candidats)").show();
+		$('div#refresh').fadeOut('fast');
+
+		<?php if( $this->role == 'forthac' ){ ?>
+		$("input#acces_candidats").removeAttr("disabled");
+		<?php }
+		else{ ?>
+		$("input#acces_candidats").attr("disabled", "disabled");
+	
+		<?php } ?>
+	});
+
+</script>
+
+<?php if( $this->role == 'forthac' || $this->role == 'organisme référent' || $this->role == 'organisme de formation' || $this->role == 'greta' ): ?>
+<a href="#" class="button delete" >Supprimer l'opération</a>
+<?php endif; ?>
+<?php if( $this->role == 'forthac' ): ?>
+<a href="<?php echo $this->baseUrl(); ?>/mail/?type=validation&operation_id=<?php echo $this->operation->fiche_id; ?>" class="button mail" >Validation de l'opération</a>
+<a href="<?php echo $this->baseUrl(); ?>/mail/?type=demandeinformations&operation_id=<?php echo $this->operation->fiche_id; ?>" class="button mail" >Demande d'info.</a>
+<?php elseif( $this->role == 'organisme référent' || $this->role == 'organisme de formation' || $this->role == 'greta' ): ?>
+<a href="<?php echo $this->baseUrl(); ?>/mail/?type=demandevalidation&operation_id=<?php echo $this->operation->fiche_id; ?>" class="button mail" >Demande de validation</a>
+<?php endif; ?>
+<br />
+
+<strong>Date de création : </strong><em>
+<?php echo $this->operation->fiche_date_creation; ?></em>
+<br />
+
+<strong>Date de mise en oeuvre : </strong>
+<em><?php echo $this->operation->fiche_date_meo; ?></em>
+<br />
+
+<strong>Dernière modification : </strong>
+<em><?php echo $this->operation->fiche_date_modif; ?></em>
+<br />
+
+<strong>Accès candidats : </strong> 
+<input type="checkbox" name="acces_candidats" id="acces_candidats" <?php if($this->operation->fiche_acces_candidats == 1) echo 'checked'; ?>  <?php if($this->role != 'forthac'){ echo ' disabled '; } ?>/>
+<br />
+
+<strong>Projet : </strong>
+<input type="checkbox" name="fiche_projet" id="fiche_projet" <?php if($this->operation->fiche_projet == 1) echo 'checked'; if( $this->role == 'branche' || $this->role == 'délégation' ) echo ' disabled="disabled" ';  ?> />
+<br />
+<strong>Objectif : </strong>
+<select id="objectif" >
+	<?php foreach( $this->objectifs as $objectif ): ?>
+	<?php
+		$select = "";
+		if( $objectif['objectif_id'] == $this->objectif['objectif_id'] ) $select = " selected ";
+	?>
+	<option <?php echo $select; ?> value="<?php echo $objectif['objectif_id']; ?>" ><?php echo ucfirst( $objectif['objectif_libelle'] ); ?></option>
+	<?php endforeach; ?>
+</select>
+<em><?php echo ucfirst( $this->objectif['objectif_libelle'] ); ?></em>
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<p class="ui-icon ui-icon-pencil" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Modifier" id="objectif" ></p>
+<?php endif; ?>
+<br />
+
+<strong>Remarque : </strong>
+<textarea cols="40" rows="2" id="remarque" ><?php echo $this->operation->fiche_remarque; ?></textarea>
+<em><?php echo $this->operation->fiche_remarque; ?></em>
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<p class="ui-icon ui-icon-pencil" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Modifier" id="remarque" ></p>
+<?php endif; ?>
+
+<br />
+<span class="error" style="display:none;" ></span>

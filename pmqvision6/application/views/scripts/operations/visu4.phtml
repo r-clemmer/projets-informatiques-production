@@ -1,0 +1,590 @@
+<script type="text/javascript" >
+	$(document).ready(
+		function(){
+
+			$('div#refresh').fadeOut('fast');
+
+			$("fieldset[id]").each(
+				function(){
+					metier_id = this.id;
+					loadExperts(metier_id);
+					loadEvaluateurs(metier_id);
+					loadOrganismes(metier_id);
+					loadReferentsVAE(metier_id);
+					
+				
+				}
+			);
+
+		}
+	);
+
+	$("a.expert").click(
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			$("fieldset#"+metier_id+" img.experts").show();
+			$("fieldset#"+metier_id+" a.button.add.expert").hide();
+			$.post(
+				baseUrl + "/ajax/getcontactssameexpertise",
+				{
+					metier_id : metier_id,
+					fonction: 'expert métier'
+				},
+				function( data ){
+					$("fieldset#"+metier_id+" select.experts").html( data );
+					$("fieldset#"+metier_id+" img.experts").hide();
+					$("fieldset#"+metier_id+" select.experts").show();
+					$("fieldset#"+metier_id+" a.experts.record").show();
+					$("fieldset#"+metier_id+" a.experts.return").show();
+				}
+			);
+		}
+	);
+
+	$("a.experts.record").live(
+		"click",
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			contact_id = $("fieldset#"+metier_id+" select.experts").val();
+			$("fieldset#"+metier_id+" ul.experts").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			//alert('ddddd');
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/addbinome/",
+				data: "type=ex&metier_id="+metier_id+"&contact_id="+contact_id,
+				async: false,
+				success: function(){
+					loadExperts(metier_id);
+					$("fieldset#"+metier_id+" a.button.add.expert").show();
+					$("fieldset#"+metier_id+" select.experts").hide();
+					$("fieldset#"+metier_id+" a.experts.record").hide();
+					$("fieldset#"+metier_id+" a.experts.return").hide();
+				}
+			});
+		}
+	);
+
+	$("a.experts.return").click(
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			$("fieldset#"+metier_id+" a.button.add.expert").show();
+			$("fieldset#"+metier_id+" select.experts").hide();
+			$("fieldset#"+metier_id+" a.experts.record").hide();
+			$("fieldset#"+metier_id+" a.experts.return").hide();
+		}
+	);
+
+	$("a.experts.delete").live(
+		"click",
+		function(){
+			metier_id = $(this).parent().parent().parent().parent().attr("id");
+			contact_id = $(this).attr("id");
+			$("fieldset#"+metier_id+" ul.experts").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/deletebinome/",
+				data: "metier_id="+metier_id+"&contact_id="+contact_id,
+				async: false,
+				success: function(){
+					loadExperts(metier_id);
+					$("fieldset#"+metier_id+" a.button.add.expert").show();
+					$("fieldset#"+metier_id+" select.experts").hide();
+					$("fieldset#"+metier_id+" a.experts.record").hide();
+					$("fieldset#"+metier_id+" a.experts.return").hide();
+				}
+			});
+		}
+	);
+
+	$("a.evaluateur").click(
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			$("fieldset#"+metier_id+" img.evaluateurs").show();
+			$("fieldset#"+metier_id+" a.button.add.evaluateur").hide();
+			$.post(
+				baseUrl + "/ajax/getcontactssameexpertise",
+				{
+					metier_id : metier_id,
+					fonction: 'référent évaluateur'
+				},
+				function( data ){
+					$("fieldset#"+metier_id+" select.evaluateurs").html( data );
+					$("fieldset#"+metier_id+" img.evaluateurs").hide();
+					$("fieldset#"+metier_id+" select.evaluateurs").show();
+					$("fieldset#"+metier_id+" a.evaluateurs.record").show();
+					$("fieldset#"+metier_id+" a.evaluateurs.return").show();
+				}
+			);
+		}
+	);
+
+
+
+
+	
+
+	$("a.evaluateuracompagnateur").click(
+			function(){
+				metier_id = $(this).parent().parent().attr("id");
+				$("fieldset#"+metier_id+" img.evaluateurs").show();
+				$("fieldset#"+metier_id+" a.button.add.evaluateuracompagnateur").hide();
+				$.post(
+					baseUrl + "/ajax/getcontactssameexpertise",
+					{
+						metier_id : metier_id,
+						fonction: 'référent acompagnateur'
+					},
+					function( data ){
+						$("fieldset#"+metier_id+" select.evaluateurs").html( data );
+						$("fieldset#"+metier_id+" img.evaluateurs").hide();
+						$("fieldset#"+metier_id+" select.evaluateurs").show();
+						$("fieldset#"+metier_id+" a.evaluateurs.record").show();
+						$("fieldset#"+metier_id+" a.evaluateurs.return").show();
+					}
+				);
+			}
+		);
+	
+
+	$("a.evaluateurs.record").live(
+		"click",
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			contact_id = $("fieldset#"+metier_id+" select.evaluateurs").val();
+			$("fieldset#"+metier_id+" ul.evaluateurs").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/addbinome/",
+				data: "type=ev&metier_id="+metier_id+"&contact_id="+contact_id,
+				async: false,
+				success: function(){
+					$.ajax({
+						type: 'POST',
+						url: baseUrl + "/ajax/getevaluateurs/",
+						data: "metier_id="+metier_id,
+						async: false,
+						success: function( data ){
+							loadEvaluateurs(metier_id);
+							$("fieldset#"+metier_id+" a.button.add.evaluateur").show();
+							$("fieldset#"+metier_id+" a.button.add.evaluateuracompagnateur").show();
+							$("fieldset#"+metier_id+" select.evaluateurs").hide();
+							$("fieldset#"+metier_id+" a.evaluateurs.record").hide();
+							$("fieldset#"+metier_id+" a.evaluateurs.return").hide();
+						}
+					});
+				}
+			});
+		}
+	);
+
+	$("a.evaluateurs.return").click(
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			$("fieldset#"+metier_id+" a.button.add.evaluateur").show();
+			$("fieldset#"+metier_id+" a.button.add.evaluateuracompagnateur").show();
+			$("fieldset#"+metier_id+" select.evaluateurs").hide();
+			$("fieldset#"+metier_id+" a.evaluateurs.record").hide();
+			$("fieldset#"+metier_id+" a.evaluateurs.return").hide();
+		}
+	);
+
+	$("a.evaluateurs.delete").live(
+		"click",
+		function(){
+			metier_id = $(this).parent().parent().parent().parent().attr("id");
+			contact_id = this.id;
+			$("fieldset#"+metier_id+" ul.evaluateurs").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/deletebinome/",
+				data: "metier_id="+metier_id+"&contact_id="+contact_id,
+				async: false,
+				success: function(){
+					$.ajax({
+						type: 'POST',
+						url: baseUrl + "/ajax/getevaluateurs/",
+						data: "metier_id="+metier_id,
+						async: false,
+						success: function( data ){
+							loadEvaluateurs(metier_id);
+							$("fieldset#"+metier_id+" a.button.add.evaluateur").show();
+							$("fieldset#"+metier_id+" select.evaluateurs").hide();
+							$("fieldset#"+metier_id+" a.evaluateurs.record").hide();
+							$("fieldset#"+metier_id+" a.evaluateurs.return").hide();
+						}
+					});
+				}
+			});
+		}
+	);
+//organisme
+
+	$("a.organisme").click(
+			function(){
+				metier_id = $(this).parent().parent().attr("id");
+				$("fieldset#"+metier_id+" img.organismes").show();
+				$("fieldset#"+metier_id+" a.button.add.organisme").hide();
+				$.post(
+					baseUrl + "/ajax/getcontactssameorganisme",
+					{
+						metier_id : metier_id,
+						fonction: 'formateur specialisé'
+					},
+					function( data ){
+						$("fieldset#"+metier_id+" select.organismes").html( data );
+						$("fieldset#"+metier_id+" img.organismes").hide();
+						$("fieldset#"+metier_id+" select.organismes").show();
+						$("fieldset#"+metier_id+" a.organismes.record").show();
+						$("fieldset#"+metier_id+" a.organismes.return").show();
+					}
+				);
+			}
+		);
+
+		$("a.organismes.record").live(
+			"click",
+			function(){
+				metier_id = $(this).parent().parent().attr("id");
+				contact_id = $("fieldset#"+metier_id+" select.organismes").val();
+				$("fieldset#"+metier_id+" ul.organismes").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+				$.ajax({
+					type: 'POST',
+					url: baseUrl + "/ajax/addorganisme/",
+					data: "metier_id="+metier_id+"&contact_id="+contact_id,
+					async: false,
+					success: function(){
+						$.ajax({
+							type: 'POST',
+							url: baseUrl + "/ajax/getorganismes/",
+							data: "metier_id="+metier_id,
+							async: false,
+							success: function( data ){
+								loadOrganismes(metier_id);
+								$("fieldset#"+metier_id+" a.button.add.organisme").show();
+								$("fieldset#"+metier_id+" select.organismes").hide();
+								$("fieldset#"+metier_id+" a.organismes.record").hide();
+								$("fieldset#"+metier_id+" a.organismes.return").hide();
+							}
+						});
+					}
+				});
+			}
+		);
+
+		$("a.organismes.return").click(
+			function(){
+				metier_id = $(this).parent().parent().attr("id");
+				$("fieldset#"+metier_id+" a.button.add.organisme").show();
+				$("fieldset#"+metier_id+" select.organismes").hide();
+				$("fieldset#"+metier_id+" a.organismes.record").hide();
+				$("fieldset#"+metier_id+" a.organismes.return").hide();
+			}
+		);
+
+		$("a.organismes.delete").live(
+			"click",
+			function(){
+				metier_id = $(this).parent().parent().parent().parent().attr("id");
+				contact_id = this.id;
+				$("fieldset#"+metier_id+" ul.organismes").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+				$.ajax({
+					type: 'POST',
+					url: baseUrl + "/ajax/deleteorganisme/",
+					data: "metier_id="+metier_id+"&contact_id="+contact_id,
+					async: false,
+					success: function(){
+						$.ajax({
+							type: 'POST',
+							url: baseUrl + "/ajax/getorganismes/",
+							data: "metier_id="+metier_id,
+							async: false,
+							success: function( data ){
+								loadOrganismes(metier_id);
+								$("fieldset#"+metier_id+" a.button.add.organisme").show();
+								$("fieldset#"+metier_id+" select.organismes").hide();
+								$("fieldset#"+metier_id+" a.organismes.record").hide();
+								$("fieldset#"+metier_id+" a.organismes.return").hide();
+							}
+						});
+					}
+				});
+			}
+		);
+
+
+
+//referent VAE
+
+$("a.referentvae").click(
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			$("fieldset#"+metier_id+" img.referentsvae").show();
+			$("fieldset#"+metier_id+" a.button.add.referentvae").hide();
+			$.post(
+				baseUrl + "/ajax/getcontactsreferentvae",
+				{
+					metier_id : metier_id,
+					fonction: 'référent VAE'
+				},
+				function( data ){
+					$("fieldset#"+metier_id+" select.referentsvae").html( data );
+					$("fieldset#"+metier_id+" img.referentsvae").hide();
+					$("fieldset#"+metier_id+" select.referentsvae").show();
+					$("fieldset#"+metier_id+" a.referentsvae.record").show();
+					$("fieldset#"+metier_id+" a.referentsvae.return").show();
+				}
+			);
+		}
+	);
+
+	$("a.referentsvae.record").live(
+		"click",
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			contact_id = $("fieldset#"+metier_id+" select.referentsvae").val();
+			$("fieldset#"+metier_id+" ul.referentsvae").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			//alert('ddddd');
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/addreferent/",
+				data: "metier_id="+metier_id+"&contact_id="+contact_id,
+				async: false,
+				success: function(){
+					loadReferentsVAE(metier_id);
+					$("fieldset#"+metier_id+" a.button.add.referentvae").show();
+					$("fieldset#"+metier_id+" select.referentsvae").hide();
+					$("fieldset#"+metier_id+" a.referentsvae.record").hide();
+					$("fieldset#"+metier_id+" a.referentsvae.return").hide();
+				}
+			});
+		}
+	);
+
+	$("a.referentsvae.return").click(
+		function(){
+			metier_id = $(this).parent().parent().attr("id");
+			$("fieldset#"+metier_id+" a.button.add.referentvae").show();
+			$("fieldset#"+metier_id+" select.referentsvae").hide();
+			$("fieldset#"+metier_id+" a.referentsvae.record").hide();
+			$("fieldset#"+metier_id+" a.referentsvae.return").hide();
+		}
+	);
+
+	$("a.referentsvae.delete").live(
+		"click",
+		function(){
+			metier_id = $(this).parent().parent().parent().parent().attr("id");
+			contact_id = $(this).attr("id");
+			$("fieldset#"+metier_id+" ul.referentsvae").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/deletereferent/",
+				data: "metier_id="+metier_id+"&contact_id="+contact_id,
+				async: false,
+				success: function(){
+					loadReferentsVAE(metier_id);
+					$("fieldset#"+metier_id+" a.button.add.referentvae").show();
+					$("fieldset#"+metier_id+" select.referentsvae").hide();
+					$("fieldset#"+metier_id+" a.referentsvae.record").hide();
+					$("fieldset#"+metier_id+" a.referentsvae.return").hide();
+				}
+			});
+		}
+	);
+
+
+	
+
+	$("input:checkbox").live(
+		"click",
+		function(){
+			metier_id = $(this).attr("id");
+			contact_id = $(this).val();
+			type = $(this).attr("class");
+			$("fieldset#"+metier_id+" ul."+type+"s").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="Chargement..." /></li>' );
+			check = $(this).attr("checked");
+			$.ajax({
+				type: 'POST',
+				url: baseUrl + "/ajax/updatebinomedefault/",
+				data: "metier_id="+metier_id+"&contact_id="+contact_id+"&type="+type+"&check="+check,
+				async: false,
+				success: function(){
+					if( type == 'expert' ) loadExperts(metier_id);
+					else if( type == 'evaluateur' ) loadEvaluateurs(metier_id);
+				}
+			});
+		}
+	);
+	
+	function loadExperts( metier_id ){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "/ajax/getexperts/",
+			data: "metier_id="+metier_id,
+			async: false,
+			success: function( data ){
+				$("fieldset#"+metier_id+" ul.experts").html( data );
+			}
+		});
+	}
+
+	function loadEvaluateurs( metier_id ){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "/ajax/getevaluateurs/",
+			data: "metier_id="+metier_id,
+			async: false,
+			success: function( data ){
+				$("fieldset#"+metier_id+" ul.evaluateurs").html( data );
+			}
+		});
+	}
+
+
+	function loadReferentsVAE( metier_id ){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "/ajax/getreferents/",
+			data: "metier_id="+metier_id,
+			async: false,
+			success: function( data ){
+				$("fieldset#"+metier_id+" ul.referentsvae").html( data );
+			}
+		});
+	}
+	
+	
+
+	function loadOrganismes( metier_id ){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl + "/ajax/getorganismes/",
+			data: "metier_id="+metier_id,
+			async: false,
+			success: function( data ){
+				$("fieldset#"+metier_id+" ul.organismes").html( data );
+			}
+		});
+	}
+	
+
+
+	
+
+</script>
+
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/buttons.js','text/javascript'); ?>
+<?php foreach($this->metiers as $metier){ ?>
+	<fieldset id="<?php echo $metier['metier_id']; ?>" >
+		<legend><?php echo $metier['titre']; ?></legend>
+<?php if($metier['abrege'] == "cqpi" || $metier['abrege'] == "cqp" || $metier['abrege'] == "cqpbranche"){?>
+		<fieldset>
+			<legend>Experts métier</legend>
+			<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+			<a href="#" class="button add expert" >Ajouter un expert</a>
+			<img class="experts" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+			<a href="#" class="experts record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="experts" style="display:none;"></select>
+			
+			<a href="#" class="experts return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+			<?php endif; ?>
+			<ul class="experts" ></ul>
+		</fieldset>
+		
+		
+		<?php if($metier['abrege'] != "cqpbranche"){
+	$affiche ='block'; 
+			
+			}else{
+				$affiche ='none';
+			}
+				?>
+		<fieldset style="display:<?php echo $affiche;?>">
+			<legend>Référents évaluateurs</legend>
+			<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+			<a href="#" class="button add evaluateur" >Ajouter un évaluateur</a>
+			<img class="evaluateurs" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+			<a href="#" class="evaluateurs record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="evaluateurs" style="display:none;"></select>
+			<a href="#" class="evaluateurs return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+			<?php endif; ?>
+			<ul class="evaluateurs" ></ul>
+		</fieldset>
+		
+		
+	<?php 
+}
+ if($metier['abrege'] == "ccsp"){?>
+	<fieldset>
+			<legend>Experts métier</legend>
+			<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+			<a href="#" class="button add expert" >Ajouter un expert</a>
+			<img class="experts" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+	     	<a href="#" class="experts record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="experts" style="display:none;"></select>
+			<a href="#" class="experts return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+			<?php endif; ?>
+			<ul class="experts" ></ul>
+		</fieldset>
+		
+		<fieldset>
+			<legend>Référents acompagnateur entreprise</legend>
+			<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+			<a href="#" class="button add evaluateuracompagnateur" >Ajouter un réréférent</a>
+			<img class="evaluateurs" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+			<a href="#" class="evaluateurs record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="evaluateurs" style="display:none;"></select>
+			<a href="#" class="evaluateurs return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+			<?php endif; ?>
+			<ul class="evaluateurs" ></ul>
+		</fieldset>
+		
+			<fieldset>
+			<legend>Organisme spécialisé</legend>
+			<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+			<a href="#" class="button add organisme" style="width:130px">Ajouter un formateur</a>
+			<img class="organismes" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+			<a href="#" class="organismes record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="organismes" style="display:none;"></select>
+			<a href="#" class="organismes return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+			<?php endif; ?>
+			<ul class="organismes" ></ul>
+		</fieldset>
+		
+	
+	
+	<?php 
+	}
+	
+	if($metier['abrege'] == "diplome"){?>
+		<fieldset>
+				<legend>Experts métier</legend>
+				<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+				<a href="#" class="button add expert" >Ajouter un expert</a>
+				<img class="experts" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+		     	<a href="#" class="experts record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="experts" style="display:none;"></select>
+				<a href="#" class="experts return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+				<?php endif; ?>
+				<ul class="experts" ></ul>
+			</fieldset>
+			
+			<fieldset>
+				<legend>Référents VAE</legend>
+				<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+				<a href="#" class="button add referentvae" >Ajouter un réréférent</a>
+				<img class="referentsvae" src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="Chargement" style="display:none;" />
+				<a href="#" class="referentsvae record" style="display:none;"><p class="ui-icon ui-icon-check" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Enregistrer" ></p></a>&nbsp;<select class="referentsvae" style="display:none;"></select>
+				<a href="#" class="referentsvae return" style="display:none;"><p class="ui-icon ui-icon-arrowrefresh-1-w" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Annuler" ></p></a>
+				<?php endif; ?>
+				<ul class="referentsvae" ></ul>
+			</fieldset>
+		
+		
+		<?php 
+		}
+	
+	?>	
+		
+		
+
+	</fieldset>
+<?php } ?>
+
+<?php if( $this->metiers == null ): ?>
+	Vous devez tout d'abord ajouter des titres dans l'onglet "Démarches/titres" !
+<?php endif; ?>

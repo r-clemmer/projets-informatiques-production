@@ -1,0 +1,149 @@
+<script type="text/javascript" >
+
+	$(document).ready(function(){
+
+		$("input#jury_date").change(
+			function(){
+				if($("input#jury_date").val() == ""){
+					$("span.error#jury_date").text("Vous devez saisir une date !").show();
+				}else{
+					var regle = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)([0-9][0-9])";
+					if($('input#jury_date').regex(regle) == true){
+						$("span.error#jury_date").text("").hide();
+					}else{
+						$("span.error#jury_date").text("Vous devez saisir une date correcte !").show();
+					}
+				}
+			}
+		).trigger("change");
+
+		if( $("input#jury_ville").val() == "" ){
+			$("span.error#jury_ville").text("La ville doit être renseignée !").show();
+		}
+		$("input#jury_ville").keyup(
+			function(){
+				if( $("input#jury_ville").val() == "" ){
+					$("span.error#jury_ville").text("La ville doit être renseignée !").show();
+				}else{
+					$("span.error#jury_ville").text("").hide();
+				}
+			}
+		);
+
+		$("a.button.record").click(
+			function(){
+				verif();
+			}
+		);
+
+	});
+
+	function verif(){
+		var test = $("span.error:visible").length;
+		if(test == 0){
+			document.forms['addJury'].submit();
+		}else{
+			alert("Certains champs saisis ne sont pas correct !");
+		}
+	}
+
+</script>
+
+<form method="POST" name="addJury" action="#">
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+		</div>
+		<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="width:250px;" valign="middle">Date :</td>
+					<td style="width:210px;" valign="middle"><input type="text" name="jury_date" id="jury_date" class="datepicker" value="" size="10" /></td>
+					<td valign="middle"><span class="error" id="jury_date" ></span></td>
+				</tr>
+				<tr>
+					<td>Adresse :</td>
+					<td><input type="text" name="jury_adresse" value="" /></td>
+				</tr>
+				<tr>
+					<td>Ville :</td>
+					<td><input type="text" name="jury_ville" id="jury_ville" value="" /></td>
+					<td><span class="error" id="jury_ville" ></span></td>
+				</tr>
+				<tr>
+					<td>Code postal :</td>
+					<td><input type="text" name="jury_cp" value="" maxlength="5" size="5" /></td>
+				</tr>
+				<tr>
+					<td>Branche :</td>
+					<td><select name="branche_id" ><?php echo $this->branches; ?></select></td>
+				</tr>
+				<tr>
+					<td>Fédération patronale/DAVA</td>
+					<td><select name="fed_patron_id" ><?php echo $this->fed_patro; ?></select></td>
+				</tr>
+				<tr>
+					<td>Fédération salariale/DAFCO</td>
+					<td><select name="fed_salar_id" ><?php echo $this->fed_salar; ?></select></td>
+				</tr>
+				<tr>
+					<td>Représentant de syndicats d'employeurs/Pole académique</td>
+					<td>
+						<select name="rep_syndic_employ_id" >
+							<option value="">Aucun</option>
+							<?php echo $this->rep_syndic_employ; ?>
+						</select>
+					</td>
+				</tr>
+				<tr style="display: none;">
+					<td>Représentant de syndicats de salariés :</td>
+					<td>
+						<select name="rep_syndic_salar_id" >
+							<option value="">Aucun</option>
+							<?php echo $this->rep_syndic_salar; ?>
+						</select>
+					</td>
+					<td><span class="error"></span></td>
+				</tr>
+				<tr>
+					<td>Président du jury :</td>
+					<td>
+						<select name="presid_id" >
+							<option value="">Aucun</option>
+							<?php echo $this->presid; ?>
+						</select>
+					</td>
+				</tr>
+				<tr style="display: none;">
+					<td>Représentant organisme référent :</td>
+					<td>
+						<select name="rep_org_ref_id" >
+							<option value="">Aucun</option>
+							<?php echo $this->rep_org_ref; ?>
+						</select>
+					</td>
+				</tr>
+				<tr style="display: none;">
+					<td>Représentant Forthac :</td>
+					<td>
+						<select name="rep_forthac_id" >
+							<option value="">Aucun</option>
+							<?php echo $this->rep_forthac; ?>
+						</select>
+					</td>
+				</tr>
+			</table>
+
+		</div>
+	</div>
+
+	<br />
+
+	<a href="#" class="button record" >Enregistrer</a>
+	<a href="<?php echo $this->baseUrl(); ?>/jurys/" class="button return" >Annuler</a>
+
+</form>

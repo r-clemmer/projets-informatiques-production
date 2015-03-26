@@ -1,0 +1,327 @@
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/buttons.js','text/javascript'); ?>
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/datepicker.js','text/javascript'); ?>
+
+<script type="text/javascript" >
+
+	$(document).ready(function(){
+		
+		//nouveau metier
+		$("fieldset#new-title").hide();
+		$("fieldset#new-title > select#bloc1_id").show();
+		$("fieldset#new-title > select#bloc2_id").show();
+		$("fieldset#new-title > span.error").hide();
+
+		$("a.button.add").click(
+			function(){
+				$("a.button.add").hide();
+				$("fieldset#new-title").show("slow");
+			}
+		);
+		$("fieldset#new-title > a.button.return").click(
+			function(){
+				$("a.button.add").show();
+				$("fieldset#new-title").hide("slow");
+			}
+		);
+
+		$("fieldset#new-title > select#demarche_id").change(
+			function(){
+				var demarche_id = $("fieldset#new-title > select#demarche_id option:selected").val();
+				$.post(
+					baseUrl+'/ajax/getlistebloc1/?demarche_id='+demarche_id,
+					function( data ){
+						$("fieldset#new-title > select#bloc1_id").html(data);
+						$("fieldset#new-title > select#bloc1_id").show();
+					}
+				);
+			}
+		).trigger("change");
+
+		$("fieldset#new-title > select#bloc1_id").change(
+			function(){
+				var demarche_id = $("fieldset#new-title > select#demarche_id option:selected").val();
+				var bloc1_id = $("fieldset#new-title > select#bloc1_id option:selected").val();
+				$.post(
+					baseUrl+'/ajax/getlistebloc2/?demarche_id='+demarche_id+'&bloc1_id='+bloc1_id,
+					function( data ){
+						$("fieldset#new-title > select#bloc2_id").html(data);
+						if( $("fieldset#new-title > select#bloc2_id").html() == "" ){
+							$("fieldset#new-title > select#bloc2_id").show();
+						}else{
+							$("fieldset#new-title > select#bloc2_id").show();
+						}
+					}
+				);
+			}
+		).trigger("change");
+
+		//modifier metier
+
+		$("fieldset.metier > input").hide();
+		$("fieldset.metier > a.button.record").hide();
+		$("fieldset.metier > a.button.return").hide();
+
+		$("fieldset.metier > a.button.modif").click(
+			function(){
+				var metier_id = this.id;
+				$("fieldset#"+metier_id+" > input").show();
+				$("fieldset#"+metier_id+" > select").show().change();
+				$("fieldset#"+metier_id+" > em").hide();
+				$("fieldset#"+metier_id+" > a.record").show();
+				$("fieldset#"+metier_id+" > a.return").show();
+				$("fieldset#"+metier_id+" > a.modif").hide();
+				$("fieldset#"+metier_id+" > a.delete").hide();
+			}
+		);
+
+		$("fieldset.metier > a.button.return").click(
+			function(){
+				var metier_id = this.id;
+				$("fieldset#"+metier_id+" > input").hide();
+				$("fieldset#"+metier_id+" > select").hide();
+				$("fieldset#"+metier_id+" > em").show();
+				$("fieldset#"+metier_id+" > a.record").hide();
+				$("fieldset#"+metier_id+" > a.return").hide();
+				$("fieldset#"+metier_id+" > a.modif").show();
+				$("fieldset#"+metier_id+" > a.delete").show();
+				$("fieldset#"+metier_id+" > span.error").text('').hide();
+			}
+		);
+
+		$("fieldset.metier > select#demarche_id").change(
+			function(){
+				var metier_id = $(this).parent().attr("id");
+				$("img.chargement_"+metier_id).show();
+				var demarche_id = $("fieldset#"+metier_id+" > select#demarche_id option:selected").val();
+				$.post(
+					baseUrl+'/ajax/getlistebloc1/?demarche_id='+demarche_id,
+					function( data ){
+						$("fieldset#"+metier_id+" > select.bloc1_id").html(data);
+						if( $("fieldset#"+metier_id+" > input.h_bloc1_id").val() != "" ){
+							$("fieldset#"+metier_id+" > select.bloc1_id."+metier_id+" option[value="+ $("fieldset#"+metier_id+" > input.h_bloc1_id").val() +"]").attr("selected", "selected");
+						}
+						$("img.chargement_"+metier_id).hide();
+					}
+				);
+			}
+		);
+
+		$("fieldset.metier > select#bloc1_id").change(
+			function(){
+				var metier_id = $(this).parent().attr("id");
+				$("img.chargement_"+metier_id).show();
+				var demarche_id = $("fieldset#"+metier_id+" > select#demarche_id option:selected").val();
+				var bloc1_id = $("fieldset#"+metier_id+" > select.bloc1_id").val();
+				$.post(
+					baseUrl+'/ajax/getlistebloc2/?demarche_id='+demarche_id+'&bloc1_id='+bloc1_id,
+					function( data ){
+						$("fieldset#"+metier_id+" > select.bloc2_id").html(data);
+						if( $("fieldset#"+metier_id+" > select.bloc2_id").html() == "" ){
+							$("fieldset#"+metier_id+" > select.bloc2_id").hide();
+							$("img.chargement_"+metier_id).hide();
+						}else{
+							if( $("fieldset#"+metier_id+" > input.h_bloc2_id").val() != "" ){
+								$("fieldset#"+metier_id+" > select.bloc2_id."+metier_id+" option[value="+ $("fieldset#"+metier_id+" > input.h_bloc2_id").val() +"]").attr("selected", "selected");
+							}
+							$("fieldset#"+metier_id+" > select.bloc2_id").show();
+							$("img.chargement_"+metier_id).hide();
+						}
+					}
+				);
+			}
+		);
+
+		//supprimer un titre
+		$("fieldset.metier > a.button.delete").click(
+			function(){
+				var metier_id = this.id;
+				$.post(
+					baseUrl + '/ajax/deletemetier/',
+					{
+						metier_id : metier_id
+					},
+					function( data ){
+						if( data == 'delete' ){
+							location.reload();
+						}else{
+							$("fieldset#"+metier_id+" > span.error").text( data ).show();
+						}
+					}
+				);
+
+			}
+			
+		);
+		
+		$('div#refresh').fadeOut('fast');
+
+	});
+
+		function verifAdd(){
+		var url_tab3 = baseUrl+'/operations/visu/num/'+'<?php echo $this->operation->fiche_id; ?>'+'/#ui-tabs-3';
+		var regle = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)([0-9][0-9])";
+		if($('input#date_envoi').regex(regle) != true){
+			$("span.error").text('La date d\'envoi des dossiers n\'est pas correcte !').show();
+		}else{
+			$("span.error").text('').hide();
+		}
+		if( $("select#bloc1_id option:selected").val() == "" || $("select#bloc2_id option:selected").val() == "" ){
+			$("span.error").text('Il vous faut choisir un titre et une specialite !').show();
+		}else{
+			$("span.error").text('').hide();
+		}
+
+		var test = $("span.error:visible").length;
+		if(test == 0){
+			$.post(
+				baseUrl + '/ajax/addmetier/',
+				{
+					fiche_id : <?php echo $this->operation->fiche_id; ?>,
+					metier_effectif : $("input#effectif").val(),
+					metier_nb_dossiers_candidats : $("input#nb_dossiers_candidats").val(),
+					metier_nb_dossiers_tuteurs : $("input#nb_dossiers_tuteurs").val(),
+					metier_date_envoi_dossiers : $("input#date_envoi").val(),
+					demarche_id : $("select#demarche_id option:selected").val(),
+					bloc1_id : $("select#bloc1_id option:selected").val(),
+					bloc2_id : $("select#bloc2_id option:selected").val()
+				},
+				function(){
+					location.reload();
+				}
+			);
+		
+		}
+
+	}
+
+	function verifModif( metier_id ){
+
+
+		var regle = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)([0-9][0-9])";
+		if( $("fieldset#"+metier_id+" > input#date_envoi_"+metier_id).regex(regle) != true ){
+			$("fieldset#"+metier_id+" > span.error").text('La date d\'envoi des dossiers n\'est pas correcte !').show();
+		}else{
+			$("fieldset#"+metier_id+" > span.error").text('').hide();
+		}
+		if( $("fieldset#"+metier_id+" > select#bloc1_id option:selected").val() == "" ||  $("fieldset#"+metier_id+" > select#bloc2_id option:selected").val() == ""){
+			$("fieldset#"+metier_id+" > span.error").text('Il vous faut choisir un titre et une specialite !').show();
+		}else{
+			$("fieldset#"+metier_id+" > span.error").text('').hide();
+		}
+
+		var test = $("span.error:visible").length;
+		if(test == 0){
+			$.post(
+				baseUrl + '/ajax/updatemetier/',
+				{
+					fiche_id : <?php echo $this->operation->fiche_id; ?>,
+					metier_id : metier_id,
+					metier_effectif : $("fieldset#"+metier_id+" > input#effectif_"+metier_id).val(),
+					metier_nb_dossiers_candidats : $("fieldset#"+metier_id+" > input#nb_dossiers_candidats_"+metier_id).val(),
+					metier_nb_dossiers_tuteurs : $("fieldset#"+metier_id+" > input#nb_dossiers_tuteurs_"+metier_id).val(),
+					metier_date_envoi_dossiers : $("fieldset#"+metier_id+" > input#date_envoi_"+metier_id).val(),
+					demarche_id : $("fieldset#"+metier_id+" > select#demarche_id option:selected").val(),
+					bloc1_id : $("fieldset#"+metier_id+" > select#bloc1_id option:selected").val(),
+					bloc2_id : $("fieldset#"+metier_id+" > select#bloc2_id option:selected").val()
+				},
+				function(){
+					location.reload();
+				}
+			);
+		}
+
+	}
+</script>
+
+<?php if( $this->role != 'branche' && $this->roler != 'délégation' ): ?>
+<a href="#" class="button add" >Ajouter un titre</a>
+<fieldset id="new-title">
+	<legend>Nouveau titre</legend>
+	<select name="demarche_id" id="demarche_id" >
+		<?php foreach( $this->demarches as $demarche ): ?>
+		<?php 
+		
+		if($demarche->demarche_abrege =='cqpbranche') $demarche->demarche_abrege = 'Cqp Branche';
+		echo '<option value="'.$demarche->demarche_id.'" >'.ucwords( $demarche->demarche_abrege ).'</option>' ?>
+		<?php endforeach; ?>
+	</select>
+	<select name="bloc1_id" id="bloc1_id" ></select>
+	<select name="bloc2_id" id="bloc2_id" ></select>
+	<br />
+
+	<strong>Date d'envoi des dossiers : </strong>
+	<input type="text" name="date_envoi" id="date_envoi" class="datepicker" value="<?php echo date("d/m/Y"); ?>" size="10" />
+	<br />
+	<strong>Nombre de dossiers candidats : </strong>
+	<input type="text" name="nb_dossiers_candidats" id="nb_dossiers_candidats" value="0" size="2" />
+	<br />
+	<strong>Nombre de dossiers r&eacute;f&eacute;rents entreprise : </strong>
+	<input type="text" name="nb_dossiers_tuteurs" id="nb_dossiers_tuteurs" value="0" size="2" />
+	<p style="display: none;">
+	<strong>Effectif prévu : </strong>
+	<input type="text" name="effectif" id="effectif" value="0" size="2" />
+</p>
+	<br />
+	<a href="#" class="button record" onclick="javascript:verifAdd();" >Enregistrer le titre</a>
+	<a href="#" class="button return" >Annuler</a>
+	<span class="error" ></span>
+</fieldset>
+<?php endif; ?>
+
+<?php foreach($this->metiers as $metier){ ?>
+
+	<fieldset id="<?php echo $metier['metier_id']; ?>" class="metier" >
+		<legend><?php echo $metier['titre']; ?></legend>
+
+		<input type="hidden" name="h_demarche_id" class="h_demarche_id" value="<?php echo $metier['demarche_id']; ?>" />
+		<input type="hidden" name="h_bloc1_id" class="h_bloc1_id" value="<?php echo $metier['bloc1_id']; ?>" />
+		<input type="hidden" name="h_bloc2_id" class="h_bloc2_id" value="<?php echo $metier['bloc2_id']; ?>" />
+
+		<img src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" alt="chargement en cours..." class="chargement_<?php echo $metier['metier_id']; ?>" style="display:none;" />
+		<select name="demarche_id" id="demarche_id" style="display: none;" >
+			<?php foreach( $this->demarches as $demarche ): ?>
+			<?php
+				$select = "";
+				if( $demarche['demarche_id'] == $metier['demarche_id'] ){
+					$select = " selected ";
+				}
+			?>
+			<?php 
+			if($demarche->demarche_abrege =='cqpbranche') $demarche->demarche_abrege = 'Cqp Branche';
+			echo '<option value="'.$demarche->demarche_id.'" '.$select.' >'.ucwords( $demarche->demarche_abrege ).'</option>' ?>
+			<?php endforeach; ?>
+		</select>
+		<select name="bloc1_id" id="bloc1_id" class="bloc1_id <?php echo $metier['metier_id']; ?>" style="display: none;" ></select>
+		<select name="bloc2_id" id="bloc2_id" class="bloc2_id <?php echo $metier['metier_id']; ?>" style="display: none;" ></select>
+		<br />
+
+		<strong>Date d'envoi des dossiers : </strong>
+		<input type="text" name="date_envoi" id="date_envoi_<?php echo $metier['metier_id']; ?>" class="datepicker" value="<?php echo $metier['metier_date_envoi_dossiers']; ?>" size="10" />
+		<em><?php echo $metier['metier_date_envoi_dossiers']; ?></em>
+		<br />
+
+		<strong>Nombre de dossiers candidats : </strong>
+		<input type="text" name="nb_dossiers_candidats" id="nb_dossiers_candidats_<?php echo $metier['metier_id']; ?>" value="<?php echo $metier['metier_nb_dossiers_candidats']; ?>" size="2" />
+		<em><?php echo $metier['metier_nb_dossiers_candidats']; ?></em>
+		<br />
+
+		<strong>Nombre de dossiers r&eacute;f&eacute;rents entreprise : </strong>
+		<input type="text" name="nb_dossiers_tuteurs" id="nb_dossiers_tuteurs_<?php echo $metier['metier_id']; ?>" value="<?php echo $metier['metier_nb_dossiers_tuteurs']; ?>" size="2" />
+		<em><?php echo $metier['metier_nb_dossiers_tuteurs']; ?></em>
+<p style="display: none;">
+		<strong>Effectif prévu : </strong>
+		<input type="text" name="effectif" id="effectif_<?php echo $metier['metier_id']; ?>" value="<?php echo $metier['metier_effectif']; ?>" size="2" />
+		<em><?php echo $metier['metier_effectif']; ?></em>
+</p>
+		<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+		<br />
+		<a href="#" class="button record" id="<?php echo $metier['metier_id']; ?>" onclick="javascript:verifModif(<?php echo $metier['metier_id']; ?>);" >Enregistrer</a>
+		<a href="#" class="button return" id="<?php echo $metier['metier_id']; ?>" >Annuler</a>
+		<a href="#" class="button modif" id="<?php echo $metier['metier_id']; ?>" >Modifier</a>
+		<a href="#" class="button delete" id="<?php echo $metier['metier_id']; ?>" >Supprimer</a>
+		<span class="error" ></span>
+		<?php endif; ?>
+
+	</fieldset>
+
+<?php } ?>

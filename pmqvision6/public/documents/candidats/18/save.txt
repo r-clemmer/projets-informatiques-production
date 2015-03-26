@@ -1,0 +1,941 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PMQ>
+	<cqp num="1" nom="CQPi Agent logistique" nb_questions="47">
+		<capacites nb="12">
+		  <capacite num="1" nom="C1" capacite="Vérifier les documents de réception et d'expédition" ventilation="1@2@3@4">
+	             <ra texte="Adéquation des documents correctement vérifiée par rapport aux attentes du bon de livraison, de réception ou d'expédition " num="1" />
+	             <ra texte="Anomalies détectées et signalées" num="2"/>
+	             <mesurables texte="Les documents de réception ou d'expédition" num="1" />
+	             <mesurables texte="La nature des écarts et de la non-conformité des documents" num="2" />
+	             <observables texte="localise les documents nécessaires et/ ou obligatoires à la réception ou à l'expédition" num="1" />
+	             <observables texte="Procède à la vérification des documents en comparant les informations consignées" num="2" />
+	             <observables texte="Applique les procédures de vérification définies par l'entreprise" num="3" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformitées" num="4" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="5" />
+		  </capacite>
+		  <capacite num="2" nom="C2" capacite="Réceptionner les produits ou articles" ventilation="1@5@6@7@8@9@10@11">
+		     <ra texte="Vérification des quantités, des supports et contenants correctement effectuée par rapport aux instructions et documents de référence avec identification des anomalies" num="1" />
+		     <ra texte="Documents de réception correctement renseignés et annotés si nécessaire selon les instructions" num="2" />
+	             <ra texte="Saisies des informations effectuées selon les instructions et procédures et à l'aide des moyens prévus" num="3" />
+	             <ra texte="Avis d'acceptation, de réserve ou de refus de la livraison émis conformément aux consignes, avec traitement des anomalies détectées selon les procédures établies" num="4" />
+	             <mesurables texte="Les différents types de support et contenant" num="1" />
+	             <mesurables texte="Les différents modes de contrôle" num="2" />
+	             <mesurables texte="Les documents de réception ou d'expédition" num="3" />
+	             <mesurables texte="La saisie d'informations et ses outils" num="4" />
+	             <mesurables texte="Les conditions de refus, réserve ou d'acceptation à la livraison" num="5" />
+	             <observables texte="Effectue le contrôle quantitatif des produits, supports et contenants reçus" num="1" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformité" num="2" />
+	             <observables texte="Applique les procédures de vérification définies par l'entreprise" num="3" />
+	             <observables texte="Pointe, renseigne par écrit et annote, le cas échéant les documents de réception" num="4" />
+	             <observables texte="Effectue les saisies et l'enregistrement des mouvements à l'aide de l'outil informatique ou de tout autre moyen" num="5" />
+	             <observables texte="Accepte ou refuse la livraison" num="6" />
+	             <observables texte="Emet des réserves" num="7" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="8" />
+		  </capacite>
+		  <capacite num="3" nom="C3" capacite="Déplacer les produits" ventilation="5@9@10@12@13@14@15@16@17@18@19@20@21@22@24@28">
+	             <ra texte="Consignes de sécurité appliquées et instructions de qualité respectées" num="1" />
+	             <ra texte="Conformité et aspect global des supports et contenants vérifié par rapport aux instructions" num="2" />
+	             <ra texte="Produits déplacés jusqu'à la zone ou l'aire prévue et conformes aux instructions" num="3" />
+	             <ra texte="Enregistrement du déplacement effectué selon les instructions et conforme à la réalité du mouvement demandé" num="4" />
+	             <ra texte="Anomalies systématiquement détectées et traitées selon les prérogatives et procédures" num="5" />
+	             <mesurables texte="Les moyens de manutention" num="1" />
+	             <mesurables texte="Les règles de conduite, de sécurité, de circulation et d'ergonomie liées aux activités de manutention" num="2" />
+	             <mesurables texte="Les symboles et pictogrammes normalisés" num="3" />
+	             <mesurables texte="Les différents types de support et contenant" num="4" />
+	             <mesurables texte="Les règles de constitution d'une palette et de protection des produits et des charges palettisées" num="5" />
+	             <mesurables texte="Le site logistique et l'organisation des différentes zones" num="6" />
+	             <mesurables texte="Les principes et méthodes d'affectation" num="7" />
+	             <mesurables texte="La saisie d'informations et ses outils" num="8" />
+	             <mesurables texte="Le suivi des mouvements de stock" num="9" />
+	             <observables texte="Choisit la méthode et les moyens de manutention adaptés" num="1" />
+	             <observables texte="Conduit et/ou utilise les moyens de manutention" num="2" />
+	             <observables texte="Charge et décharge les produits" num="3" />
+	             <observables texte="Manipule les produits" num="4" />
+	             <observables texte="Effectue le contrôle qualitatif des supports et contenants à déplacer" num="5" />
+	             <observables texte="Applique les procédures de vérification définies par l'entreprise" num="6" />
+	             <observables texte="Consulte l'affectation des zones ou aires de départ, d'expédition, de stockage..." num="7" />
+	             <observables texte="Déplace les produits vers les zones ou aires prévues" num="8" />
+	             <observables texte="Effectue les saisies et l'enregistrement des mouvements  à l'aide de l'outil informatique ou de tout autre moyen" num="9" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformité " num="10" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="11" />
+		  </capacite>
+		  <capacite num="4" nom="C4" capacite="Ranger les produits" ventilation="9@10@12@13@14@15@17@18@19@23@24@25@26@27@29@47">
+	             <ra texte="Affectation des produits, cartons ou palettes effectuée aux emplacements prévus, en respectant les conditions de stockage définies" num="1" />
+	             <ra texte="Produits manipulés sans détérioration selon les règles de sécurité liées aux personnes et produits en utilisant les moyens et trajets de manutention appropriés et autorisés" num="2" />
+	             <ra texte="Enregistrement de mouvement correctement utilisés" num="3" />
+	             <ra texte="Anomali s systématiquement détectées et signalées" num="4" />
+	             <mesurables texte="Les principaux matériels de stockage" num="1" />
+	             <mesurables texte="Les différentes méthodes et conditions de stockage" num="2" />
+	             <mesurables texte="Le code d'adressage" num="3" />
+	             <mesurables texte="Les moyens de manutention" num="4" />
+	             <mesurables texte="Les règles de conduite, de sécurité, de circulation et d'ergonomie liées aux activités de manutention" num="5" />
+	             <mesurables texte="Les symboles et pictogrammes normalisés" num="6" />
+	             <mesurables texte="Les protections individuelles liées aux activités de manutention" num="7" />
+	             <mesurables texte="La saisie d'informations et ses outils" num="8" />
+	             <mesurables texte="Le suivi des mouvements de stock" num="9" />
+	             <observables texte="Prépare la mise en stock" num="1" />
+	             <observables texte="Consulte l'affectation des emplacements libres dans l'aire de stockage à l'aide de l'outil informatique ou de tout autre moyen" num="2" />
+	             <observables texte="Range les produits, cartons, palettes" num="3" />
+	             <observables texte="Choisit la méthode et les moyens de manutention adaptés" num="4" />
+	             <observables texte="Conduit et/ou utilise les moyens de manutention" num="5" />
+	             <observables texte="Manipule les produits" num="6" />
+	             <observables texte="Effectue les saisies et l'enregistrement des mouvements à l'aide de l'outil informatique ou de tout autre moyen" num="7" />
+	             <observables texte="Effectue le contrôle qualitatif et quantitatif des produits mis en stock" num="8" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformité" num="9" />
+	             <observables texte="Applique les procédures de vérification définies par l'entreprise" num="10" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="11" />
+		  </capacite>
+		  <capacite num="5" nom="C5" capacite="Manipuler les palettes et contenants" ventilation="12@13@14@15@17@18@19@24@27@29@30@31@32@33@34@47">
+	             <ra texte="Consignes de sécurité appliquées et normes de qualité respectées" num="1" />
+	             <ra texte="Conditionnements conformes aux instructions " num="2" />
+	             <ra texte="Précautions de manipulation ou de manutention prévues appliquées" num="3" />
+	             <ra texte="Anomalies détectées, et traitées selon les prérogatives et procédures établies" num="4" />
+	             <mesurables texte="Les moyens de manutention" num="1" />
+	             <mesurables texte="Les règles de conduite, de sécurité, de circulation et d'ergonomie liées aux activités de manutention" num="2" />
+	             <mesurables texte="Les symboles et pictogrammes normalisés" num="3" />
+	             <mesurables texte="Les protections individuelles liées aux activités de manutention" num="4" />
+	             <mesurables texte="L'étiquetage" num="5" />
+	             <mesurables texte="La codification des produits" num="6" />
+	             <mesurables texte="Les différentes techniques de conditionnement" num="7" />
+	             <mesurables texte="Le matériel de conditionnement" num="8" />
+	             <observables texte="Choisit la méthode et les moyens de manutention adaptés" num="1" />
+	             <observables texte="Conduit et/ou utilise les moyens de manutention" num="2" />
+	             <observables texte="Charge et décharge les produits" num="3" />
+	             <observables texte="Manipule les produits" num="4" />
+	             <observables texte="Prépare et réalise le groupage ou le dégroupage" num="5" />
+	             <observables texte="Réalise l'étiquetage directionnel" num="6" />
+	             <observables texte="Effectue le contrôle qualitatif et quantitatif des palettes et conditionnements" num="7" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformité" num="8" />
+	             <observables texte="Applique les procédures de vérification définies par l'entreprise" num="9" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="10" />
+		  </capacite>
+		  <capacite num="6" nom="C6" capacite="Prélever les produits" ventilation="14@15@17@21@22@28@29@32@35@36@37" >
+	             <ra texte="Emplacement correctement localisé" num="1" />
+	             <ra texte="Conditions de sécurité prévues respectées" num="2" />
+	             <ra texte="Produit prélevé selon les références, quantités, conditionnement prévus et dans les emplacements désignés" num="3" />
+	             <ra texte="Produit déposé et/ou regroupé par nature, références et/ou selon les spécificités d'acheminement vers la zone dédiée" num="4" />
+	             <mesurables texte="L'ordre de prélèvement" num="1" />
+	             <mesurables texte="Les règles de conduite, de sécurité, de circulation et d'ergonomie liées aux activités de manutention" num="2" />
+	             <mesurables texte="Les protections individuelles liées aux activités de manutention" num="3" />
+	             <mesurables texte="La codification des produits" num="4" />
+	             <mesurables texte="Les méthodes de prélèvement" num="5" />
+	             <mesurables texte="Le site logistique et l'organisation des différentes zones" num="6" />
+	             <mesurables texte="Les principes et méthodes d'affectation" num="7" />
+	             <observables texte="Prépare le prélèvement des produits" num="1" />
+	             <observables texte="Consulte l'affectation des produits à prélever à l'aide de l'outil informatique ou de tout autre moyen" num="2" />
+	             <observables texte="Choisit la méthode et les moyens de manutention adaptés" num="3" />
+	             <observables texte="Conduit et/ou utilise les moyens de manutention" num="4" />
+	             <observables texte="Manipule les produits" num="5" />
+	             <observables texte="Prélève les produits" num="6" />
+	             <observables texte="Consulte l'affectation de destination ou l'aire de regroupement à l'aide de l'outil informatique ou de tout autre moyen" num="7" />
+	             <observables texte="Déplace les produits vers les zones ou aires prévues" num="8" />
+		  </capacite>
+		  <capacite num="7" nom="C7" capacite="Contrôler les produits" ventilation="7@8@32@38">
+	             <ra texte="Procédure de contrôle prévue connue et appliquée" num="1" />
+	             <ra texte="Résultat du contrôle de référence, du comptage et du contrôle d'aspect correspondant à la réalité. Anomalies détectées et transmises au responsable" num="2" />
+	             <mesurables texte="Les différents modes de contrôle" num="1" />
+	             <mesurables texte="La codification des produits" num="2" />
+	             <mesurables texte="Les familles de produits" num="3" />
+	             <observables texte="Applique les procédures de vérification définies par l'entreprise" num="1" />
+	             <observables texte="Effectue le contrôle qualitatif et quantitatif des produits mis en stock" num="2" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformité" num="3" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="4" /> 
+		  </capacite>
+		  <capacite num="8" nom="C8" capacite="Préparer et conditionner les  produits" ventilation="2@20@30@31@32@33@34@38@39">
+	             <ra texte="Conditionnement/emballage correspondant aux instructions et/ou indicateurs" num="1" />
+	             <ra texte="Quantité et références produits correspondant aux instructions" num="2" />
+	             <ra texte="Respect des règles de constitution des colis en fonction des contraintes d'expédition" num="3" />
+	             <ra texte="Documents d'accompagnement joints et correspondant aux instructions et procédures et éventuellement transmis au bon interlocuteur" num="4" />
+	             <mesurables texte="Les différentes techniques de conditionnement" num="1" />
+	             <mesurables texte="Le matériel de conditionnement" num="2" />
+	             <mesurables texte="La codification des produits" num="3" />
+	             <mesurables texte="Les familles de produits" num="4" />
+	             <mesurables texte="Le bon de commande" num="5" />
+	             <mesurables texte="Les règles de constitution d'une palette et de protection des produits et des charges palettisées" num="6" />
+	             <mesurables texte="L'étiquetage" num="7" />
+	             <mesurables texte="Les documents de réception ou d'expédition" num="8" />
+	             <observables texte="Sélectionne l'emballage et la protection adaptés aux produits" num="1" />
+	             <observables texte="Emballe/ conditionne les produits" num="2" />
+	             <observables texte="Consulte le bon de commande ou le bon de préparation" num="3" />
+	             <observables texte="Effectue le contrôle qualitatif et quantitatif des produits ou commandes  préparés" num="4" />
+	             <observables texte="Détecte les écarts, anomalies et non-conformité" num="5" />
+	             <observables texte="Constitue les colis" num="6" />
+	             <observables texte="Choisit et appose les étiquettes de manutention" num="7" />
+	             <observables texte="Complète l'étiquette de destination, les documents d'expédition et d'accompagnement" num="8" />
+		  </capacite>
+		  <capacite num="9" nom="C9" capacite="Enregistrer les mouvements de stocks" ventilation="9@10">
+	             <ra texte="Outil de saisie utilisé conformément aux instructions avec sélection des fonctions correspondant aux mouvements à effectuer" num="1" />
+	             <ra texte="Saisie effectuée selon le mouvement de stock prévu et correspondant à la réalité" num="2" />
+	             <mesurables texte="La saisie d'informations et ses outils" num="1" />
+	             <observables texte="Utilise les outils de saisie, d'enregistrement et de consultation des stocks mis à disposition" num="1" />
+	             <observables texte="Effectue les saisies et l'enregistrement des mouvements  à l'aide de l'outil informatique ou de tout autre moyen" num="2" />
+		  </capacite>
+		  <capacite num="10" nom="C10" capacite="Consulter les mouvements de stocks" ventilation="9@10@24@40@41@42@44">
+	             <ra texte="Recherche effectuée selon les méthodes prévues permettant de décomposer l'ordre logique des mouvements et de déterminer la provenance, l'état et la qualité réelle du stock" num="1" />
+	             <ra texte="Décomposition des mouvements, quantités et qualité de stock annoncées correspondant à la réalité" num="2" />
+	             <mesurables texte="La fiche de stock" num="1" />
+	             <mesurables texte="La saisie d'informations et ses outils" num="2" />
+	             <mesurables texte="Le suivi des mouvements de stock" num="3" />
+	             <mesurables texte="Les stocks" num="4" />
+	             <mesurables texte="La traçabilité" num="5" />
+	             <observables texte="Utilise les outils de saisie, d'enregistrement et de consultation des stocks mis à disposition" num="1" />
+	             <observables texte="Contrôle la conformité du stock affiché avec le stock réel" num="2" />
+		  </capacite>
+		  <capacite num="11" nom="C11" capacite="Effectuer l'inventaire" ventilation="7@8@9@10@43">
+	             <ra texte="Comptage des produits effectué selon les procédures et correspondant à la demande et à la réalité" num="1" />
+	             <ra texte="Report du comptage correctement effectué selon les instructions" num="2" />
+	             <ra texte="Anomalies détectées et signalées selon les procédures" num="3" />
+	             <mesurables texte="Les différents types d'inventaire" num="1" />
+	             <mesurables texte="La saisie d'informations et ses outils" num="2" />
+	             <mesurables texte="Les différents modes de contrôle" num="3" />
+	             <observables texte="Réalise tout ou partie de l'inventaire physique aux emplacements ou zones désignés" num="1" />
+	             <observables texte="Applique lors de l'inventaire les méthodes et procédures définies par l'entreprise" num="2" />
+	             <observables texte="Effectue les saisies et  l'enregistrement des résultats d'inventaire  à l'aide de l'outil informatique ou de tout autre moyen" num="3" />
+	             <observables texte="Applique les procédures de signalement des anomalies" num="4" />
+		  </capacite>
+		  <capacite num="12" nom="C12" capacite="Acquis de base" ventilation="4@6@42@45@46">
+	             <ra texte="Maîtrise du français" num="1" />
+	             <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2" />
+	             <mesurables texte="Expression écrite" num="1" />
+	             <mesurables texte="Expression orale" num="2" />
+	             <mesurables texte="Les volumes, les surfaces" num="3" />
+	             <mesurables texte="Les 4 opérations" num="4" />
+	             <mesurables texte="Les pourcentages" num="5" />
+	             <mesurables texte="La règle de trois" num="6" />
+		  </capacite>
+		</capacites>  
+	</cqp>
+	<cqp num="2" nom="CQP Contrôleur - Visiteur" nb_questions="33">
+		<capacites nb="8">
+		  <capacite num="1" nom="C1" capacite="Identifier et analyser les informations sur un document" ventilation="1@2@3@4@5@6@7@8" >
+		      <ra texte="Chaque document nécessaire au contrôle est identifié et son utilisation précisée" num="1" />
+		      <ra texte="Le contenu du bon de visite est analysé et pris en compte" num="2" />
+		      <ra texte="Les caractéristiques du produit à contrôler sont identifiées" num="3" />
+		      <ra texte="Les modalités de contrôle sont identifiées" num="4" />
+		      <ra texte="L'adéquation entre les caractéristiques du produit à contrôler, les informations consignées sur le bon de visite, l'étiquette du produit est vérifiée" num="5" />
+		      <ra texte="Les méthodes de vérification préconisées sont appliquées" num="6" />
+	              <mesurables texte="Les documents nécessaires au contrôle" num="1" />
+	              <mesurables texte="La traçabilité" num="2" />
+	              <mesurables texte="Le bon de visite" num="3" />
+	              <mesurables texte="Les modalités de contrôle" num="4" />
+	              <mesurables texte="L'étiquetage" num="5" />
+	              <observables texte="Localise les documents nécessair s au contrôle du produit ou de la pièce à visiter" num="1" />
+	              <observables texte="Consulte le bon de visite du produit ou de la pièce à visiter" num="2" />
+	              <observables texte="Repère, sur le bon de visite, les spécifications et les caractéristiques du produit ou de la pièce à visiter" num="3" />
+	              <observables texte="Repère, sur le bon de visite, les modalités et les prescriptions de contrôle du produit ou de la pièce à visiter" num="4" />
+	              <observables texte="Procède à la vérification des documents en comparant les informations consignées" num="5" />
+	              <observables texte="Détecte les anomalies" num="6" />
+	              <observables texte="Applique les procédures de signalement des anomalies" num="7" />
+	              <observables texte="Applique les procédures de vérification définies par l'entreprise" num="8" />
+		  </capacite>
+		  <capacite num="2" nom="C2" capacite="Organiser l'ensemble des conditions matérielles d une visite" ventilation="11@12@13@14@15@16" >
+		      <ra texte="Le produit à contrôler est localisé dans l'entrepôt et est correctement acheminé jusqu'à la zone de contrôle" num="1" />
+		      <ra texte="Tout défaut lié au mauvais conditionnement de la pièce ou article avant contrôle est identifié puis consigné" num="2" />
+		      <ra texte="La table de visite ou plaque est prête à fonctionner ,elle a été réglée correctement dans le cadre d'un contrôle." num="3" />
+		      <ra texte="Le produit est sorti correctement de son enveloppe de protection" num="4" />
+		      <ra texte="Le produit est positionné correctement sur le portique dans le bon sens ou sur la plaque ou enforme." num="5" />
+		      <ra texte="L'évacuation des déchets de conditionnement selon leur nature est réalisée dans le respect des consignes" num="6" />
+	              <mesurables texte="Les moyens de manutention" num="1" />
+	              <mesurables texte="Les règles de sécurité" num="2" />
+	              <mesurables texte="Les défauts liés au mauvais conditionnement" num="3" />
+	              <mesurables texte="Les règles de sécurité" num="4" />
+	              <mesurables texte="La manipulation des produits ou des pièces" num="5" />
+	              <mesurables texte="Les déchets" num="6" />
+	              <observables texte="Consulte l'affectation du produit ou de la pièce à visiter à l'aide de l'outil informatique ou de tout autre moyen" num="1" />
+	              <observables texte="Choisit la méthode et les moyens de manutention adaptés" num="2" />
+	              <observables texte="Utilise les moyens de manutention" num="3" />
+	              <observables texte="Déplace le produit ou la pièce vers la zone prévue" num="4" />
+	              <observables texte="Effectue un pré contrôle qualitatif du produit ou de la pièce sur son support, dans son emballage ou conditionnement avant la visite" num="5" />
+	              <observables texte="Détecte les défauts" num="6" />
+	              <observables texte="Applique les procédures de signalement des anomalies" num="7" />
+	              <observables texte="Prépare son poste de travail" num="8" />
+	              <observables texte="Manipule le produit ou la pièce" num="9" />
+	              <observables texte="Applique les procédures qualité définies par l'entreprise" num="10" />
+	              <observables texte="Positionne le  produit ou la pièce sur les équipements ou accessoires de visite" num="11" />
+	              <observables texte="Effectue l'évacuation des déchets de conditionnement" num="12"/>
+		  </capacite>
+		  <capacite num="3" nom="C3" capacite="Evaluer les caractéristiques techniques du produit" ventilation="17@18@19@20@21@22@23@24@25@26" >
+	               <ra texte="La signification des principaux termes utilisés dans le domaine du textile et de la confection est maîtrisée" num="1" />
+	               <ra texte="Les principaux processus de transformation de la matière  ainsi que les principaux procédés d'ennoblissement d'une surface textile sont compris pour l'appréhension d'un défaut" num="2" />
+	               <ra texte="Les caractéristiques techniques du produit sont identifiées" num="3" />
+	               <ra texte="Les produits finis ou surfaces textiles requérant une plus grande vigilance en terme de normes qualité, hygiène et sécurité sont particulièrement identifiés" num="4" />
+	               <mesurables texte="Les termes techniques de base relatifs au textile et à la confection" num="1" />
+	               <mesurables texte="Les principaux procédés de fabrication et d'ennoblissement  relatifs au textile et à la confection" num="2" />
+	               <mesurables texte="Les matières premières" num="3" />
+	               <mesurables texte="Les armures de base" num="4" />
+	               <mesurables texte="Les caractéristiques physiques, chimiques et mécaniques des produits textiles" num="5" />
+	               <observables texte="Utilise les termes techniques adaptés à son activité et relatifs au domaine du textile et de la confection" num="1" />
+	               <observables texte="Identifie, pour un produit ou une pièce donnée, le procédé de transformation et/ou d'ennoblissement mis en oeuvre" num="2" />
+	               <observables texte="Identifie et contrôle, éventuellement, les principales caractéristiques techniques, physiques, mécaniques ou chimiques, d'un produit ou d'une pièce" num="3" />
+	               <observables texte="Utilise les documents de référence" num="4" />
+	               <observables texte="Détecte les anomalies" num="5" />
+	               <observables texte="Applique les procédures de signalement des anomalies" num="6" />
+	               <observables texte="Applique les procédures qualité définies par l'entreprise" num="7" />
+		  </capacite>
+		  <capacite num="4" nom="C4" capacite="Identifier un défaut" ventilation="1@8@9@10" >
+	               <ra texte="Les méthodes d'identification préconisées des différents types de défauts sont appliquées" num="1" />
+	               <ra texte="Les défauts simples et complexes sont connus, repérés et nommés" num="2" />
+	               <ra texte="Les techniques de détection des défauts sont mises en oeuvre et correctement effectué" num="3" />
+	               <ra texte="La conformité du tissu ou produit fini et ses accessoires au regard des mentions figurant sur le produit ou sur ses fournitures de conditionnement est validée" num="4" />
+	               <ra texte="Les bons acteurs sont alertés si nécessaire , l'objet de l'alerte clairement et précisément exprimé, au besoin de manière écrite." num="5" />
+	               <mesurables texte="L'étiquetage" num="1" />
+	               <mesurables texte="Les documents nécessaires au contrôle" num="2" />
+	               <observables texte="Applique les méthodes et procédures de détection des défauts définies par l'entreprise" num="1" />
+	               <observables texte="Effectue la visite du produit ou de la pièce" num="2" />
+	               <observables texte="Détecte les défauts" num="3" />
+	               <observables text ="Utilise les moyens d'identification  des défauts" num="4" />
+	               <observables texte="Procède à la vérification de l'étiquetage et des caractéristiques du produit ou de la pièce en comparant les informations consignées" num="5" />
+	               <observables texte="Applique les procédures de vérification définies par l'entreprise" num="6" />
+	               <observables texte="Détecte les anomalies" num="7" />
+	               <observables texte="Emet des réserves" num="8" />
+		  </capacite>
+		  <capacite num="5" nom="C5" capacite="Traiter un défaut" ventilation="27@31" >
+	               <ra texte="La surface textile ou article est coupé, détaché correctement afin de faire disparaître la partie défectueuse" num="1" />
+	               <ra texte="L'écart, si besoin, est prélevé à l'aide d'une 'tirelle' ou autre repère" num="2" />
+	               <ra texte="Le défaut sur le produit ou surface textile est signalé" num="3" />
+	               <ra texte="La pertinence d'enlever un défaut est argumentée en tenant compte des caractéristiques du défaut et de la destination du produit" num="4" />
+	               <ra texte="La correction d'un défaut est proposée en ayant recours au lavage,  passage à la vapeur, vaporisation, repassage, réparation, refaisage..." num="5" />
+	               <mesurables texte="Les principales procédures de traitement des défauts" num="1" />
+	               <observables texte="Applique les procédures de traitement des défauts" num="1" />
+		  </capacite>
+		  <capacite num="6" nom="C6" capacite="Orienter un produit contrôlé" ventilation="2@16@28@29"  >
+	               <ra texte="Le classement ou déclassement du produit défectueux ou non est effectué de manière adéquate" num="1" />
+	               <ra texte="La pièce contrôlée est évacuée correctement et dispose des documents ou informations nécessaires " num="2" />
+	               <ra texte="Le produit est reconditionné correctement après contrôle" num="3" />
+	               <ra texte="Les produits défectueux sont isolés et stockés correctement et au bon endroit" num="4" />
+	               <mesurables texte="Les matériaux et matériels de conditionnement" num="1" />
+	               <mesurables texte="La traçabilité" num="2" />
+	               <mesurables texte="Les conditions de stockage" num="3" />
+	               <mesurables texte="Les déchets" num="4" />
+	               <observables texte="Tri et classe les produits ou pièces visitées" num="1" />
+	               <observables texte="Procède au reconditionnement du produit ou de la pièce contrôlés" num="2" />
+	               <observables texte="Procède à l'évacuation des produits ou pièces" num="3" />
+	               <observables texte="Déplace le produit ou la pièce vers la zone prévue" num="4" />
+		  </capacite>
+		  <capacite num="7" nom="C7" capacite="Clôturer une visite"  ventilation="2@30" >
+	               <ra texte="La qualification des défauts repérés est validée selon la nomenclature des défauts en vigueur dans l'entreprise" num="1" />
+	               <ra texte="Le défaut est saisi et enregistré sur l'outil informatique puis validé en continu ou discontinu de la visite" num="2" />
+	               <ra texte="Selon le cahier des charges, une fiche de non-conformité, étiquetée au produit contrôlé peut être réalisée et attachée" num="3" />
+	               <ra texte="Une bande témoin ou un échantillon de matière peut être prélevé afin  d'opérer une traçabilité produit de la visite" num="4" />
+	               <ra texte="Le compte-rendu écrit succinct et clair traitant des tolérances et des contrôles dimensionnels est cor ectement réalisé à la demande du responsable, il peut faire également état des situations exceptionnelles et des raisons de leur avènement" num="5" />
+	               <ra texte="La validation du reclassement des produits défectueux est effectuée dans le respect des types de reclassement en vigueur dans l'entreprise" num="6" />
+	               <ra texte="Sur décision, avis extérieur l'enregistrement du retour du produit suite à un contrôle déjà effectué peut être demandé" num="7" />
+	               <mesurables texte="La traçabilité" num="1" />
+	               <observables texte="Consulte la nomenclature des défauts à l'aide de l'outil informatique ou de tout autre moyen" num="1" />
+	               <observables texte="Effectue la saisie et l'enregistrement du ou des défauts à l'aide de l'outil informatique ou de tout autre moyen" num="2" />
+	               <observables texte="Etablit, le cas échéant, une fiche de non-conformité" num="3" />
+	               <observables texte="Prélève, le cas échéant, un échantillon de matière" num="4" />
+	               <observables texte="Rédige, le cas échéant des comptes rendu en fin de contrôle" num="5" />
+	               <observables texte="Procède à la validation du reclassement effectué pour les produits ou pièces défectueuses" num="6" />
+	               <observables texte="Effectue, le cas échéant l'enregistrement des retours à l'aide de l'outil informatique ou de tout autre moyen" num="7" />
+		  </capacite>
+		  <capacite num="8" nom="C8" capacite="Acquis de base" ventilation="3@30@31@32@33"  >
+               <ra texte="Maîtrise du français" num="1" />
+               <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2" />
+               <mesurables texte="Expression écrite" num="1" />
+               <mesurables texte="Expression orale" num="2" />
+               <mesurables texte="Les surfaces" num="3" />
+               <mesurables texte="Les 4 opérations" num="4" />
+               <mesurables texte="Les pourcentages" num="5" />
+               <mesurables texte="La règle de trois" num="6" />
+		   </capacite>
+		</capacites>   
+	</cqp>
+	<cqp num="3" nom="CQPi Conduite d'équipements industriels" nb_questions="54">
+		<specialites>
+			<specialite num="1" nom="Production et traitement textile"/>
+			<specialite num="2" nom="Tannerie Mégisserie"/>
+		</specialites>
+		<capacites nb="9">
+			<capacite num="1" nom="C1" capacite="Approvisionner et préparer" ventilation="1@2@3@4" >
+	               <ra texte="Conformité des matières ou produits approvisionnés  par rapport aux prescriptions correctement vérifiée à l'entrée du système de production, les écarts sont identifiés rapidement, signalés et/ou corrigés selon les prérogatives." num="1" />
+	               <ra texte="Vérification de la présence des outils, outillages et accessoires,  moyens de contrôle nécessaires à la vérification  de la conformité de la production  nécessaires à la production effectuée méthodiquement" num="2" />
+	               <mesurables texte="Les matières d'oeuvre " num="1" />
+	               <mesurables texte="Les produits auxiliaires" num="2" />
+	               <mesurables texte="Les processus et mode opératoire de préparation ou de démarrage des installations/machines" num="3" />
+	               <observables texte="Assure l'approvisionnement de son installation/machine" num="1" />
+	               <observables texte="Procède à la vérification des matières ou produits approvisionnés sur son installation/machine" num="2" />
+	               <observables texte="Applique les procédures de vérification définies par l'entreprise" num="3" />
+	               <observables texte="Détecte les écarts, anomalies et non-conformité" num="4" />
+	               <observables texte="Applique les procédures de signalement et/ou de correction des anomalies définies par l'entreprise" num="5" />
+	               <observables texte="Procède à la vérification des moyens de production et de contrôle de son installation/machine" num="6" />
+	        </capacite>
+			<capacite num="2" nom="C2" capacite="Poursuivre une production" ventilation="5@6@7@8@9@10@11@12@13@14@15@16@17@18@19" >
+	               <ra texte="Informations concernant la production parfaitement comprises et prises en compte." num="1" />
+	               <ra texte="Réglages des différents paramètres du process vérifiés selon les indications du dossier de production et adaptés selon le dossier de conduite du process." num="2" />
+	               <ra texte="Procédures d'hygiène et de sécurité liées à la production en cours appliquées et mises en oeuvre." num="3" />
+	               <mesurables texte="L'ordre de fabrication " num="1" />
+	               <mesurables texte="Les termes techniques de base relatifs au secteur d’activité" num="2" />
+	               <mesurables texte="Les principaux procédés de fabrication et de traitement des surfaces" num="3" />
+				   <mesurables texte="Les paramètres essentiels" num="4" />
+	               <mesurables texte="Les règles d'hygiène et de sécurité" num="5" />
+	               <observables texte="Prend connaissance des prescriptions de réalisation et des données relatives à la production en cours" num="1" />
+	               <observables texte="Procède à la vérification des réglages des paramètres de l'installation ou de la machine de la production en cours" num="2" />
+	               <observables texte="Applique les procédures de vérification définies par l'entreprise" num="3" />
+	               <observables texte="Détecte les écarts, anomalies et non-conformité" num="4" />
+	               <observables texte="Applique les procédures de signalement et/ou de correction des anomalies définies par l'entreprise" num="5" />
+	               <observables texte="Applique les règles et procédures d'hygiène et de sécurité" num="6" />
+			</capacite>
+			<capacite num="3" nom="C3" capacite="Régler et mettre en production" ventilation="12@13@14@15@16@17@18@19@20@21@22@23@24@25" >
+	               <ra texte="Système de production mis dans l'état requis par les instructions données pour la production." num="1"/>
+	               <ra texte="Opérations de démontage, de montage et de réglage des outillages et accessoires nécessaires réalisés méthodiquement selon les procédures de mise au point établies" num="2"/>
+	               <ra texte="Outillages installés conformes et paramètres de réglage correctement ajustés selon les procédures de mise au point préconisées." num="3"/>
+	               <ra texte="Procédures d'hygiène et de sécurité correctement appliquées et mises en oeuvre." num="4" />
+	               <mesurables texte="Les principales installations et accessoires de production et de traitement du secteur d’activité" num="1" />
+	               <mesurables texte="Le fonctionnement des installations, matériels et outillages" num="2" />
+	               <mesurables texte="Les paramètres essentiels" num="3" />
+	               <mesurables texte="Les règles d'hygiène et de sécurité" num="4" />
+	               <observables texte="Procède à la préparation de l'installation /machine et environnement de travail" num="1" />
+	               <observables texte="Procède à l'installation ou au changement d'outillages et accessoires" num="2" />
+	               <observables texte="Procède aux réglages et ajustements des paramètres de l'installation/machine" num="3" />
+	               <observables texte="Applique les règles et procédures d'hygiène et de sécurité" num="4" />
+			</capacite>
+			<capacite num="4" nom="C4" capacite="Conduire le système de production en mode normal"  ventilation="28@29@30@31@32@33@34@35@36">
+	               <ra texte="Production assurée et suivie selon les spécifications d  dossier de production ou du cahier des charges conformément exigences de quantité, de qualité et de délai." num="1"/>
+	               <ra texte="Inspections techniques liées au fonctionnement du process réalisées avec détection systématique des anomalies de fonctionnement" num="2"/>
+	               <ra texte="Mesures et contrôles relatives à la régularité des produits en cours et en fin de production correctement réalisés en cours ou en fin de production, en respectant les fréquences et procédures de validation." num="3"/>
+	               <ra texte="En cas de dérive ou  de dysfonctionnement simple du process et/ou de non conformité du produit mesures correctives prises conformément aux procédures ou instructions et de façon adaptée à la situation." num="4" />
+	               <ra texte="Produits fabriqués, identifiés et stockés correctement, sur les lieux prévus à cet effet et produits non conformes  isolés et/ou repérés." num="5" />
+	               <mesurables texte="La qualité" num="1" />
+	               <mesurables texte="Les modalités de contrôle" num="2" />
+	               <mesurables texte="Les outils de mesure et de contrôle" num="3" />
+	               <mesurables texte="L'étiquetage" num="4" />
+	               <mesurables texte="Les règles et conditions de stockage" num="5" />
+	               <observables texte="Assure le bon déroulement et le suivi de la production" num="1" />
+	               <observables texte="Procède aux opérations de contrôle techniques en cours de production sur l'installation/machine" num="2" />
+	               <observables texte="Applique les procédures de vérification définies par l'entreprise" num="3" />
+	               <observables texte="Procède aux opérations de mesure et contrôle des produits en  cours et fin de production" num="4" />
+	               <observables texte="Détecte les écarts, anomalies et non-conformité" num="5" />
+	               <observables texte="Applique les procédures de signalement et/ou de correction des anomalies définies par l'entreprise" num="6" />
+			</capacite>
+			<capacite num="5" nom="C5" capacite="Conduire le système de production en mode dégradé" ventilation="15@16@17@18@19@37" >
+	               <ra texte="Procédures de marche en mode dégradé appliquées et mises en oeuvre en respectant les règles d'hygiène et de sécurité et avec mode de  conduite adapté à la situation rencontrée pour intervenir sur le système." num="1"/>
+	               <ra texte="Consignes d'hygiène et de sécurité respectées " num="2"/>
+	               <mesurables texte="Les différents modes dégradés" num="1" />
+	               <mesurables texte="Les règles d'hygiène et de sécurité" num="2" />
+	               <observables texte="Applique les procédures de marche en mode dégradé" num="1" />
+	               <observables texte="Applique les règles et procédures d'hygiène et de sécurité " num="2" />
+			</capacite>
+			<capacite num="6" nom="C6" capacite="Mettre en oeuvre la procédure marche/arrêt"  ventilation="4@15@16@17@18@19@38" >
+	               <ra texte="Opérations de démarrage et d'arrêt du système effectuées en respectant les règles  d'hygiène et de sécurité et les procédures de marche et d'arrêt." num="1"/>
+	               <ra texte="Système de production fonctionnant ou s'arrêtant normalement dans les conditions d'hygiène et de sécurité prévues." num="2"/>
+	               <mesurables texte="Les processus et mode opératoire de préparation ou de démarrage des installations/machines " num="1" />
+	               <mesurables texte="Le pupitre de commande" num="2" />
+	               <mesurables texte="Les règles d'hygiène et de sécurité" num="3" />
+	               <observables texte="Applique les procédures de mise en marche et d'arrêt de son installation/machine" num="1" />
+	               <observables texte="Applique les règles et procédures d'hygiène et de sécurité" num="2" />
+			</capacite>
+			<capacite num="7" nom="C7" capacite="Entretenir et maintenir" ventilation="26@27@39@40@41@42@43@44@45@46" >
+	               <ra texte="Analyse des anomalies de fonctionnement des équipements effectuée de manière structurée selon les procédures et décrites dans leur ordre chronologique." num="1"/>
+	               <ra texte="Installation mise en conformité avec l'état préconisé pour l'entretien ou la maintenance préventive sur le plan technique et sécurité." num="2"/>
+	               <ra texte="Opérations nécessaires de mise à niveau ou de remise en état correctement réalisées conformément aux procédures ou aux demandes du service maintenance." num="3"/>
+	               <ra texte="Etat du poste de travail vérifié, rangé et propre" num="4" />
+	               <ra texte="Participation active aux actions d'amélioration relatives à la fiabilité, à la productivité  et à la qualité de son secteur de production." num="5" />
+	               <ra texte="Documents de maintenance renseignés et exploitables avec  informations claires et exploitables transmises au bon interlocuteur oralement, par écrit ou avec support informatique." num="6" />
+	               <mesurables texte="Le fonctionnement des installations, matériels et outillages " num="1" />
+	               <mesurables texte="Les opérations d'auto maintenance" num="2" />
+	               <mesurables texte="Les processus et mode opératoire de la maintenance de 1er niveau" num="3" />
+	               <mesurables texte="Les déchets" num="4" />
+	               <mesurables texte="Les outils de résolution de problème" num="5" />
+	               <mesurables texte="Les documents de maintenance" num="6" />
+	               <observables texte="Participe aux diagnostics des dysfonctionnements" num="1" />
+	               <observables texte="Prépare et participe à l'intervention du service maintenance" num="2" />
+	               <observables texte="Procède aux opérations de maintenance de 1er niveau" num="3" />
+	               <observables texte="Procède aux opérations de maintien et de propreté du poste de travail" num="4" />
+	               <observables texte="Participe à la résolution de problème en groupe" num="5" />
+	               <observables texte="Utilise et renseigne les documents de maintenance" num="6" />
+			</capacite>
+			<capacite num="8" nom="C8" capacite="Rendre compte" ventilation="47@48@49@50" >
+	               <ra texte="En cas d'anomalie, alerte donnée selon les consignes au poste de travail, vers les services ou personnes concernées." num="1"/>
+	               <ra texte="Documents liés aux activités correctement renseignés selon les consignes au poste de travail." num="2"/>
+	               <mesurables texte="Les processus et mode opératoire de signalement ou de déclenchement d'une alerte " num="1" />
+	               <mesurables texte="Les documents de suivi de la production et de l'activité" num="2" />
+	               <mesurables texte="La traçabilité" num="3" />
+	               <mesurables texte="L'outil informatique" num="4" />
+	               <observables texte="Rend compte d'une dérive anormale, d'aléas ou de situations à risques" num="1" />
+	               <observables texte="Utilise, renseigne et transmet les documents et informations relatifs au suivi de la production et de l'activité" num="2" />
+	               <observables texte="Utilise l'outil informatique" num="3" />
+			</capacite>
+			<capacite num="9" nom="C9" capacite="Acquis de base" ventilation="51@52@53@54" >
+	               <ra texte="Maîtrise du français" num="1"/>
+	               <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2"/>
+	               <mesurables texte="Expression écrite" num="1" />
+	               <mesurables texte="Expression orale" num="2" />
+	               <mesurables texte="Les volumes, les surfaces" num="3" />
+	               <mesurables texte="Les 4 opérations" num="4" />
+	               <mesurables texte="Les pourcentages" num="5" />
+	               <mesurables texte="La règle de trois" num="6" />
+			</capacite>
+		</capacites>
+	</cqp>
+	<cqp num="4" nom="CQPi Technicien en Maintenance Industrielle" nb_questions="90">
+		<capacites nb="9">
+			  <capacite num="1" nom="C1" capacite="Diagnostiquer un dysfonctionnement" ventilation="1@2@3@4@5@33@37@38@39@40@46@54@55@61@74@75@76@77@78@79@80@81@82" >
+		               <ra texte="L'analyse du dysfonctionnement repose sur une méthode et une collecte d'information structurées et permet de conduire de manière logique à l'identification du dysfonctionnement sur le plan fonctionnel,  sur le plan séquentiel,  sur le plan matériel." num="1"/>
+		               <ra texte="Les avis des différents interlocuteurs ont été recherchés et pris en compte." num="2" />
+		               <ra texte="La ou les hypothèses de pannes formulées sont justifiées et pertinentes, la ou les causes de dysfonctionnement sont identifiées." num ="3" />
+		               <ra texte="Les conséquences potentielles du dysfonctionnement sont correctement appréciées et les mesures et les actions à prendre sont identifiées et proposées en fonction des différentes contraintes." num="4" />
+		               <mesurables texte="Méthodes et procédures de diagnostic" num="1" />
+		               <mesurables texte="Règles et procédures de sécurité" num="2" />
+		               <mesurables texte="Outils de mesure et de contrôle" num="3" />
+		               <mesurables texte="Analyse fonctionnelle et structurelle des systèmes de production" num="4" />
+		               <mesurables texte="Outils d'analyse des modes de défaillance" num="5" />
+		               <mesurables texte="Risques et mesures de prévention" num="6" />
+		               <mesurables texte="Procédure de déclenchement d'une intervention de maintenance" num="7" />
+		               <observables texte="Etablit le constat du dysfonctionnement ou de la panne" num="1" />
+		               <observables texte="Applique les règles et procédures de sécurité" num="2" />
+		               <observables texte="Expertise l'équipement ou l'installation défaillante" num="3" />
+		               <observables texte="Emet des hypothèses de pannes" num="4" />
+		               <observables texte="Localise la panne" num="5" />
+		               <observables texte="Identifie la ou les causes de la défaillance" num="6" />
+		               <observables texte="Identifie les risques et les mesures de prévention adaptées" num="7" />
+		               <observables texte="Déclenche une intervention de maintenance" num="8" />
+			  </capacite>
+			  <capacite num="2" nom="C2" capacite="Organiser une intervention" ventilation="6@10@50@51@52@53@55@57@60@68@69@70@71@72@73@75@76@77@78@79@80@81@82" >
+		               <ra texte="Les interventions de maintenance préventive ou curative à réaliser sont identifiées à partir des observations, contrôles et relevés" num="1" />
+		               <ra texte="L'intervention est organisée méthodiquement selon le contexte" num="2" />
+		               <ra texte="Le matériel et les pièces sont préparés avant intervention" num="3" />
+		               <ra texte="La zone d'intervention est mise en sécurité." num="4" />
+		               <mesurables texte="Types et fonctions de la maintenance" num="1" />
+		               <mesurables texte="Méthodes et organisation des activités de maintenance" num="2" />
+		               <mesurables texte="Risques et mesures de prévention" num="3" />
+		               <mesurables texte="Outillages" num="4" />
+		               <mesurables texte="Outils de mesure et de contrôle" num="5" />
+		               <mesurables texte="Règles et procédures de sécurité" num="6" />
+		               <observables texte="Identifie les interventions et opérations de maintenance préventive ou corrective à réaliser" num="1" />
+		               <observables texte="Identifie les risques et les mesures de prévention adaptées" num="2" />
+		               <observables texte="Prépare, planifie et ordonnance les interventions et opérations de maintenance préventive ou corrective identifiées" num="3" />
+		               <observables texte="Prépare le matériel, pièces et consommables nécessaires aux interventions de maintenance préventive ou corrective identifiées" num="4" />
+		               <observables texte="Prépare la zone d'intervention" num="5" />
+			  </capacite>
+			  <capacite num="3" nom="C3" capacite="Contrôler le bon fonctionnement" ventilation="8@9@11@13@14@19@21@23@29@30@31@34@37@38@39@40@62@65@66@67@74@75" >
+		               <ra texte="Les contrôles, mesures, tests mécaniques sont réalisés sur une installation ou une machine" num="1" />
+		               <ra texte="Les contrôles, mesures, tests électriques ou électroniques sont réalisés sur une installation ou une machine" num="2" />
+		               <ra texte="Les contrôles, mesures, tests hydrauliques ou pneumatiques sont réalisés sur une installation ou une machine" num="3" />
+		               <mesurables texte="Indicateurs d'analyse de fonctionnement d'un bien" num="1" />
+		               <mesurables texte="Outils de mesure et de contrôle" num="2" />
+		               <mesurables texte="Règles et procédures de sécurité" num="3" />
+		               <mesurables texte="Maintenance électrique/électronique" num="4" />
+		               <mesurables texte="Maintenance Hydraulique/pneumatique" num="5" />
+		               <mesurables texte="Maintenance mécanique" num="6" />
+		               <observables texte="Applique les règles et procédures de sécurité" num="1" />
+		               <observables texte="Effectue des contrôles, mesures et tests mécaniques, électriques ou électroniques, hydrauliques et/ou pneumatiques dans le cadre d'intervention de maintenance préventive ou corrective" num="2" />
+		               <observables texte="Enregistre et analyse les résultats des contrôles, mesures et tests" num="3" />
+			  </capacite>
+			  <capacite num="4" nom="C4" capacite="Remplacer des pièces" ventilation="6@7@10@15@16@17@18@20@22@24@27@28@32@35@36@41@62@63@74@75" >
+		               <ra texte="Les pièces ou ensembles mécaniques défectueux sont remplacés" num="1" />
+		               <ra texte="Les éléments ou instruments électriques et/ou électroniques défectueux sont remplacés à l'identique, ou à caractéristiques équivalentes en appliquant les règles de sécurité et les consignes" num="2" />
+		               <ra texte="Les éléments hydrauliques ou pneumatiques défectueux sont remplacés à l'identique, ou à caractéristiques équivalentes en appliquant les règles de sécurité et les consignes" num="3" />
+		               <mesurables texte="Règles et procédures de sécurité" num="1" />
+		               <mesurables texte="Maintenance électrique/électronique" num="2" />
+		               <mesurables texte="Maintenance Hydraulique/pneumatique" num="3" />
+		               <mesurables texte="Maintenance mécanique" num="4" />
+		               <mesurables texte="Outillages" num="5" />
+		               <observables texte="Effectue des actions correctives liées aux technologies mécanique, électrique ou électroniques, pneumatique et/ou hydraulique" num="1" />
+		               <observables texte="Applique les règles et procédures de sécurité" num="2" />
+			  </capacite>
+			  <capacite num="5" nom="C5" capacite="Intervenir sur un système automatisé" ventilation="12@15@16@17@18@22@24@25@26@27@28@31@32@34@35@36@41@42@43@44@45@46@47@48@49@62@74@75" >
+		               <ra texte="Le paramétrage dans un automate est ajusté sur un équipement automatisé en respectant les procédures en vigueur" num="1" />
+		               <ra texte="L'organe d'une installation est positionné en utilisant un automate programmable" num="2" />
+		               <mesurables texte="Analyse fonctionnelle et structurelle des systèmes de production automatisés" num="1" />
+		               <mesurables texte="Conduite d'un système automatisé" num="2" />
+		               <mesurables texte="Maintenance électrique/électronique" num="3" />
+		               <mesurables texte="Maintenance Hydraulique/pneumatique" num="4" />
+		               <mesurables texte="Maintenance mécanique" num="5" />
+		               <mesurables texte="Règles et procédures de sécurité" num="6" />
+		               <observables texte="Effectue l'ajustement des paramètres d'un automate sur une installation ou sous-ensemble automatisé(partie commande)" num="1" />
+		               <observables texte="Positionne les organes mécaniques, électriques (ou électroniques) hydrauliques ou pneumatiques sur une installation ou sous-ensemble automatisé(partie opérative)" num="2" />
+		               <observables texte="Applique les règles et procédures de sécurité" num="3" />
+			  </capacite>
+			  <capacite num="6" nom="C6" capacite="Mettre en fonctionnement"  ventilation="37@38@39@40@62@64@74@75@76@77@78@79@80@81@82" >
+		               <ra texte="Les risques sécurité sont identifiés avant une mise en fonctionnement et les mesures appropriées sont prises" num="1" />
+		               <ra texte="Les fonctionnalités sont vérifiées méthodiquement, les contrôles sont réalisés selon les consignes ou procédures et les réglages sont optimums, en cas d'impossibilité les raisons sont justifiées." num="2" />
+		               <ra texte="L'avis sur la possibilité de mise en service des fonctions testées est argumenté" num="3" />
+		               <mesurables texte="Risques et mesures de prévention" num="1" />
+		               <mesurables texte="Règles et procédures de sécurité" num="2" />
+		               <mesurables texte="Méthodes et procédures de remise en service d'une installation ou d'un équipement" num="3" />
+		               <mesurables texte="Outils de mesure et de contrôle" num="4" />
+		               <observables texte="Identifie les risques et les mesures de prévention adaptées" num="1" />
+		               <observables texte="Applique les règles et procédures de sécurité" num="2" />
+		               <observables texte="Effectue la remise en service de l'équipement ou de l'installation" num="3" />
+			  </capacite>
+			  <capacite num="7" nom="C7" capacite="Transmettre et capitaliser l'information" ventilation="56@58@59@83@84@85@86@87@88@89@90" >
+		               <ra texte="Les différents documents de maintenance et/ou de production sont renseignés et tout ou partie d'un compte rendu d'intervention est effectué" num="1" />
+		               <ra texte="La base de données informatique est renseignée" num="2" />
+		               <ra texte="Un intervenant en maintenance de qualification inférieure est conseillé et assisté" num="3" />
+		               <mesurables texte="Documents de maintenance" num="1" />
+		               <mesurables texte="Saisie d'informations et outils" num="2" />
+		               <mesurables texte="Principe de base de l'animation et de l'encadrement" num="3" />
+		               <observables texte="Elabore, renseigne, met à jour et transmet les documents de maintenance (ou de production) et les comptes- rendus d'intervention" num="1" />
+		               <observables texte="Utilise et exploite un logiciel de GMAO" num="2" />
+		               <observables texte="Encadre un intervenant de maintenance de qualification inférieure" num="3" />
+			  </capacite>
+			  <capacite num="8" nom="C8" capacite="Identifier et mener une action de progrès" ventilation="65@66@67@86@87@88" >
+		               <ra texte="Des actions de progrès sont identifiées pour diminuer les pannes ou dysfonctionnements" num="1" />
+		               <ra texte="Une action de progrès demandant des échanges avec d'autres interlocuteurs est conduite" num="2" />
+		               <mesurables texte="Indicateurs d'analyse de fonctionnement d'un bien" num="1" />
+		               <mesurables texte="Principe de base de l'animation et de l'encadrement" num="2" />
+		               <observables texte="Définit et propose des actions et solutions d'amélioration" num="1" />
+		               <observables texte="Met en œuvre les solutions d'amélioration et assure le suivi" num="2" />
+			  </capacite>
+			  <capacite num="9" nom="C9" capacite="Acquis de base" ventilation="12@16@19@25@26@31@35@66@67@68@73" >
+		               <ra texte="Maîtrise du français" num="1" />
+		               <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2" />
+		               <mesurables texte="Expression écrite" num="1" />
+		               <mesurables texte="Expression orale" num="2" />
+		               <mesurables texte="Calcul relatif à la maintenance" num="3" />
+		               <mesurables texte="Probabilité et Statistiques" num="4" />
+		               <mesurables texte="Unités et mesure" num="5" />
+			  </capacite>
+			</capacites>  
+        </cqp>
+	<cqp num="5" nom="CQP Opératrice Multipostes en Confection" nb_questions="61">
+		<specialites>
+			<specialite num="1" nom="Maille"/>
+			<specialite num="2" nom="Chaîne et trame"/>
+			<specialite num="3" nom="Lingerie - Corsetterie"/>
+			<specialite num="4" nom="Linge de maison - Ameublement"/>
+		</specialites>
+		<capacites nb="6">		
+			  <capacite num="1" nom="C1" capacite="Exploiter les données techniques" ventilation="1@2@3@4@5@6@7@8@9@10@11@24@35@36@37@38 @46@48" >
+		               <ra texte="Les données techniques ont été transmises et sont comprises. Les caractéristiques du produit à réaliser sont identifiées. Les critères de qualité, les tolérances sont identifiés. Les produits finis requérant une plus grande vigilance en termes de qualité d’exécution sont repérés." num="1"/>
+		               <ra texte="Les différentes sortes de langages sont connues, comprises. La signification des principaux termes utilisés dans le domaine de la confection est maîtrisée." num="2" />
+		               <ra texte="Les informations techniques et Les modalités techniques de montage sont identifiées. Les données relatives au tableau des mesures sont lues et comprises." num ="3" />
+		               <ra texte="L’adéquation entre le contenu de la bûche/paquet et la fiche de fabrication est contrôlée qualitativement et quantitativement. Les défauts qualitatifs et quantitatifs éventuels sont détectés et signalés avant l’opération de montage." num="4" />
+		               <mesurables texte="Documents de réalisation et de suivi" num="1" />
+		               <mesurables texte="Matières d’oeuvre" num="2" />
+		               <mesurables texte="Représentation normalisée relative au domaine de la confection" num="3" />
+		               <mesurables texte="Vocabulaire technique relatif au domaine de la confection" num="4" />
+		               <mesurables texte="Fonctions et composants d’une gamme de montage" num="5" />
+		               <mesurables texte="Tableau de mesure" num="6" />
+		               <mesurables texte="Modalités de contrôle" num="7" />
+					   <mesurables texte="Indicateurs de qualité" num="8" />
+		               <observables texte="Identifie, sur les différents documents techniques, les caractéristiques du produit" num="1" />
+		               <observables texte="Exploite les différentes formes de représentation normalisée relatives au domaine de la confection" num="2" />
+		               <observables texte="Utilise les termes techniques adaptés à son activité et relatifs au domaine de la confection" num="3" />
+		               <observables texte="Identifie, sur les différents documents techniques, les données et les opérations techniques à réaliser" num="4" />
+		               <observables texte="Procède à la vérification du contenu de la bûche/paquet" num="5" />
+		               <observables texte="Détecte les défauts/anomalies et applique les procédures de signalement,  de traitement" num="6" />
+			  </capacite>
+			  <capacite num="2" nom="C2" capacite="Régler, entretenir et maintenir les machines" ventilation="12@13@14@15@16@17@18@19@20@21@22@23@25@26@27@28@29@32@33" >
+		               <ra texte="Les organes de réglage de la machine sont situés. Les principales pièces/éléments composant la machine sont connues" num="1" />
+		               <ra texte="Les opérations de réglage courant de la piqueuse plate, de la surjeteuse et d’une ou plusieurs machines spéciales sont correctement mises en œuvre" num="2" />
+		               <ra texte="L’incidence du réglage et de la bonne utilisation du matériel sur la qualité des produits est connue. L’adaptation du matériel aux différentes matières et types de travaux est assurée de façon continue." num="3" />
+		               <ra texte="Les consignes de protection et de sécurité sont connues et appliquées. Les équipements de protection sont utilisés " num="4" />
+					   <ra texte="Les opérations nécessaires à un entretien préventif sont connues Celles qui nécessitent l’intervention d’un tiers sont connues et expliquées aux bons acteurs" num="5" />
+					   <ra texte="Tout incident de fonctionnement est décelé. Les anomalies/pannes nécessitant l’intervention d’un tiers sont constatées, remontées et expliquées aux bons acteurs Des éléments de réponses relatifs au contexte du problème peuvent être apportées si demandé" num="6" />
+					   <ra texte="Les pannes élémentaires peuvent être réparées par des changements de pièces ou des opérations simples" num="7" />
+					   <ra texte="Le poste de travail est tenu de façon à veiller et à assurer la propreté et la non détérioration du produit en cours de fabrication" num="8" />
+		               <mesurables texte="Matériels mécanisés, automatisés en confection " num="1" />
+		               <mesurables texte="Organes et accessoires des matériels" num="2" />
+		               <mesurables texte="Enfilage - Réglages " num="3" />
+		               <mesurables texte="Formation du point" num="4" />
+		               <mesurables texte="Equipements de protection et règles de sécurité" num="5" />
+		               <mesurables texte="Entretien courant et maintenance de 1er niveau" num="6" />
+		               <observables texte="Identifie et contrôle les organes de réglage et accessoires des matériels de son secteur" num="1" />
+		               <observables texte="Effectue les réglages sur les matériels de son secteur en fonction des matières d’œuvre et des opérations à réaliser" num="2" />
+		               <observables texte="Applique les règles et consignes de sécurité" num="3" />
+		               <observables texte="Procède aux opérations  d’entretien courant et de maintenance de 1er niveau" num="4" />
+			  </capacite>
+			  <capacite num="3" nom="C3" capacite="Préparer et monter une partie de l’article" ventilation="1@2@8@9@12@25@26@30@31@34@35@36@37@38@54@55@56" >
+		               <ra texte="Le matériel nécessaire à l’élaboration du produit est repéré. Les particularités des matières sont identifiées. Les difficultés liées aux matières sont appréhendées et résolues. La gestuelle est adaptée. Les contraintes de production sont prises en compte" num="1" />
+		               <ra texte="Les règles d’économie du mouvement sont mises en œuvre. Le mode d’approvisionnement des postes de travail est adapté. Les opérations de préparation nécessaires sont effectuées. Le mode opératoire et les consignes données sont mises en œuvre et justifiées." num="2" />
+					   <ra texte="Les opérations liées à la piqueuse plate,  à la surjeteuse et à une ou plusieurs machines spéciales sont correctement mises en œuvre. Toutes interrogations, remarques ou difficultés sur le mode opératoire sont posées. Des améliorations techniques peuvent être proposées. " num="3" />
+					   <ra texte="Peut être reporté sur un document le nombre d’articles réalisés et être communiqué aux bons acteurs." num="4" />
+		               <mesurables texte="Matériels mécanisés, automatisés en confection" num="1" />
+		               <mesurables texte="Fonctions et composants d’une gamme de montage" num="2" />
+		               <mesurables texte="Communication Professionnelle" num="3" />
+		               <mesurables texte="Outillages en confection" num="4" />
+		               <mesurables texte="Règles d’ergonomie au poste de travail" num="5" />
+		               <mesurables texte="Modes opératoires et techniques de préparation,assemblage et montage" num="6" />
+					   <mesurables texte="Documents de réalisation et de suivi" num="7" />
+		               <observables texte="Choisi les moyens matériels adaptés aux matières d’œuvre et au produit à réaliser" num="1" />
+		               <observables texte="Applique le mode opératoire et les consignes de réalisation" num="2" />
+		               <observables texte="Interroge et/ou alerte les personnes concernées en cas de difficultés d’ordre technique ou organisationnel" num="3" />
+					   <observables texte="Définit et propose des solutions d’amélioration d‘ordre technique" num="4" />
+					   <observables texte="Organise son poste de travail et dispose rationnellement les matières, fournitures, garnitures, accessoires et pièces sur son poste de travail" num="5" />
+					   <observables texte="Réalise les opérations de préparation, de montage et d’assemblage" num="6" />
+					   <observables texte="Met en œuvre les techniques et gestuelles adaptées au piquage, surjet et aux opérations effectuées sur machines spéciales" num="7" />
+					   <observables texte="Utilise, renseigne et transmet les documents et informations relatifs au suivi de la fabrication et des activités" num="8" />
+			  </capacite>
+			  <capacite num="4" nom="C4" capacite="Réaliser les opérations de finition" ventilation="39@40@41@42@43@44@45" >
+		               <ra texte="La présentation du produit est améliorer si demandé" num="1" />
+		               <ra texte="Les opérations de finition supplémentaires nécessaires et du ressort de l’opératrice sont identifiées et réalisées dans le respect des critères techniques et de qualité" num="2" />
+		               <ra texte="Les produits nécessitant des opérations de finitions plus conséquentes non réalisées par l’opératrice elle-même sont identifiés." num="3" />
+		               <mesurables texte="Modes opératoires et techniques de réalisation de la finition" num="1" />
+		               <mesurables texte="Entretien des textiles" num="2" />
+		               <mesurables texte="Matériels et techniques de repassage" num="3" />
+		               <observables texte="Identifie et réalise les opérations de finition " num="1" />
+		               <observables texte="Met en œuvre les techniques et gestuelles adaptées au piquage, surjet et aux opérations effectuées sur machines spéciales" num="2" />
+					   <observables texte="Effectue les opérations de repassage adapté aux matières d’œuvre, formes et au produit" num="3" />
+		               <observables texte="Vérifie la présentation et l’aspect final du produit" num="4" />
+			  </capacite>
+			  <capacite num="5" nom="C5" capacite="Effectuer les contrôles qualité" ventilation="46@47@48@49@50@51@53" >
+		               <ra texte="Pendant les opérations de montage, l’autocontrôle en cours de travail est effectué suivant les critères de qualité imposés" num="1" />
+		               <ra texte="Les défauts sont connus, repérés et nommés" num="2" />
+					   <ra texte="La gravité du défaut est appréciée,  le défaut simple/mineur est réparé, le défaut grave/majeur conduit à un retour de la pièce défectueuse ou à son isolement. L’action engagée face à un défaut est argumentée" num="3" />
+					   <ra texte="Les bons acteurs sont alertés si nécessaire. L’objet de l’alerte est clairement et précisément exprimé, au besoin de manière écrite" num="4" />
+					   <ra texte="La qualité du travail demandée est respectée. Elle est appréciée selon l’aspect général et le tombé ou les critères relatifs à la fabrication " num="5" />
+		               <mesurables texte="Modalités de contrôle" num="1" />
+		               <mesurables texte="Indicateurs de qualité" num="2" />
+		               <observables texte="Applique les consignes relatives au contrôle et  à la qualité en cours et en fin de réalisation" num="1" />
+		               <observables texte="Détecte les défauts/anomalies et applique les procédures de signalement,  de traitement" num="2" />
+			  </capacite>
+			  <capacite num="6" nom="C6" capacite="Acquis de base" ventilation="52@57@58@59@60@61" >
+		               <ra texte="Maîtrise du français" num="1" />
+		               <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2" />
+		               <mesurables texte="Expression écrite" num="1" />
+		               <mesurables texte="Expression orale" num="2" />
+		               <mesurables texte="règle de 3" num="3" />
+		               <mesurables texte="Pourcentage" num="4" />
+		               <mesurables texte="Les 4 opérations" num="5" />
+		               <mesurables texte="Conversion d’unités de temps et de longueur" num="6" />
+					   <mesurables texte="Géométrie plane : calcul de surface" num="7" />
+			  </capacite>
+			</capacites>  
+    </cqp>
+	<cqp num="6" nom="CQP Monteuse Prototypiste" nb_questions="76">
+		<specialites>
+			<specialite num="1" nom="Maille"/>
+			<specialite num="2" nom="Chaîne et trame"/>
+			<specialite num="3" nom="Lingerie - Corsetterie"/>
+			<specialite num="4" nom="Linge de maison - Ameublement"/>
+		</specialites>	
+		<capacites nb="8">
+			  <capacite num="1" nom="C1" capacite="Pré Diagnostiquer un dysfonctionnement" ventilation="1@8@11@16@30@36@37@38@39@40@43@44@45@46@47@48@58@60@68@69@70@71@72@73@74@75@76" >
+			      <ra texte="Toutes les informations nécessaires à l’intervention sont collectées" num="1" />
+			      <ra texte="Le pré-diagnostic est effectué selon la méthode et avec les outils préconisés : " num="2" />
+			      <ra texte="- vérification du plus simple au plus complexe - manipulation des organes de commandes - vérification des conditions d’origine et de présence des différentes sources d’énergies - observations et mesures avec les appareils adéquats - recoupement avec les informations recueillies auprès des utilisateurs - Interprétations des plans, schéma, documents industriels relatifs aux installations" num="3" />
+			      <ra texte="La (ou les) fonction(s) défaillante(s) est (sont) identifiés(s)" num="4" />
+			      <ra texte="La nature des opérations à effectuer et le degré de gravité du dysfonctionnement (caractère occasionnel, répétitif…) sont estimés. En cas de dysfonctionnement grave ou ne relevant pas de son champ de compétences, le bon acteur est alerté." num="5" />
+		              <mesurables texte="Méthodes et procédures de diagnostic" num="1" />
+		              <mesurables texte="Règles et procédures de sécurité, hygiène, qualité, environnement" num="2" />
+		              <mesurables texte="Risques et mesures de prévention" num="3" />
+		              <mesurables texte="Analyse fonctionnelle et structurelle des systèmes de production" num="4" />
+		              <mesurables texte="Outils de mesure et de contrôle" num="5" />
+		              <observables texte="Collecte les informations nécessaires au pré-diagnostic" num="1" />
+		              <observables texte="Applique les règles et procédures de sécurité, hygiène, qualité, environnement" num="2" />
+		              <observables texte="Etablit le constat du dysfonctionnement ou de la panne " num="3" />
+		              <observables texte="Expertise l’équipement ou l’installation défaillante" num="4" />
+		              <observables texte="Localise la panne" num="5" />
+		              <observables texte="Identifie la ou les causes de la défaillance sur des ensembles, sous-ensembles ou composants" num="6" />
+		              <observables texte="Identifie les opérations de maintenance à réaliser" num="7" />
+		              <observables texte="Identifie les risques et les mesures de prévention adaptées" num="8" />
+					  <observables texte="Déclenche une intervention de maintenance" num="9" />
+			  </capacite>
+			  <capacite num="2" nom="C2" capacite="Organiser son intervention" ventilation="2@3@4@5@9@10@18@19@25@29@32@49@50@54@55@56@57@61@62@66@67@79" >
+			      <ra texte="Toutes les informations nécessaires à l’intervention sont collectées" num="1" />
+			      <ra texte="Les étapes de l’intervention sont définies de manière logique et prennent en compte les exigences" num="2" />
+			      <ra texte="Le matériel, l’outillage et les éléments ou pièces de rechange nécessaires à l’intervention sont identifiés et préparés" num="3" />
+		              <mesurables texte="Typologie et niveaux de maintenance" num="1" />
+		              <mesurables texte="Méthodes et organisation des activités de maintenance" num="2" />
+					  <mesurables texte="Matériels, outillages et pièces de rechange" num="3" />
+					  <mesurables texte="Gestion des stocks" num="4" />
+		              <observables texte="Collecte les informations nécessaires à une intervention de maintenance préventive ou corrective" num="1" />
+		              <observables texte="Prépare et ordonnance les opérations à réaliser dans le cadre d’intervention de maintenance préventive ou corrective" num="2" />
+					  <observables texte="Prépare le matériel, l’outillage, pièces et consommables nécessaires aux interventions de maintenance préventive ou corrective" num="3" />
+			  </capacite>
+			  <capacite num="3" nom="C3" capacite="Remplacer par échange standard des organes ou composants mécaniques,hydrauliques ou pneumatiques " ventilation="2@3@4@6@10@11@14@16@17@18@19@21@22@23@25@26@27@28@29@30@31@32@36@37@38@39@40@41@52@58@59@60@65@68@69@70@71@72@73@74@75@76" >
+		                <ra texte="L’absence de risque avant intervention a été vérifiée et lorsque c’est nécessaire en concertation avec un hiérarchique ou un technicien" num="1" />
+						<ra texte="Les consignes (hygiènes, sécurité, environnement) sont connues et respectées." num="2" />
+						<ra texte="L’organe ou le composant à remplacer et les éventuelles déconnexions mécaniques, électriques, pneumatiques ou hydrauliques nécessaires sont parfaitement identifiés" num="3" />
+						<ra texte="Le démontage, les déconnexions, le remontage et les reconnexions sont réalisés méthodiquement et dans les délais d’interventions prévus." num="4" />
+						<ra texte="Les montages, réglages, mesures et tests de fonctionnements prescrits sont correctement effectués conformément aux instructions, plans ou documentations" num="5" />
+		               <mesurables texte="Règles et procédures de sécurité, hygiène, qualité, environnement" num="1" />
+		               <mesurables texte="Risques et mesures de prévention" num="2" />
+		               <mesurables texte="Maintenance corrective" num="3" />
+		               <mesurables texte="Maintenance électrique (Schéma, composant, montage)" num="4" />
+		               <mesurables texte="Maintenance Mécanique (Schéma, composant, montage)" num="5" />
+					   <mesurables texte="Maintenance Hydraulique et pneumatique (Schéma, composant, montage)" num="6" />
+					   <mesurables texte="Outils de mesure et de contrôle" num="7" />
+		               <observables texte="Applique les règles et procédures de sécurité, hygiène, qualité, environnement" num="1" />
+		               <observables texte="Identifie et analyse les opérations liées aux réparations ou dépannages à réaliser sur des ensembles, sous-ensembles ou composants" num="2" />
+		               <observables texte="Effectue les réparations ou dépannages dans le respect des procédures et délai d’intervention" num="3" />
+		               <observables texte="Effectue les réglages, contrôles et tests nécessaires conformément aux instructions et paramètres définis" num="4" />
+			  </capacite>
+			  <capacite num="4" nom="C4" capacite="Réaliser des opérations de maintenance de niveau 2 à 3 (AFNOR) à caractère préventif, systématique ou conditionnel" ventilation="7@11@12@13@15@16@17@20@24@30@31@34@36@37@38@39@40@41@42@51@58@60@64@68@69@70@71@72@73@74@75@76" >
+		               <ra texte="Les différents contrôles sont réalisés conformément aux procédures et selon le planning prévu " num="1" />
+						<ra texte="Les valeurs mesurées ou constatés sont conformes à la réalité, tout écart par rapport aux valeurs standards est constaté et signalé" num="2" />
+						<ra texte="Les actions (nettoyage, réglage, lubrification, changement de pièces) prévues ou nécessaires sont réalisées à l’aide des outillages adaptés. Le cas échéant l’alerte est donnée auprès du bon interlocuteur" num="3" />
+		               <mesurables texte="Règles et procédures de sécurité, hygiène, qualité, environnement" num="1" />
+		               <mesurables texte="Risques et mesures de prévention" num="2" />
+					   <mesurables texte="Maintenance préventive " num="3" />
+					   <mesurables texte="Maintenance électrique (Analyse, mesure, réglage)" num="4" />
+					   <mesurables texte="Maintenance Mécanique (Analyse, mesure, réglage)" num="5" />
+					   <mesurables texte="Maintenance Hydraulique et pneumatique (Analyse, mesure, réglage)" num="6" />
+					   <mesurables texte="Outils de mesure et de contrôle" num="7" />
+		               <observables texte="Applique les règles et procédures de sécurité, hygiène, qualité, environnement" num="1" />
+		               <observables texte="Identifie et analyse les opérations de maintenance préventive à réaliser sur  des ensembles, sous-ensembles ou composants" num="2" />
+		               <observables texte="Effectue les opérations de maintenance préventive dans le respect des procédures et des délais d’intervention" num="3" />
+		               <observables text ="Déclenche une intervention ou alerte le service ou la personne concernée en cas d’écarts ou dysfonctionnements constatés" num="4" />
+			  </capacite>
+			  <capacite num="5" nom="C5" capacite="Détecter des améliorations possibles" ventilation="43@48@53@63@81" >
+		               <ra texte="Les situations anormales sont détectées (pannes répétitives, anomalies de fonctionnement, risques...) " num="1" />
+		               <ra texte="Des solutions d’améliorations sont proposées, les suggestions formulées sont pertinentes sur le plan technique" num="2" />
+		               <mesurables texte="Méthode et procédures de diagnostic" num="1" />
+					   <mesurables texte="Outils et méthodes de base au principe de l’amélioration en continue" num="2" />
+		               <observables texte="Recense et signale toutes situations anormales" num="1" />
+					   <observables texte="Définit et propose des actions et solutions d’amélioration technique " num="2" />
+			  </capacite>
+			  <capacite num="6" nom="C6" capacite="Conseiller techniquement les utilisateurs" ventilation="49@79@80@82"  >
+		               <ra texte="Les limites du champ d’action pour les conseils techniques sont identifées et appréciées." num="1" />
+		               <ra texte="Les conseils techniques (réglage, maintenance préventive, redémarrage, utilisation des fonctions...) sont pertinents et formulés de manière exploitable par les utilisateurs" num="2" />
+		               <mesurables texte="Typologie et niveaux de maintenance" num="1" />
+		               <mesurables texte="Principe de base de la communication" num="2" />
+		               <observables texte="Accompagne les utilisateurs/exploitants pour un fonctionnement optimum des équipements et installations " num="1" />
+			  </capacite>
+			  <capacite num="7" nom="C7" capacite="Rendre compte de son intervention et des suites éventuelles à donner"  ventilation="55@56@61@62@77@78" >
+		               <ra texte="Le compte rendu / suivi est correctemnt effectué : " num="1" />
+		               <ra texte="Exhaustivité et justesse des informations données : dysfonctionnement, pannes, temps, nature de l’intervention, intervention complémentaires" num="2" />
+		               <ra texte="Langage technique adapté" num="3" />
+		               <ra texte="Solutions éventuelles proposées" num="4" />
+		               <ra texte="Exploitable par une tierce personne." num="5" />
+		               <mesurables texte="Méthodes et organisation des activités de maintenance" num="1" />
+		               <mesurables texte="Outils de saisie et d’enregistrement des informations" num="2" />
+					   <observables texte="Elabore, renseigne, met à jour et transmet les documents de maintenance et les comptes- rendus d’intervention" num="1" />
+			  </capacite>
+			  <capacite num="8" nom="C8" capacite="Acquis de base" ventilation="15@16@20@24@33@35@42@64@65"  >
+		               <ra texte="Maîtrise du français" num="1" />
+		               <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2" />
+		               <mesurables texte="Expression écrite" num="1" />
+		               <mesurables texte="Expression orale" num="2" />
+		               <mesurables texte="Calcul relatif à la maintenance" num="3" />
+		               <mesurables texte="Unités et mesure" num="4" />
+			  </capacite>
+			</capacites>  
+	</cqp>	
+	<cqp num="7" nom="CQPI Opérateur de Maintenance Industrielle" nb_questions="82">
+		<capacites nb="8">
+			  <capacite num="1" nom="C1" capacite="Exploiter les données techniques" ventilation="1@2@3@4@5@6@7@9@10@11@12@13@16@29@45@44@46@48" >
+			      <ra texte="Les caractéristiques du produit à réaliser sont identifiées" num="1" />
+			      <ra texte="Les différentes sortes de langages sont connues et interprétées La signification des principaux termes est maîtrisée" num="2" />
+			      <ra texte="Les informations et modalités techniques ayant trait aux opérations à effectuer sont identifiées. Les données relatives au tableau de mesures sont lues et comprises. Les points critiques du montage du produit sont repérés" num="3" />
+			      <ra texte="L’adéquation entre les éléments coupés et le dossier technique est contrôlée. En cas de pièces défectueuses, la gravité du défaut est évaluée. " num="4" />
+			      <ra texte="Les éléments du patronage sont vérifiés. Les anomalies sont remontées" num="5" />
+			      <ra texte="Différents matériaux sont sélectionnés en fonction de l’article à réaliser et des exigences clients." num="6" />
+				  <ra texte="Le mode opératoire est défini En cours de la réalisation, des modifications techniques sont  apportées au mode opératoire" num="7" />
+		              <mesurables texte="Documents de réalisation et de suivi" num="1" />
+		              <mesurables texte="Matières d’oeuvre" num="2" />
+		              <mesurables texte="Représentation normalisée relative au domaine de la confection" num="3" />
+		              <mesurables texte="Vocabulaire technique relatif au domaine de la confection" num="4" />
+		              <mesurables texte="Tableau de mesure" num="5" />
+					  <mesurables texte="Patronnage : normes, lignes de construction, indications" num="6" />
+					  <mesurables texte="Dessins techniques, schémas : normes, lignes de construction, indications" num="7" />
+		              <observables texte="Identifie, sur les différents documents de réalisation, les caractéristiques du produit" num="1" />
+		              <observables texte="Exploite les différentes formes de représentation normalisée relatives au domaine de la confection" num="2" />
+		              <observables texte="Identifie, sur les différents documents de réalisation, les données techniques et les opérations à réaliser" num="3" />
+		              <observables texte="Procède à la vérification du patronnage" num="4" />
+		              <observables texte="Procède à la vérification des pièces coupées" num="5" />
+		              <observables texte="Détecte les défauts/anomalies et applique les procédures de traitement des défauts/anomalies adaptées" num="6" />
+		              <observables texte="Sélectionne les différentes fournitures nécessaires à la réalisation" num="7" />
+		              <observables texte="A partir des dessins techniques du produit à réaliser, définit pour chaque opération technique d’assemblage à réaliser les séquences opérationnelles" num="8" />
+					  <observables texte="En cours de réalisation, en fonction des difficultés et/ou des contraintes rencontrées, rectifie et adapte les séquences opérationnelles" num="9" />
+			  </capacite>
+			  <capacite num="2" nom="C2" capacite="Formaliser la méthode de montage" ventilation="17@14@15@45@44@46@48" >
+			      <ra texte="La méthode de montage est définie. Elle peut être expliquée aux bons acteurs pour leur apporter des éléments dans la fabrication de la gamme de montage" num="1" />
+			      <ra texte="Le travail est décomposé avec détermination : du matériel, des équipements nécessaires, de l’ordre chronologique de montage, des types de couture à réaliser, des critères qualité, en tenant compte des points critiques et des difficultés rencontrées. Il peut être expliqué à l’oral ou par écrit" num="2" />
+			      <ra texte="La fiche suiveuse peut être renseignée. Le dossier technique peut être enrichi" num="3" />
+			      <ra texte="Des astuces de montage peuvent être explicitées et reportées par écrits" num="4" />
+			      <ra texte="Les points clés d’obtention de la qualité sont identifiés et peuvent être reportés par écrit." num="5" />
+		              <mesurables texte="Fonctions et composants d’une gamme de montage " num="1" />
+		              <mesurables texte="Modes opératoires et techniques de préparation, assemblage et montage" num="2" />
+		              <observables texte="En fonction des données techniques et des différentes opérations à réaliser, définit et  explicite le  plan de travail de réalisation du produit" num="1" />
+		              <observables texte="Définit et explicite,  la méthode/ le processus de montage pour la réalisation du produit" num="2" />
+			  </capacite>
+			  <capacite num="3" nom="C3" capacite="Régler, entretenir et maintenir les machines" ventilation="18@19@20@21@22@23@24@25@26@27@28@30@31@32@33@34@35@36@37@38@41@42" >
+		               <ra texte="Les organes de réglage de la machine sont situés. Les principales pièces/éléments composant la machine sont connus " num="1" />
+						<ra texte="Les opérations de réglage courant de la piqueuse plate, de la surjeteuse et d’une ou plusieurs machines spéciales sont correctement mises en œuvre " num="2" />
+						<ra texte="L’incidence du réglage et de la bonne utilisation du matériel sur la qualité des produits est connue. L’adaptation du matériel aux différentes matières, type de travaux et forme des éléments est assurée de façon continue, dans le respect des règles de sécurité" num="3" />
+						<ra texte="Les consignes de protection et de sécurité sont connues et appliquées. Les équipements de protection sont utilisés " num="4" />
+						<ra texte="Les opérations nécessaires à un entretien préventif sont connues. Celles qui nécessitent l’intervention d’un tiers sont connues et expliquées aux bons acteurs. La machine est en bon état de fonctionnement" num="5" />
+						<ra texte="Tout incident de fonctionnement est décelé. La gravité de l’incident est mesurée " num="6" />
+						<ra texte="Les anomalies/pannes nécessitant l’intervention d’un tiers sont constatées, remontées et expliquées aux bons acteurs. Des éléments de réponses relatifs au contexte du problème peuvent être apportés si demandé. " num="7" />
+						<ra texte="Les pannes élémentaires sont réparées par des changements de pièces ou des opérations simples" num="8" />
+		               <mesurables texte="Matériels mécanisés, automatisés en confection " num="1" />
+		               <mesurables texte="Organes et accessoires des matériels" num="2" />
+		               <mesurables texte="Enfilage - Réglages " num="3" />
+		               <mesurables texte="Formation du point" num="4" />
+		               <mesurables texte="Equipements de protection et règles de sécurité" num="5" />
+					   <mesurables texte="Entretien courant et maintenance de 1er niveau" num="6" />
+		               <observables texte="Identifie et contrôle les organes de réglage et accessoires des matériels de son secteur" num="1" />
+		               <observables texte="Effectue les réglages sur les matériels de son secteur en fonction des matières d’œuvre et des opérations à réaliser" num="2" />
+		               <observables texte="Applique les règles et consignes de sécurité" num="3" />
+		               <observables texte="Procède aux opérations  d’entretien courant et de maintenance de 1er niveau" num="4" />
+			  </capacite>
+			  <capacite num="4" nom="C4" capacite="Préparer, assembler et monter l’article" ventilation="1@2@8@14@15@17@18@34@35@39@40@43@44@45@46@47@48" >
+		               <ra texte="Les opérations de préparation, assemblage, montage sont réalisées en toute autonomie, avec soin et rigueur" num="1" />
+						<ra texte="Le matériel nécessaire à l’élaboration du produit est repéré " num="2" />
+						<ra texte="Les particularités des matières sont identifiées. L’incidence de la matière dans les procédés de fabrication est prise en compte. La gestuelle est adaptée au guidage par rapport à la matière. " num="3" />
+						<ra texte="Les pièces sont rangées dans un ordre défini qui peut être explicité" num="4" />
+						<ra texte="Un mode opératoire en adéquation avec les caractéristiques et l’image du produit à assembler est recherché puis choisi" num="5" />
+						<ra texte="Le mode d’approvisionnement des postes de travail est adapté " num="6" />
+						<ra texte="Les opérations liées à la piqueuse plate, à la surjeteuse, à l’utilisation d’une ou plusieurs machines spéciales sont correctement mises en œuvre " num="7" />
+						<ra texte="La vitesse de la machine est maîtrisée, sa cadence est régulière. Le guidage est effectué si besoin par rapport à la vitesse requise" num="8" />
+						<ra texte="Les problèmes de confection rencontrés en fabrication sont limités par la mise en œuvre d’astuces ou de modes opératoires" num="9" />
+		               <mesurables texte="Matériels mécanisés, automatisés en confection" num="1" />
+		               <mesurables texte="Outillages en confection" num="2" />
+					   <mesurables texte="Modes opératoires et techniques de préparation, assemblage et montage" num="3" />
+					   <mesurables texte="Formation du point" num="4" />
+					   <mesurables texte="Documents de réalisation et de suivi" num="5" />
+		               <observables texte="Choisi les moyens matériels adaptés aux matières d’œuvre et au prototype à réaliser" num="1" />
+		               <observables texte="Organise son poste de travail et dispose rationnellement les matières, fournitures, garnitures, accessoires et pièces sur son poste de travail" num="2" />
+		               <observables texte="Identifie et réalise les opérations de préparation, de montage et d’assemblage" num="3" />
+		               <observables text ="Met en œuvre les techniques et gestuelles adaptées au piquage, surjet et aux opérations effectuées sur machines spéciales" num="4" />
+		               <observables texte="En cours de réalisation, en fonction des difficultés et/ou des contraintes rencontrées, rectifie et adapte les opérations techniques liées à la confectionnabilité" num="5" />
+		               <observables texte="En cours de réalisation consigne et/ou  explicite ces modifications et  adaptations effectués sur les fiches de suivi et documents de réalisation" num="6" />
+			  </capacite>
+			  <capacite num="5" nom="C5" capacite="Réaliser les travaux de finition" ventilation="49@50@51@52@53@54@55@56" >
+		               <ra texte="La présentation du produit est améliorée " num="1" />
+		               <ra texte="Le repassage en cours peut être effectué sur tous types d’articles selon les exigences matières, famille de produits clients…" num="2" />
+		               <ra texte="Les opérations de finition supplémentaires nécessaires sont identifiées et réalisées dans le respect des critères techniques et de qualité " num="3" />
+		               <mesurables texte="Modes opératoires et techniques de réalisation de la finition" num="1" />
+					   <mesurables texte="Entretien des textiles" num="2" />
+					   <mesurables texte="Matériels et techniques de repassage" num="3" />
+		               <observables texte="Identifie et réalise les opérations de finition " num="1" />
+					   <observables texte="Met en œuvre les techniques et gestuelles adaptées au piquage, surjet et aux opérations effectuées sur machines spéciales" num="2" />
+					   <observables texte="Vérifie la présentation et l’aspect final du prototype" num="3" />
+					   <observables texte="Effectue les opérations de repassage adapté aux matières d’œuvre, formes et au produit" num="4" />
+			  </capacite>
+			  <capacite num="6" nom="C6" capacite="Effectuer les contrôles qualité" ventilation="57@58@59@60@62"  >
+		               <ra texte="L’autocontrôle en cours de travail est effectué suivant les critères qualitatifs" num="1" />
+		               <ra texte="Le travail réalisé est vérifié dans une optique de progrès" num="2" />
+		               <ra texte="La conformité du prototype est évaluée par rapport au dossier technique" num="3" />
+		               <ra texte="La qualité du travail est appréciée selon l’aspect général et le tombé du prototype grâce à l’utilisation d’outils adéquats" num="4" />
+					   <ra texte="Les impacts de qualité du travail effectué sur le produit présenté fini sont connus" num="5" />
+		               <mesurables texte="Modalités de contrôle" num="1" />
+		               <mesurables texte="Indicateurs de qualité" num="2" />
+		               <observables texte="Applique les consignes relatives au contrôle et  à la qualité en cours de réalisation" num="1" />
+		               <observables texte="Evalue la conformité et la qualité du prototype réalisé" num="2" />
+		               <observables texte="Identifie, le cas échéant, les améliorations ou actions correctives à mettre en œuvre" num="3" />
+		               <observables texte="Identifie les points clés d’obtention de la qualité  et mesure leurs incidences sur le produit  " num="4" />
+			  </capacite>
+			  <capacite num="7" nom="C7" capacite="Proposer, suggérer, échanger"  ventilation="1@2@61@63@64@65@66@67@68@69@70" >
+		               <ra texte="En cas de difficultés d’interprétation du patronnage, des capacites sont posées aux bons acteurs Des critiques ou remarques sont adressées et  justifiées" num="1" />
+		               <ra texte="Des propositions de simplification, d’amélioration ou d’optimisation des processus et/ou techniques de montage sont recherchées puis peuvent être conseillées, suggérées aux bons acteurs afin d’optimiser la faisabilité industrielle, sur la base du dossier technique " num="2" />
+		               <ra texte="La fiche technique, fiche suiveuse ou tout autre document utilisé couramment dans l’entreprise est éventuellement modifié et complété dans le respect de l’image technique" num="3" />
+		               <ra texte="Toute difficulté, interrogation, capacite sur le dossier technique, le montage vêtement, les exigences clients etc.… est partagée, expliquée, posée" num="4" />
+		               <ra texte="Des propositions peuvent être formulées afin de réduire les coûts/les temps de fabrication" num="5" />
+		               <ra texte="Des opinions peuvent être émises sur le rendu du vêtement auprès des bons acteurs" num="6" />
+		               <mesurables texte="Communication Professionnelle" num="1" />
+		               <mesurables texte="Documents de réalisation et de suivi" num="2" />
+					   <mesurables texte="Notion de traçabilité" num="3" />
+					   <mesurables texte="Notion de coût" num="4" />
+					   <observables texte="Interroge et/ou alerte les personnes concernées en cas de difficultés d’ordre technique ou organisationnel" num="1" />
+		               <observables texte="Donne son avis, définit et propose des solutions d’amélioration d‘ordre technique, organisationnel ou esthétique" num="2" />
+		               <observables texte="En fonction des difficultés rencontrée et des solutions retenue, rectifie et/ou complète, le cas échéant, les documents nécessaire à la réalisation" num="3" />
+			  </capacite>
+			  <capacite num="8" nom="C8" capacite="Acquis de base" ventilation="69@70@71@72@73@74@75@76"  >
+		               <ra texte="Maîtrise du français" num="1" />
+		               <ra texte="Maîtrise des calculs de base liés aux activités professionnelles" num="2" />
+		               <mesurables texte="Expression écrite" num="1" />
+		               <mesurables texte="Expression orale" num="2" />
+		               <mesurables texte="Notion de coût " num="3" />
+		               <mesurables texte="règle de 3" num="4" />
+		               <mesurables texte="Pourcentage" num="5" />
+		               <mesurables texte="Les 4 opérations" num="6" />
+					   <mesurables texte="Conversion d’unités de temps et de longueur" num="7" />
+					   <mesurables texte="Géométrie plane : calcul de surface" num="8" />
+			  </capacite>
+			</capacites>  
+	</cqp>	
+</PMQ>

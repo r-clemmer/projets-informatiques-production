@@ -1,0 +1,21 @@
+fieldset {
+	width:630px;
+}
+
+fieldset label {
+	position:absolute;
+}
+
+fieldset input, textarea, span.error {
+	left:150px;
+	position:relative;
+}
+
+fieldset span#message {
+	display:block;
+}
+
+fieldset div.ui-rating {
+	left:75px;
+	position:relative;
+}

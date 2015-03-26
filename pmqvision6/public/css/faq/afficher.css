@@ -1,0 +1,64 @@
+fieldset legend  {
+	font-weight:bold;
+}
+
+fieldset#message label {
+	font-weight:bold;
+	position:absolute;
+}
+
+fieldset#message span {
+	left:150px;
+	position:absolute;
+}
+
+fieldset#message span#date {
+	left:55px;
+	position:absolute;
+}
+
+fieldset#message span#message {
+	display:block;
+	left:95px;
+	max-width:500px;
+	position:relative;
+	font-style:italic;
+}
+
+fieldset#message input#question_valide {
+	left:90px;
+	position:relative;
+}
+
+fieldset#repondre label {
+	font-weight:bold;
+}
+
+fieldset#repondre span.error {
+	position:absolute;
+}
+
+fieldset#repondre input {
+	left:40px;
+	position:relative;
+	width:250px;
+}
+
+fieldset#repondre textarea {
+	left:11px;
+	position:relative;
+	width:500px;
+}
+
+fieldset#repondre span#reponse_auteur {
+	left:450px;
+}
+
+fieldset#repondre span#reponse_message {
+	position:relative;
+	
+}
+
+fieldset#reponse legend {
+	font-weight:normal;
+}

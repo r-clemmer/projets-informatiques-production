@@ -1,0 +1,17 @@
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<form method="POST" name="num" action="#" >
+			N° :
+			<input type="text" name="num" value="<?php echo $this->num; ?>" />
+			<a href="#" onclick="javascript:document.forms['num'].submit();" class="button search" >Rechercher</a>
+		</form>
+		<span class="error"><?php echo $this->error; ?></span>
+
+	</div>
+</div>

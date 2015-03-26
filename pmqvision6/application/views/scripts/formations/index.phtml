@@ -1,0 +1,32 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+		jQuery("#list").jqGrid({        
+		   	url: baseUrl + '/ajax/getlisteformations/',
+			datatype: "json",
+			mtype: 'POST',
+		   	colNames:['Formation','Formacode', 'Organismes de formations', 'Actions'],
+		   	colModel:[
+		   		{name:'formation_libelle',index:'formation_libelle'},
+		   		{name:'formation_formacode',index:'formation_formacode'},
+		   		{name:'entites',index:'entites', sortable:false},
+		   		{name:'actions',index:'actions', sortable:false}		
+		   	],
+		   	rowNum:10,
+		   	rowList:[10,20,30],
+		   	pager: '#pager',
+		   	sortname: 'formation_libelle',
+		    viewrecords: true,
+		    sortorder: "DESC",
+		    caption:"Liste des formations",
+		    loadonce: false,
+		    height: "100%"
+		}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+	});
+
+</script>
+
+<a href="<?php echo $this->baseUrl(); ?>/formations/add/" class="button add" >Ajouter une formation</a>
+
+<table id="list"></table>
+<div id="pager"></div>

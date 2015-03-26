@@ -1,0 +1,143 @@
+<?php
+	if( isset( $_POST['bloc1_id'] ) ){
+		$bloc1_id = $_POST['bloc1_id'];
+	}else{
+		$bloc1_id = "";
+	}
+
+	if( isset( $_POST['bloc2_id'] ) ){
+		$bloc2_id = $_POST['bloc2_id'];
+	}else{
+		$bloc2_id = "";
+		
+		
+		
+	}
+	
+	if(!isset($_POST['demarche_id'])){$_POST['demarche_id'] ='';}
+
+	
+?>
+
+<script type="text/javascript" >
+
+	$(document).ready(
+		function(){
+
+			$("select#demarche_id").change(
+				function(){
+					var demarche_id = $("select#demarche_id option:selected").val();
+					$.post(
+						baseUrl+'/ajax/getlistebloc1/?demarche_id='+demarche_id,
+						function( data ){
+							$("select#bloc1_id").html(data);
+							$("select#bloc2_id").html("");
+							$("select#bloc2_id").hide();
+							$("select#bloc2_id").prev().hide();
+							$("select#bloc1_id option[value=<?php echo $bloc1_id; ?>]").attr('selected', 'selected');
+							$("select#bloc1_id").change();
+						}
+					);
+				}
+			).trigger("change");
+
+			$("select#bloc1_id").change(
+				function(){
+					var demarche_id = $("select#demarche_id option:selected").val();
+					var bloc1_id = $("select#bloc1_id option:selected").val();
+					$.post(
+						baseUrl+'/ajax/getlistebloc2/?demarche_id='+demarche_id+'&bloc1_id='+bloc1_id,
+						function( data ){
+							$("select#bloc2_id").html(data);
+							if( $("select#bloc2_id").html() == "" ){
+								$("select#bloc2_id").hide();
+								$("select#bloc2_id").prev().hide();
+							}else{
+								$("select#bloc2_id").show();
+								$("select#bloc2_id option[value=<?php echo $bloc2_id; ?>]").attr('selected', 'selected');
+							}
+						}
+					);
+				}
+			).trigger("change");
+
+			<?php if( $_POST ): ?>
+				$("#list").jqGrid({
+					url: baseUrl + '/ajax/getrecherchebytitre/?demarche_id=<?php echo $_POST['demarche_id']; ?>&bloc1_id=<?php echo $bloc1_id; ?>&bloc2_id=<?php echo $bloc2_id; ?>',
+					datatype: "json",
+					mtype: 'POST',
+					colNames:['Opération','Entreprise', 'Organisme Référent', 'Entité Opcalia'],
+					colModel:[
+						{name:'fiche_id',index:'fiche_id', align:'center', width: 70},
+						{name:'entreprise',index:'entreprise'},
+						{name:'org_ref',index:'org_ref'},
+						{name:'del',index:'del'}
+					],
+					rowNum:10,
+					rowList:[10,25,50],
+					pager: '#pager',
+					sortname: 'fiche_id',
+					viewrecords: true,
+					sortorder: "ASC",
+					caption:"Résultats",
+					loadonce: false,
+					height: "100%",
+					width: 630
+				}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+			<?php endif; ?>
+
+		}
+	);
+
+</script>
+
+<div style="display: block; height: auto; width: 630px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<form name="titreSearchForm" method="POST" action="<?php echo $this->baseUrl(); ?>/recherche/demarchetitre/" >
+
+			<table style="width:auto;" >
+				<tr>
+					<td style="width: 200px;" >Démarche :</td>
+					<td>
+						<select name="demarche_id" id="demarche_id" >
+							<?php foreach( $this->demarches as $demarche ): ?>
+								<?php
+									$select = "";
+									if( $_POST['demarche_id'] == $demarche['demarche_id'] )
+										$select = ' selected ';
+								?>
+								<option value="<?php echo $demarche['demarche_id']; ?>" <?php echo $select; ?> ><?php echo $demarche['demarche_libelle']; ?>( <?php echo $demarche['demarche_abrege']; ?> )</option>
+							<?php endforeach; ?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Titre :</td>
+					<td>
+						<select name="bloc1_id" id="bloc1_id" ></select>
+					</td>
+				</tr>
+				<tr>
+					<td>Spécialité :</td>
+					<td>
+						<select name="bloc2_id" id="bloc2_id" ></select>
+					</td>
+				</tr>
+			</table>
+
+			<a href="#" onclick="javascript:document.forms['titreSearchForm'].submit();" class="button search" >Rechercher</a>
+
+		</form>
+
+	</div>
+	
+</div>
+
+<table id="list"></table>
+<div id="pager"></div>

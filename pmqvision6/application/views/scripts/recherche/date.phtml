@@ -1,0 +1,137 @@
+<?php if( $this->criteres == "valides" && $this->critere != '' ): ?>
+	<?php
+		$fDates = new Fonctions_Dates();
+		$date1 = $fDates->unformatDate( $this->date1 );
+		$date2 = $fDates->unformatDate( $this->date2 );
+	?>
+	<?php if( $this->critere == 'operation' ): ?>
+		<script type="text/javascript">
+		
+			$(document).ready(function(){
+				
+				$("#list").jqGrid({
+				   	url: baseUrl + '/ajax/getrechercheoperations/?date1=<?php echo $date1; ?>&date2=<?php echo $date2; ?>',
+					datatype: "json",
+					mtype: 'POST',
+					height: "100%",
+					width: 630,
+				   	colNames:['Créée le', 'Opération', 'Entreprise','Organisme Référent', 'Entité Opcalia'],
+				   	colModel:[
+						{name:'fiche_date_creation', index:'fiche_date_creation', width:100, align: 'center', width: 80},
+				   		{name:'fiche_id', index:'fiche_id', width: 75, align: 'center', width: 70},
+				   		{name:'entreprise', index:'entreprise', sortable:false},
+				   		{name:'org_ref', index:'org_ref', sortable:false},
+				   		{name:'delegation', index:'delegation', sortable:false}
+				   	],
+				   	rowNum:10,
+				   	rowList:[10,25,50,100],
+				   	pager: '#pager',
+				   	sortname: 'fiche_date_creation',
+				    viewrecords: false,
+				    sortorder: "ASC",
+				    loadonce: false
+				}).navGrid('#pager',{edit:false,add:false,del:false,search:false});
+		
+			});
+			
+		</script>
+	<?php elseif( $this->critere == 'evaluation' ): ?>
+		<script type="text/javascript">
+		
+			$(document).ready(function(){
+				
+				$("#list").jqGrid({
+				   	url: baseUrl + '/ajax/getrechercheevaluations/?date1=<?php echo $date1; ?>&date2=<?php echo $date2; ?>',
+					datatype: "json",
+					mtype: 'POST',
+					height: "100%",
+					width: 630,
+				   	colNames:['Date', 'Evaluation', 'Candidat','Opération', 'Entreprise'],
+				   	colModel:[
+						{name:'resultat_date', index:'resultat_date', align: 'center', width: 70},
+				   		{name:'outil_id', index:'outil_id'},
+				   		{name:'candidat_id', index:'candidat_id'},
+				   		{name:'fiche_id', index:'fiche_id', align: 'center', width: 70},
+				   		{name:'entite_id', index:'entite_id'}
+				   	],
+				   	rowNum:10,
+				   	rowList:[10,25,50,100],
+				   	pager: '#pager',
+				   	sortname: 'resultat_date',
+				    viewrecords: false,
+				    sortorder: "ASC",
+				    loadonce: false
+				}).navGrid('#pager',{edit:false,add:false,del:false,search:false});
+				
+			});
+			
+		</script>
+	<?php elseif( $this->critere == 'jury' ): ?>
+		<script type="text/javascript">
+		
+			$(document).ready(function(){
+				
+				$("#list").jqGrid({
+				   	url: baseUrl + '/ajax/getrecherchejurys/?date1=<?php echo $date1; ?>&date2=<?php echo $date2; ?>',
+					datatype: "json",
+					mtype: 'POST',
+					height: "100%",
+					width: 630,
+				   	colNames:['Date', 'Ville', 'Opération', 'Candidat', 'Entreprise'],
+				   	colModel:[
+						{name:'jury_date', index:'jury_date', align: 'center', width: 70},
+				   		{name:'jury_ville', index:'jury_ville'},
+				   		{name:'fiche_id', index:'fiche_id', align: 'center', width: 70},
+				   		{name:'personne_nom', index:'personne_nom'},
+				   		{name:'entite_nom', index:'entite_nom'}
+				   	],
+				   	rowNum:10,
+				   	rowList:[10,25,50,100],
+				   	pager: '#pager',
+				   	sortname: 'jury_date',
+				    viewrecords: false,
+				    sortorder: "ASC",
+				    loadonce: false
+				}).navGrid('#pager',{edit:false,add:false,del:false,search:false});
+				
+			});
+			
+		</script>
+	<?php endif; ?>
+<?php endif; ?>
+
+<div style="display: block; height: auto; width: 630px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<form name="formDate" method="POST" action="#">
+
+			Choix :
+			<select name="critere" id="critere" >
+				<option value="operation" <?php if( $this->critere == 'operation' ) echo ' selected '; ?> >Opérations</option>
+				<option value="evaluation" <?php if( $this->critere == 'evaluation' ) echo ' selected '; ?> >Evaluations</option>
+				<option value="jury" <?php if( $this->critere == 'jury' ) echo ' selected '; ?> >Jurys</option>
+			</select>
+
+			<br />
+
+			Entre le
+			<input name="date1"  id="date1" class="datepicker" value="<?php echo $this->date1; ?>" />
+			et le
+			<input name="date2"  id="date2" class="datepicker" value="<?php echo $this->date2; ?>" />
+
+			<a href="#" onclick="javascript:document.forms['formDate'].submit();" class="button search" >Rechercher</a>
+
+		</form>
+
+		<span class="error"><?php echo $this->error; ?></span>
+		
+	</div>
+</div>
+
+<table id="list" ></table>
+<div id="pager"></div>

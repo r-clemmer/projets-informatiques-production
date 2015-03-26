@@ -1,0 +1,169 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("input#reponse_auteur").keyup(
+			function(){
+				if($("input#reponse_auteur").val() == ""){
+					$("input#reponse_auteur + span").show();
+				}else{
+					$("input#reponse_auteur + span").hide();
+				}
+			}
+		);
+
+		$("textarea#reponse_message").keyup(
+			function(){
+				if($("textarea#reponse_message").val() == ""){
+					$("textarea#reponse_message + span").show();
+				}else{
+					$("textarea#reponse_message + span").hide();
+				}
+			}
+		);
+
+		$("input#question_valide").click(
+			function(){
+				if($('input#question_valide').attr('checked') == true){
+					$.post(
+						baseUrl + "/ajax/validemessage/",
+						{
+							question_id:"<?php echo $this->question->question_id; ?>",
+							valide:"1"
+						},
+					   function(data){
+					     alert("La question a été validée");
+					   }
+					);
+				}else{
+					$.post(
+						baseUrl + "/ajax/validemessage/",
+						{
+							question_id:"<?php echo $this->question->question_id; ?>",
+							valide:"0"
+						},
+					   function(data){
+					     alert("La question a été non-validée");
+					   }
+					);
+				}
+			}
+		);
+		
+	});
+
+	function verif(){
+		var test = $("span.error:not([style])").length;
+		if(test == 0){
+			document.forms['repondre'].submit();
+		}else{
+			alert("Certains champs saisis ne sont pas correct !");
+		}
+	}
+	
+</script>
+
+<fieldset id="message">
+	<legend>Message :</legend>
+	
+	<span id="date">le <?php echo $this->question->date; ?> à <?php echo $this->question->heure; ?></span>
+	<br />
+	
+	<label>Objet : </label>
+	<span id="objet"><?php echo $this->question->question_objet; ?></span>
+	<br />
+	
+	<label>Auteur : </label>
+	<span id="auteur"><?php echo $this->question->question_auteur; ?></span>
+	<br />
+	
+	<label>Message : </label>
+	<span id="message">" <?php echo $this->question->question_message; ?> "</span>
+	
+	<label>Importance : </label>
+	<?php
+	 	$s = $this->question->question_severite;
+		$severite = "";
+		switch($s){
+			case 0 :
+				$severite .= '<img src="'.$this->baseUrl().'/img/star_empty.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star_empty.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star_empty.png" alt="'.$s.'" title="'.$s.'" />';
+				break;
+			case 1 :
+				$severite .= '<img src="'.$this->baseUrl().'/img/star.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star_empty.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star_empty.png" alt="'.$s.'" title="'.$s.'" />';
+				break;
+			case 2 :
+				$severite .= '<img src="'.$this->baseUrl().'/img/star.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star_empty.png" alt="'.$s.'" title="'.$s.'" />';
+				break;
+			case 3 :
+				$severite .= '<img src="'.$this->baseUrl().'/img/star.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star.png" alt="'.$s.'" title="'.$s.'" />';
+				$severite .= '<img src="'.$this->baseUrl().'/img/star.png" alt="'.$s.'" title="'.$s.'" />';
+				break;
+		}
+	?>
+	<span id="severite"><?php echo $severite; ?></span>
+	<br />
+	
+	<?php if($this->valide == true){ ?>
+	
+		<label id="question_valide">Validation : </label>
+		<input type="checkbox" name="question_valide" id="question_valide"
+		<?php if($this->question->question_valide != 0): ?>
+			checked
+		<?php endif; ?>
+		/>
+	
+	<?php } ?>
+	
+</fieldset>
+
+<?php if ($this->reponses) : ?>
+	<fieldset id="reponses">
+		<legend>Réponses : </legend>
+		
+	
+		
+			<?php foreach($this->reponses as $reponse){ ?>
+				
+				<fieldset id="reponse">
+					<legend>De <?php echo $reponse['reponse_auteur']; ?> le <?php echo $reponse['date']; ?> à <?php echo $reponse['heure']; ?> </legend>
+					<?php echo $reponse['reponse_message']; ?>
+				</fieldset>
+				
+			<?php } ?>
+		
+	</fieldset>
+<?php endif; ?>
+
+<br />
+<a href="<?php echo $this->baseUrl(); ?>/faq/" class="button return" >Retour</a>
+
+<fieldset id="repondre">
+	<legend>Répondre :</legend>
+
+	<form method="POST" action="" name="repondre" >
+	
+		<input type="hidden" name="question_id" value="<?php echo $this->question->question_id; ?>" />
+	
+		<label id="reponse_auteur">Votre nom :</label>
+		<input type="text" name="reponse_auteur" id="reponse_auteur" />
+		<span id="reponse_auteur" class="error">Vous devez saisir votre nom.</span>
+		<br />
+		
+		<label id="reponse_message">Votre réponse :</label>
+		<textarea rows="5" cols="50" name="reponse_message" id="reponse_message" ></textarea>
+		<span id="reponse_message" class="error">Vous devez saisir un message.</span>
+		
+	</form>
+
+	<a href="#" onclick="javacript:verif();" class="button mail" >Envoyer</a>
+	
+</fieldset>
+
+<br />
+<a href="<?php echo $this->baseUrl(); ?>/faq/" class="button return" >Retour</a>

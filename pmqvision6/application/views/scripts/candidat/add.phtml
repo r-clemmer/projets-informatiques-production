@@ -1,0 +1,145 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$(".error li#personne").hide();
+
+		$("input#personne_nom").blur(
+			function(){
+				if( $("input#personne_nom").val() == '' ) error( 'nom', true );
+				else error( 'nom', false );
+
+				if( $("input#personne_nom").val() != '' && $("input#personne_prenom").val() != '' ){
+					checkPersonne();
+				}
+
+			}
+		);
+		$("input#personne_prenom").blur(
+			function(){
+				if( $("input#personne_prenom").val() == '' ) error( 'prenom', true );
+				else error( 'prenom', false );
+
+				if( $("input#personne_nom").val() != '' && $("input#personne_prenom").val() != '' ){
+					checkPersonne();
+				}
+
+			}
+		);
+		$("input#candidat_anciennete").change(
+			function(){
+				if( $("input#candidat_anciennete").val() == '' ) error( 'anciennete', true );
+				else error( 'anciennete', false );
+			}
+		);
+		$("input#candidat_contrat").blur(
+			function(){
+				if( $("input#candidat_contrat").val() == '' ) error( 'contrat', true );
+				else error( 'contrat', false );
+			}
+		);
+
+		//entité
+		$("input#entite_id").change(
+			function(){
+				if($("input#entite_id").val() == "" || $("input#inputString").val() == ""){
+					$("span.info").show();
+					error( 'entite', true );
+				}
+			}
+		);
+		$("input#inputString").change(
+			function(){
+				if($("input#inputString").val() == ""){
+					$("input#entite_id").val("");
+					$("span.info").show();
+					error( 'entite', true );
+				}else{
+					error( 'entite', false );
+				}
+			}
+		);
+
+	});
+
+	function error( id, value ){
+		if( value == true ){
+			$(".error li#"+id).show();
+		}else{
+			$(".error li#"+id).hide();
+		}
+	}
+
+	function checkPersonne(){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+"/ajax/checkpersonneexist",
+			data: 'nom='+$("input#personne_nom").val()+'&prenom='+$("input#personne_prenom").val(),
+			success: function( data ){
+				if( data != '' ){
+					$(".error li#personne").html( "Ces personnes existent déjà : <br />" + data ).show();
+				}else{
+					$(".error li#personne").hide();
+				}
+			}
+		});
+	}
+
+	function verif(){
+		if( $(".error").text() == '' ){
+			//submit
+			alert("submit");
+		}
+	}
+
+</script>
+
+<label>Civilité : </label>
+<select name="civilite_id"><?php echo $this->civilites; ?></select>
+<br />
+<label>Nom : </label>
+<input name="personne_nom" id="personne_nom" value="" />
+<label>Prénom : </label>
+<input name="personne_prenom" id="personne_prenom" value="" />
+<br />
+<label>Code : </label>
+<input name="candidat_code" id="candidat_code" value="" />
+<br />
+<label>Date de naissance : </label>
+<input name="personne_date_naissance" id="personne_date_naissance" value="" class="datepicker" />
+<br />
+<label>Date d'entrée : </label>
+<input name="candidat_anciennete" id="candidat_anciennete" value="" class="datepicker" />
+<br />
+<label>Poste : </label>
+<input name="personne_poste" id="personne_poste" value="" />
+<br />
+<label>Contrat : </label>
+
+<input name="candidat_contrat" id="candidat_contrat" value="" />
+<br />
+<label>Entité : </label>
+<input type="text" id="inputString" name="entite_nom" value="" />
+<input type="hidden" id="entite_id" name="entite_id" value="" />
+<span class="info">Commencez à saisir et choisissez dans la liste.</span>
+<br />
+<div class="suggestionsBox" id="suggestions" style="display: none;"> <!-- bloc contenant les eventuelles suggestions -->
+	<img src="<?php echo $this->baseUrl(); ?>/img/upArrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" /> <!-- image de la fleche vers le haut -->
+	<div class="suggestionList" id="autoSuggestionsList"><!-- liste contenant les suggestions -->
+		&nbsp;
+	</div>
+</div>
+
+<ul class="error">
+	<li id="nom">Un nom de famille doit être saisie.</li>
+	<li id="prenom">Un prénom doit être saisie.</li>
+	<li id="anciennete">Une date d'entrée valide doit être saisie.</li>
+	<li id="contrat">Le contrat doit être saisie.</li>
+	<li id="entite">Une entité doit être saisie.</li>
+	<li id="personne"></li>
+</ul>
+
+<a href="#" onclick="javascript:verif();" class="button record" >Enregistrer</a>
+
+<br />
+<a href="<?php echo $this->baseUrl(); ?>/candidat/" class="button return" >Annuler</a>

@@ -1,0 +1,65 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#list").jqGrid({
+		   	url: baseUrl + '/ajax/getlistefiches/',
+			datatype: "json",
+			mtype: 'POST',
+			height: "100%",
+			width: "780px",
+		   	colNames:['Créée le', 'Opération', 'Entreprise','Organisme Référent', 'Entité Opcalia'],
+		   	colModel:[
+				{name:'fiche_date_creation',index:'fiche_date_creation', align: "center", width: '80'},
+		   		{name:'fiche_id',index:'fiche_id', align: "center", width: '90'},
+		   		{name:'entreprise',index:'entreprise', sortable:false,width: '150'},
+		   		{name:'org_ref',index:'org_ref', sortable:false,width: '200'},
+		   		{name:'delegation',index:'delegation', sortable:false,width: '250'}
+		   	],
+		   	rowNum:50,
+		   	rowList:[50,100,200],
+		   	pager: '#pager',
+		   	sortname: 'fiche_date_creation',
+		    viewrecords: true,
+		    sortorder: "DESC",
+		    onSelectRow: function(id){
+				window.location.replace(baseUrl + "/operations/visu/num/" + id);
+		    },
+		    loadonce: false
+		}).navGrid('#pager',{edit:false,add:false,del:false,search:false,nav:false});
+	});
+
+</script>
+
+<div style="display: block; height: auto; width: 810px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		Vous avez accès à <?php echo $this->nb; ?> opérations
+		<?php
+			if(isset($this->nb_p) && $this->nb_p == 1){
+		?>
+				, dont <?php echo $this->nb_p; ?> est en mode projet.
+		<?php
+			}elseif($this->nb_p>1){
+		?>
+				, dont <?php echo $this->nb_p; ?> sont en mode projet.
+		<?php
+			}else{
+				echo '.';
+			}
+		?>
+		<br /><br />
+		<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+		<a href="<?php echo $this->baseUrl(); ?>/operations/new/" class="button add" >Nouvelle opération</a>
+		<?php endif; ?>
+		<br /><br />
+		<table id="list" class="jqgrid"></table>
+		<div id="pager"></div>
+
+	</div>
+
+</div>

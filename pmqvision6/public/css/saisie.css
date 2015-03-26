@@ -1,0 +1,19 @@
+@CHARSET "ISO-8859-1";
+
+#question table{
+	margin-left:auto;
+	margin-right:auto;
+}
+
+.ui-datepicker-trigger{
+	margin-bottom:-5px;
+}
+
+#goFiche{
+	float:right;
+}
+
+.ui-dialog .ui-dialog-buttonpane button{
+	padding:0px;
+	float:left;
+}

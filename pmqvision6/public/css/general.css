@@ -1,0 +1,129 @@
+/* Page */ 
+html { 
+  font-size: 100%; /* Évite un bug d'IE 6-7. (1) */
+  width: 900px;
+  overflow-x: hidden;
+} 
+body { 
+  margin: 0 30px;
+  padding: 0; 
+  font-family: Tahoma, Arial, Helvetica, FreeSans, sans-serif; 
+  font-size: 10pt; /* À adapter pour la police choisie. (3) */ 
+  line-height: 1.4; /* À adapter au design. (4) */ 
+  color: #4C4C4C;
+}
+
+.clear {
+	clear: both;	
+}
+/* Titres */ 
+p#titre{
+	float: left;
+	margin-top: 0;
+	font-family: Tahoma, sans-serif;
+	font-weight: bold;
+	font-size: 13pt;
+	color: #007DC5;
+	width: 100%;
+}
+
+/* Liens */
+a{
+	color: #993DBF;
+	text-decoration: none;
+}
+/* Pas de bordure autour des images dans les liens */ 
+a img { 
+	border: none;
+}
+/* boutons */
+/*a#bouton {
+	background-color:#B3A0DE;
+	color: #6742BE;
+	padding: 0 10px 0 20px;
+	-moz-border-radius:3px;
+	font-weight:bold;
+}
+a#bouton:hover {
+	text-decoration:none;
+}*/
+ 
+/* Formulaires */
+form, fieldset{
+	-moz-border-radius:3px;
+}
+input, button, select, textarea { 
+  vertical-align: middle; /* Solution pb. d'alignement. (9) */ 
+  color: #007DC5;
+}
+
+/* fil d'ariane */
+div#filariane{
+	float:left;
+	width: 100%;
+	height:35px;
+	font-size: 10pt;
+	color: #007DC5;
+}
+div#filariane p{
+	line-height: 35px;
+}
+
+/* menu */
+div#menu{
+	float:left;
+	width: 100%;
+	height: 30px;
+}
+
+/* contenu */
+div#contenu{
+	float:left;
+	min-height:300px;
+	border: 1px solid #AAAAAA;
+	-moz-box-shadow: 1px 1px 12px #555;
+	-webkit-box-shadow: 1px 1px 12px #555;
+	box-shadow: 8px 8px 12px #555;
+	-moz-border-radius:3px;
+	width: 100%;
+}
+div#content{
+	margin: 10px;
+}
+
+.error{
+	font-style: italic;
+	color: red;
+}
+
+.info{
+	font-style: italic;
+	color: green;
+}
+
+select{
+	max-width: 400px;
+		font-size: 8pt;
+			font-family: Tahoma, sans-serif;
+}
+
+input{
+/*	max-width: 200px;*/
+}
+
+.mail{
+	background-color: #F2F5F7;
+	border: 1px solid #57A9D9;
+	padding: 5px;
+	text-align: justify;
+}
+
+fieldset legend{
+	font-size: larger;
+	font-weight: bold;
+}
+
+fieldset fieldset legend{
+	font-size: 100%;
+	font-weight: bold;
+}

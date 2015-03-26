@@ -1,0 +1,34 @@
+/****
+		STYLES DE LA BOITE DE SUGGESTION À PERSONNALISER
+****/
+
+	.suggestionsBox {
+		position: fixed;
+		left: 200px;
+		margin: 10px 0px 0px 0px;
+		width: 200px;
+		background-color: #D6EDFF;
+		-moz-border-radius: 7px;
+		-webkit-border-radius: 7px;
+		border: 2px solid #57A9D9;
+		color: #007DC5;
+		z-index: 10;
+	}
+	
+	.suggestionList {
+		margin: 0px;
+		padding: 0px;
+	}
+	
+	.suggestionList li {
+		
+		margin: 0px 0px 3px 0px;
+		padding: 3px;
+		cursor: pointer;
+		list-style:none;
+	}
+	
+	.suggestionList li:hover {
+		background-color: #ffa800;
+		color:#000;
+	}

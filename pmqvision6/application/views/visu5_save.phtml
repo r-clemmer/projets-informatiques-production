@@ -1,0 +1,75 @@
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/buttons.js','text/javascript'); ?>
+
+<?php echo $this->headLink()->appendStylesheet($this->baseUrl()."/css/ui.jqgrid.css"); ?>
+
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/i18n/grid.locale-fr.js','text/javascript'); ?>
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery.jqGrid.min.js','text/javascript'); ?>
+
+<script type="text/javascript" >
+
+	$(document).ready(
+		function(){
+
+			$("#list").jqGrid({
+				url: baseUrl + '/ajax/getcandidatsbymetier/?fiche_id=<?php echo $this->operation->fiche_id; ?>&metier_id=',
+				datatype: "json",
+				mtype: 'POST',
+				colNames:['Candidat','Age', 'Ancienneté', 'Contrat', ' ', 'Etat', 'metier', ''],
+				colModel:[
+					{name:'personne_nom',index:'personne_nom'},
+					{name:'personne_date_naissance',index:'personne_date_naissance', align:'center', width:'60' },
+					{name:'candidat_anciennete',index:'candidat_anciennete', align:'center', width:'90' },
+					{name:'candidat_contrat',index:'candidat_contrat', align:'center', width:'70' },
+					{name:'nb_passage',index:'nb_passage', align:'center', width:'100'},
+					{name:'etat_libelle',index:'etat_libelle', align:'center', width:'100'},
+					{name:'metier',index:'metier', align:'center', hidden:true},
+					{name:'actions',index:'actions', align:'center', width:'140'}
+				],
+				rowNum:10,
+				rowList:[10,20,30],
+				pager: '#pager',
+				sortname: 'personne_nom',
+				viewrecords: true,
+				sortorder: "ASC",
+				caption:"Candidats",
+				loadonce: false,
+				height: "100%",
+				width: 650
+			}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+			$("select#metiers").change(
+				function(){
+
+					var metier = $("select#metiers option:selected").val();
+					$("#list").setGridParam(
+						{
+							url : baseUrl + '/ajax/getcandidatsbymetier/?fiche_id=<?php echo $this->operation->fiche_id; ?>&metier_id=' + metier
+						}
+					).trigger("reloadGrid");
+
+				}
+			).trigger("change");
+
+			$('div#refresh').fadeOut('fast');
+
+		}
+
+	);
+
+</script>
+
+<label>Titres : </label>
+<select name="metiers" id="metiers" >
+	<option value="" selected >Tous</option>
+	<?php foreach( $this->metiers as $metier ): ?>
+	<option value="<?php echo $metier['metier_id']; ?>"><?php echo $metier['titre']; ?></option>
+	<?php endforeach; ?>
+</select>
+
+<table id="list"></table>
+<div id="pager"></div>
+
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<a href="<?php echo $this->baseUrl(); ?>/operations/addexistcandidat/?operation_id=<?php echo $this->operation->fiche_id; ?>" class="button add" >Candidat existant</a>
+<a href="<?php echo $this->baseUrl(); ?>/operations/addnewcandidat/?operation_id=<?php echo $this->operation->fiche_id; ?>" class="button add" >Nouveau candidat</a>
+<?php endif; ?>

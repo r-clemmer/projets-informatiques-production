@@ -1,0 +1,155 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$("#list_membres").jqGrid({
+		   	url: baseUrl + '/ajax/getlistemembresjury/?id=<?php echo $this->jury_id; ?>',
+			datatype: "json",
+			mtype: 'POST',
+		   	colNames:['Membre','Fonction', 'Entité'],
+		   	colModel:[
+		   		{name:'personne_nom',index:'personne_nom'},
+		   		{name:'type_membre_jury_libelle',index:'type_membre_jury_libelle'},
+		   		{name:'entite_id',index:'entite_id'}
+		   	],
+		   	rowNum:10,
+		   	rowList:[10,20,30],
+		   	pager: '#pager_membres',
+		   	sortname: 'personne_nom',
+		    viewrecords: true,
+		    sortorder: "ASC",
+		    caption:"Membres du jury",
+		    loadonce: false,
+			width: 650,
+		    height: "100%",
+			multiselect: true
+		}).navGrid("#pager_membres",{edit:false,add:false,del:false,search:false});
+
+		$("#list_candidats").jqGrid({
+		   	url: baseUrl + '/ajax/getlistecandidatsjury/?id=<?php echo $this->jury_id; ?>',
+			datatype: "json",
+			mtype: 'POST',
+		   	colNames:['Candidats','Entreprise', 'Opération', 'Titre', '&nbsp'],
+		   	colModel:[
+		   		{name:'personne_nom',index:'personne_nom'},
+		   		{name:'entite_nom',index:'entite_nom'},
+				{name:'fiche_id',index:'fiche_id', align:'center', width: 50},
+		   		{name:'metier_id',index:'metier_id'},
+				{name:'metier_id',index:'metier_id', width: 60}
+		   	],
+		   	rowNum:10,
+		   	rowList:[10,20,30],
+		   	pager: '#pager_candidats',
+		   	sortname: 'personne_nom',
+		    viewrecords: true,
+		    sortorder: "ASC",
+		    caption:"Candidats du jury",
+		    loadonce: false,
+			width: 650,
+		    height: "100%",
+			multiselect: true
+		}).navGrid("#pager_candidats",{edit:false,add:false,del:false,search:false});
+
+		$("a#membre.delete").click( function() {
+			var s = new String( $("#list_membres").jqGrid('getGridParam','selarrrow') );
+			s.split(',');
+			$.post(
+				baseUrl + '/ajax/deletemembrejury/',
+				{
+					jury_id : <?php echo $this->jury_id; ?>,
+					contact_ids : s
+				},
+				function(){
+					$("#list_membres").trigger("reloadGrid");
+				}
+			);
+		});
+
+		$("a#candidat.delete").click( function() {
+			var s = new String( $("#list_candidats").jqGrid('getGridParam','selarrrow') );
+			s.split(',');
+			$.post(
+				baseUrl + '/ajax/deletecandidatjury/',
+				{
+					jury_id : <?php echo $this->jury_id; ?>,
+					resultat_ids : s
+				},
+				function(){
+					$("#list_candidats").trigger("reloadGrid");
+				}
+			);
+		});
+
+	});
+
+</script>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div id="jury" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+<?php if($this->role != 'organisme référent' && $this->role != 'organisme de formation' && $this->role != 'greta')
+{?>
+<a href="<?php echo $this->baseUrl(); ?>/jurys/update/?id=<?php echo $this->jury_id; ?>" class="button modif" >Modifier</a>
+		<a href="<?php echo $this->baseUrl(); ?>/jurys/delete/?id=<?php echo $this->jury_id; ?>" class="button delete" >Supprimer</a>
+<?php 
+}else{?>
+
+<?php 
+}?>
+		
+		<a href="<?php echo $this->baseUrl(); ?>/jurys/" class="button return" >Retour</a>
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="width:210px;" valign="top">Adresse :</td>
+				<td style="width:210px;" valign="top"><?php echo $this->jury_adresse; ?></td>
+			</tr>
+				<td>Date :</td>
+				<td><?php echo $this->jury_date; ?></td>
+			<tr>
+				<td>Branche :</td>
+				<td><?php echo $this->branche; ?></td>
+			</tr>
+			<tr>
+				<td>Fédération patronale/DAVA :</td>
+				<td><?php echo $this->fed_patro; ?></td>
+			</tr>
+			<tr>
+				<td>Fédération salariale/DAFCO</td>
+				<td><?php echo $this->fed_salar; ?></td>
+			</tr>
+		</table>
+
+	</div>
+</div>
+
+<br />
+<?php 
+if($this->role != 'organisme référent' && $this->role != 'organisme de formation' && $this->role != 'greta')
+{?>
+<a href="#" class="button delete" id="membre" >Enlever la sélection</a>
+<?php 
+}else{?>
+
+<?php 
+}?>
+
+<table id="list_membres"></table>
+<div id="pager_membres"></div>
+
+<br />
+<?php if($this->role != 'organisme référent' && $this->role != 'organisme de formation' && $this->role != 'greta')
+{?>
+<a href="<?php echo $this->baseUrl(); ?>/jurys/attributecandidats/?id=<?php echo $this->jury_id; ?>" class="button add" id="candidat" >Attribuer des candidats</a>
+<a href="#" class="button delete" id="candidat" >Enlever la sélection</a>
+<?php 
+}else{?>
+
+<?php 
+}?>
+
+<table id="list_candidats"></table>
+<div id="pager_candidats"></div>

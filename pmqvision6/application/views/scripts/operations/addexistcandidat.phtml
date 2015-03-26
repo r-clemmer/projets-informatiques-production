@@ -1,0 +1,74 @@
+<script type="text/javascript" >
+
+	$(document).ready(
+		function(){
+
+			var metier_id = $("select#metier_id").val();
+
+			$("#list").jqGrid({
+				url: baseUrl + '/ajax/getlistecandidats/?operation='+<?php echo $_GET['operation_id']; ?>+'&string='+$("input#string").val(),
+				datatype: "json",
+				mtype: 'POST',
+				colNames:['Candidat','Entreprise'],
+				colModel:[
+					{name:'personne_nom',index:'personne_nom'},
+					{name:'entite_nom',index:'entite_nom'}
+				],
+				rowNum:10,
+				rowList:[10,25,50,100],
+				pager: '#pager',
+				sortname: 'personne_nom',
+				viewrecords: true,
+				sortorder: "ASC",
+				caption:"Sélectionnez le candidat",
+				loadonce: false,
+				height: "100%",
+				width: 630,
+				onSelectRow: function(id){
+					candidat_id = id;
+					$.ajax({
+						type: 'POST',
+						url: baseUrl + '/ajax/addexistcandidat/',
+						data: 'candidat_id='+candidat_id+'&metier_id='+metier_id,
+						async: false,
+						success: function(operation_id){
+							window.location.href = baseUrl + "/operations/visu/num/" +<?php echo $_GET['operation_id']; ?>+ "#ui-tabs-5";
+						}
+					});
+				}
+			}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+			$("a.search").live(
+				"click",
+				function(){
+					$("#list").setGridParam(
+						{
+							url : baseUrl + '/ajax/getlistecandidats/?operation='+<?php echo $_GET['operation_id']; ?>+'&string='+$("input#string").val()
+						}
+					).trigger("reloadGrid");
+				}
+			);
+
+		}
+	);
+</script>
+
+<label>Quel titre doit passer le candidat ? </label>
+<br />
+<select name="metier_id" id="metier_id">
+	<?php echo $this->metiers; ?>
+</select>
+
+<br /><br />
+
+<label>Cliquez sur le candidat pour le choisir : </label>
+<br />
+<label>Recherche : </label>
+<input type="text" name="string" id="string" />
+<a href="#" class="button search">Rechercher</a>
+
+<table id="list"></table>
+<div id="pager"></div>
+
+<br />
+<a href="<?php echo $this->baseUrl(); ?>/operations/visu/num/<?php echo $this->operation_id; ?>#ui-tabs-5" class="button return" >Annuler</a>

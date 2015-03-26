@@ -1,0 +1,27 @@
+<a href="<?php echo $this->baseUrl(); ?>/contacts/add/" class="button add" >Nouveau contact</a>
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div id="contacts" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<br />
+		<form name="contact" method="GET" action="<?php echo $this->baseUrl(); ?>/contacts/details/">
+			<label>Gérer un contact existant : </label>
+			<input type="text" id="inputString" name="contact" />
+			<a href="#" onclick="javascript:document.forms['contact'].submit();" class="button search" >Gérer</a>
+			<input type="hidden" id="contact_id" name="contact_id" />
+		</form>
+		<div class="suggestionsBox" id="suggestions" style="display: none; z-index:10;"> <!-- bloc contenant les eventuelles suggestions -->
+			<img src="<?php echo $this->baseUrl(); ?>/img/upArrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" /> <!-- image de la fleche vers le haut -->
+			<div class="suggestionList" id="autoSuggestionsList"><!-- liste contenant les suggestions -->
+				&nbsp;
+			</div>
+		</div>
+
+	</div>
+</div>
+
+<a href="<?php echo $this->baseUrl(); ?>/intervenants/" class="button return" >Retour</a>

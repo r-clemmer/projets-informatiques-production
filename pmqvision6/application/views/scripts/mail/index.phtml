@@ -1,0 +1,21 @@
+<div class="mail" >
+	<strong><?php echo $this->subject; ?></strong>
+</div>
+<div class="mail" >
+	<?php echo $this->message; ?>
+</div>
+<br />
+
+<form name="mailForm" method="POST" action="<?php echo $this->baseUrl(); ?>/mail/send/" >
+	<input type="hidden" name="email" value="<?php echo $this->email.'anne-francoise.saladin@opcalia.com;flonia.dewevre@opcalia.com'; ?>" />
+	<input type="hidden" name="subject" value="<?php echo $this->subject; ?>" />
+	<input type="hidden" name="message" value="<?php echo htmlspecialchars( $this->message ); ?>" />
+	<input type="hidden" name="url" value="<?php echo $_SERVER['HTTP_REFERER']; ?>" />
+
+Commentaire :
+<br></br>
+<textarea style="font-weight:700; color:blue;" cols="50" rows="4" name="texte">Votre texte
+</textarea> 
+</form>
+<a href="#" onclick="javascript:document.forms['mailForm'].submit();" class="button mail" >Envoyer</a>
+<a href="<?php echo $this->baseUrl(); ?>/operations/visu/num/<?php echo $this->operation_id; ?>" class="button return" >Annuler</a>

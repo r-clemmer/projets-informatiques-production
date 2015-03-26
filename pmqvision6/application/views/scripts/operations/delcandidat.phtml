@@ -1,0 +1,13 @@
+<?php echo $this->question; ?>
+<br />
+
+<?php if( $this->resultats == "false" ): ?>
+	<form action="<?php echo $this->baseUrl(); ?>/operations/delcandidat/?candidat_metier_id=<?php echo $this->candidat_metier_id; ?>" method="post">
+		<div>
+			<input type="submit" name="del" value="Oui" />
+			<input type="submit" name="del" value="Non" />
+		</div>
+	</form>
+<?php elseif( $this->resultats == "true" ): ?>
+	<a href="<?php echo $this->baseUrl(); ?>/operations/visu/num/<?php echo $this->operation_id; ?>#ui-tabs-5" class="button return">Retour</a>
+<?php endif; ?>

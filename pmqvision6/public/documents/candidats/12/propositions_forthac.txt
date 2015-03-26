@@ -1,0 +1,9 @@
+# ligne bilan + verrous
+# tableaux jury
+# les tableaux cqp
+
+les impressions *6
+les exports excel *4
+
+moulinette de bascule
+tests

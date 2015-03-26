@@ -1,0 +1,38 @@
+<table>
+
+	<tr>
+		<td rowspan="2" style="width: 200px; text-align: center;" >
+			<label><?php echo $this->titre; ?></label>
+		</td>
+		<td>
+			<label>Candidat</label>
+			<?php echo $this->nom; ?>
+		</td>
+		<td rowspan="3" style="text-align: center;" >
+			<label><?php echo $this->etat; ?></label>
+		</td>
+		<td rowspan="3" style="width: 150px; text-align: center;" >
+			<label><?php echo $this->title; ?></label>
+		</td>
+		<td rowspan="3" >image</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>Entreprise</label>
+			<?php echo $this->entreprise; ?>
+		</td>
+	</tr>
+
+	<tr>
+		<td>
+			<label>Organisme référent</label><br />
+			<?php echo $this->organisme_referent; ?>
+		</td>
+		<td>
+			<label>Branche</label>
+			<?php echo $this->branche; ?>
+		</td>
+	</tr>
+
+</table>

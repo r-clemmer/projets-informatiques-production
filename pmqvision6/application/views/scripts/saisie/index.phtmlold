@@ -1,0 +1,762 @@
+Candidats :
+<select id="listCand"><?php echo $this->listeCandidats; ?></select>
+
+<a href="<?php echo $this->baseUrl(); ?>/operations/visu/num/<?php echo $this->fiche_id;?>/#ui-tabs-5" class="button return" style="float:right;" >Retour opération n°<?php echo $this->fiche_id;?></a>
+<br />
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+		<span class="ui-dialog-title" style="-moz-user-select: none;">Informations candidat</span>
+	</div>
+	<div id="ficheCand" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td  style="width:50%;" valign="top">
+					<ul>
+						<li>Civilité : <?php echo $this->civilite; ?></li>
+						<li>Nom : <?php echo $this->nom; ?></li>
+						<li>Prénom : <?php echo $this->prenom; ?></li>
+						<li>Titre visé : <?php echo $this->titre; ?></li>
+						<li>Autres certifications : <?php echo $this->titres; ?></li>
+					</ul>
+				</td>
+				<td style="width:50%;" valign="top">
+					<ul>
+						<li>Ancienneté : <?php echo $this->anciennete; ?> ans</li>
+						<li>Âge : <?php echo $this->age; ?> ans</li>
+						<li>Contrat : <?php echo $this->contrat; ?></li>
+						<li>Poste occupé : <?php echo $this->poste; ?></li>
+						<li>Date de création : <?php echo $this->date_creation; ?></li>
+						<li>Cursus : <?php echo $this->cursus; ?></li>
+					</ul>
+				</td>
+			</tr>
+		</table>	
+		
+	</div>
+</div>
+
+<?php
+	$link = "";
+	$onclick = "";
+	
+	if( $this->passage_max > 2 ) $onclick = "javascript:alert('Impossible d\'ajouter un nouveau passage.');";
+	else $link = $this->baseUrl().'/saisie/addpassage/?candidat_metier_id='.$this->candidat_metier_id;
+?>
+
+<?php if( $this->demarche == "cqp" ): ?>
+<?php if(isset($this->entretien['date'])){
+if($this->entretien['date']!=0000-00-00 && $this->dateLivret!=0000-00-00  && $this->questionnaire['date']!=0000-00-00 && $this->observation['date']!=0000-00-00 && $this->passage_max < 2)
+{
+?>
+<a href="<?php echo $link; ?>" onclick="<?php echo $onclick; ?>" class="button add" style="width:130px">Ajouter un 2nd passage</a>
+<?php 
+}
+}?>
+
+
+<?php endif; ?>
+<br>
+
+<center><?php if($this->passage_max ==1){$var_temp="er";}if($this->passage_max ==2){$var_temp="eme";} echo 'Vous saisissez le '.$this->passage_max.$var_temp.' passage';?>
+</center><br>
+
+<form name="formNotes" method="POST" action="<?php echo $this->baseUrl(); ?>/saisie/insert/" >
+<?php if( $this->demarche == "cqp" ): ?>
+	<div id="contentForm">
+		<ul>
+			<li>
+				<a href="#livret">Livret</a>
+			</li>
+			<li>
+				<a href="#livretacquis">Livret Acquis</a>
+			</li>
+			<li>
+				<a href="#question">Questionnaire</a>
+			</li>
+			<li>
+				<a href="#observation">Observation/Projet pro</a>
+			</li>
+			<li>
+				<a href="#entretien">Entretien</a>
+			</li>
+		</ul>
+
+		<div id="livret">
+			<div>
+				Date livret : <input <?php if(isset($this->dateLivret)):?>value="<?php echo $this->dateLivret?>"<?php endif;?> style="border:1px solid #aaaaaa;" type="text" name="date_livret" id="date_livret" class="datepicker" size="10" maxlength="10" />
+			</div>
+		</div>
+		<div id="livretacquis">
+			<div>
+					<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+				<th>Total</th>
+			</tr>
+			<?php 
+			$this->listeLivretBase;
+			 $livretsacquis=0; 
+			?>
+			
+			<?php foreach($this->listeLivretBase as $index => $livretacquis):?>
+				<tr>
+					<td>L-<?php echo $livretacquis["position"].' - '.$livretacquis["intitule_question"]; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->livretacquisNote['notes'][$livretsacquis])):?>value="<?php echo $this->livretacquisNote['notes'][$livretsacquis]?>"<?php endif;?> type="text" size="4" name='livretAquis[]' id="L<?php echo $livretacquis["position"];?>" style="border:none;" />
+						<input value="<?php echo $livretacquis["position"];?>" type="hidden" size="4" name='livretAquisPosition[]' id="L<?php echo $livretacquis["position"];?>" style="border:none;" />
+					
+					
+					</td>
+					<td style="text-align:center;" align="center">
+					   <input value="<?php echo $livretacquis["note"]?>" type="text" size="4" name='livretAcquisTotal[]' READONLY style="border:none;" />
+					</td>
+				</tr>
+		<?php $livretsacquis++; ?>
+			<?php endforeach;?>
+			</table>
+			</div>
+		</div>
+
+		<div id="question">
+			<div>Date questionnaire : <input <?php if(isset($this->questionnaire['date'])):?>value="<?php echo $this->questionnaire['date']?>"<?php endif;?> style="border:1px solid #aaaaaa;" type="text" name="date_questionnaire" id="date_questionnaire" class="datepicker" size="10" maxlength="10" /></div>
+			<br />
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+				<th>Total</th>
+			</tr>
+			<?php 
+			$this->listeQuestionBase;
+			$this->listeQuestion;
+			?>
+			<?php foreach($this->listeQuestionBase as $index => $question):?>
+
+				<tr>
+					<td>Q-<?php echo $question["position"].' - '.$question["intitule_question"]; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->questionnaire['notes'][$index])):?>value="<?php echo $this->questionnaire['notes'][$index]?>"<?php endif;?> type="text" size="4" name='questionnaire[]' id="<?php echo $question?>" style="border:none;" />
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $question["note"]; ?>
+						<input value="<?php echo $question["note"]; ?>" type="hidden" size="4" name='questionnaireTotal[]' style="border:none;" />
+					</td>
+				</tr>
+			<?php endforeach;?>
+			</table>
+		</div>
+
+		<div id="observation">
+			<div>Date observation : <input <?php if(isset($this->observation['date'])):?>value="<?php echo $this->observation['date']?>"<?php endif;?> style="border:1px solid #aaaaaa;" type="text" name="date_observation" id="date_observation" class="datepicker" size="10" maxlength="10" /></div>
+			<br />
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+				<th>Total</th>
+			</tr>
+			<?php $observations=0; 
+			
+			$this->listeCapacitesBase;
+			
+			$k = 0;
+			?>
+			<?php foreach($this->listeCapacitesBase as $index => $capacite):?>
+			<?php if((string)$capacite['capacite'] != (string)"Acquis de base"):?>
+			<?php if($capacite["type_capacite"] == 'normal'  )
+			{
+				?>
+			
+				<tr >
+					<td style="width: 600px;">Capacité <?php echo $capacite['nom'].' - '.$capacite["capacite"]; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['notes'][$observations])):?>value="<?php echo $this->observation['notes'][$observations]?>"<?php endif;?> type="text" size="4" name='observations[]' id="<?php echo $capacite['nom']?>" style="border:none;" />
+					</td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['totaux'][$observations])):?>value="<?php echo $this->observation['totaux'][$observations]?>"<?php endif;?> type="text" size="4" name='observationsTotal[]' style="border:none;" />
+					</td>
+				</tr>
+				
+
+			<?php
+			$observations++;
+			}
+ ?>
+			<?php endif;?>
+			<?php endforeach;?>
+			
+			
+			<?php foreach($this->listeCapacitesBase as $index => $capacite):?>
+			<?php if((string)$capacite['capacite'] != (string)"Acquis de base"):?>
+			<?php 
+				if(	 $capacite["type_capacite"] == 'aquis')
+				{
+					if($k == 0)
+					{
+						?>
+						
+						<tr>
+					<td colspan="3">
+					<center><b>Acquis de base</b></center> 
+					</td>
+					
+				</tr>
+						<?php 
+					}
+					$k++;
+				}
+				
+				if($capacite["type_acquis"] == 'oral'  )
+			{
+			
+				
+				
+				?>
+			
+				<tr >
+					<td style="width: 600px;">Capacité <?php echo $capacite['nom'].' - '.$capacite["capacite"]; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['notes'][$observations])):?>value="<?php echo $this->observation['notes'][$observations]?>"<?php endif;?> type="text" size="4" name='observations[]' id="<?php echo $capacite['nom']?>" style="border:none;" />
+					</td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['totaux'][$observations])):?>value="<?php echo $this->observation['totaux'][$observations]?>"<?php endif;?> type="text" size="4" name='observationsTotal[]' style="border:none;" />
+					</td>
+				</tr>
+<?php }?>
+
+			<?php 	
+				if($capacite["type_acquis"] != 'oral'  )
+			{
+			
+				
+				
+				?>
+			
+				<tr style="display: none;" >
+					<td style="width: 600px;">Capacité <?php echo $capacite['nom'].' - '.$capacite["capacite"]; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['notes'][$observations])):?>value="<?php echo $this->observation['notes'][$observations]?>"<?php endif;?> type="text" size="4" name='observations[]' id="<?php echo $capacite['nom']?>" style="border:none;" />
+					</td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['totaux'][$observations])):?>value="<?php echo $this->observation['totaux'][$observations]?>"<?php endif;?> type="text" size="4" name='observationsTotal[]' style="border:none;" />
+					</td>
+				</tr>
+<?php }?>
+			<?php 
+
+			$observations++; 
+			?>
+			<?php endif;?>
+			<?php endforeach;?>
+			
+			
+			</table>
+		</div>
+
+		<div id="entretien">
+			<div>Date entretien : <input <?php if(isset($this->entretien['date'])):?>value="<?php echo $this->entretien['date']?>"<?php endif;?> style="border:1px solid #aaaaaa;" type="text" name="date_entretien" id="date_entretien" class="datepicker" size="10" maxlength="10" /></div>
+			<br />
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+			</tr>
+			<?php $entretiens = 0; 
+			$k = 0;?>
+			<?php foreach($this->listeCapacitesBase as $capacite): ?>
+			<?php if($capacite["type_acquis"] == 'normal'  )
+			{
+				?>
+
+
+				<tr>
+					<td>Capacité <?php echo $capacite['nom'].' - '.$capacite["capacite"]; ?></td>
+					<td style="text-align:center;">
+						<select name="entretiens[]" style="border:1px solid #aaaaaa;">
+						<?php if( isset($this->entretien['notes'][$entretiens]) && $this->entretien['notes'][$entretiens] == 1 ){ ?>
+							<option value="100">A compl&eacute;ter</option>
+							<option value="0">Non acquise (0)</option>
+							<option selected="selected" value="1">Acquise (1)</option>
+					<?php }if( isset($this->entretien['notes'][$entretiens]) && $this->entretien['notes'][$entretiens] == 0 ){ ?>
+							<option value="100">A compl&eacute;ter</option>
+							<option selected="selected" value="0">Non acquise (0)</option>
+							<option value="100">Acquise (1)</option>
+						<?php } if( isset($this->entretien['notes'][$entretiens]) && $this->entretien['notes'][$entretiens] == 100 ){ ?>
+							<option value="100" selected="selected">A compl&eacute;ter </option>
+							<option value="0">Non acquise (0)</option>
+							<option value="1">Acquise (1)</option>?>
+						<?php }?>	
+						<?php if( !isset($this->entretien['notes'][$entretiens]) || $this->entretien['notes'][$entretiens] == '' ){ ?>
+							<option value="100" selected="selected">A compl&eacute;ter </option>
+							<option value="0">Non acquise (0)</option>
+							<option value="1">Acquise (1)</option>?>
+						<?php }?>	
+						</select>
+					</td>
+				</tr>
+
+			<?php $entretiens++;
+			}
+			?>
+			<?php endforeach;?>
+			
+			<?php foreach($this->listeCapacitesBase as $capacite): ?>
+			<?php if($capacite["type_capacite"] == 'aquis'  )
+			{
+			if($capacite["type_capacite"] == 'aquis')
+				{
+					if($k == 0)
+					{
+						?>
+						
+						<tr  >
+					<td colspan="4">
+					<center><b>Acquis de base</b></center> 
+					</td>
+					
+				</tr>
+						<?php 
+					}
+					$k++;
+				}
+				
+				?>
+
+
+				<tr>
+					<td>Capacité <?php echo $capacite['nom'].' - '.$capacite["capacite"]; ?></td>
+					<td style="text-align:center;">
+						<select name="entretiens[]" style="border:1px solid #aaaaaa;">
+						<?php if( isset($this->entretien['notes'][$entretiens]) && $this->entretien['notes'][$entretiens] == 1 ){ ?>
+							<option value="100">A compl&eacute;ter</option>
+							<option value="0">Non acquise (0)</option>
+							<option selected="selected" value="1">Acquise (1)</option>
+					<?php }if( isset($this->entretien['notes'][$entretiens]) && $this->entretien['notes'][$entretiens] == 0 ){ ?>
+							<option value="100">A compl&eacute;ter</option>
+							<option selected="selected" value="0">Non acquise (0)</option>
+							<option value="100">Acquise (1)</option>
+						<?php } if( isset($this->entretien['notes'][$entretiens]) && $this->entretien['notes'][$entretiens] == 100 ){ ?>
+							<option value="100" selected="selected">A compl&eacute;ter </option>
+							<option value="0">Non acquise (0)</option>
+							<option value="1">Acquise (1)</option>?>
+						<?php }?>	
+						<?php if( !isset($this->entretien['notes'][$entretiens]) || $this->entretien['notes'][$entretiens] == '' ){ ?>
+							<option value="100" selected="selected">A compl&eacute;ter </option>
+							<option value="0">Non acquise (0)</option>
+							<option value="1">Acquise (1)</option>?>
+						<?php }?>	
+						</select>
+					</td>
+				</tr>
+
+			<?php $entretiens++;
+			}
+			?>
+			
+			
+			
+			
+			<?php endforeach; ?>
+			</table>
+		</div>
+		
+	</div>
+
+
+	<?php if(isset($this->roIdLivret)): ?>
+		<input type="hidden" name="resultatIdLivret" value="<?php echo $this->roIdLivret; ?>" />
+	<?php endif; ?>
+
+	<?php if(isset($this->roIdLivretAquis)): ?>
+		<input type="hidden" name="resultatIdLivretAquis" value="<?php echo $this->roIdLivretAquis; ?>" />
+	<?php endif; ?>
+	
+	<?php if(isset($this->roIdQuestionnaire)):?>
+		<input type="hidden" name="resultatIdQuestionnaire" value="<?php echo $this->roIdQuestionnaire; ?>" />
+	<?php endif; ?>
+	
+	
+	
+
+	<?php if(isset($this->roIdObservation)):?>
+		<input type="hidden" name="resultatIdObservation" value="<?php echo $this->roIdObservation; ?>" />
+	<?php endif; ?>
+
+	<?php if(isset($this->roIdEntretien)):?>
+		<input type="hidden" name="resultatIdEntretien" value="<?php echo $this->roIdEntretien; ?>" />
+	<?php endif; ?>
+
+	<a href="#" onclick="javascript:document.forms['formNotes'].submit();" class="button record" >Enregistrer</a>
+
+<?php elseif( $this->demarche == "ccsp" ): ?>
+
+	<div id="contentForm">
+		<ul>
+			<li>
+				<a href="#questionnaire">Questionnaire</a>
+			</li>
+			<li>
+				<a href="#observation">Observation en poste guid&eacute;e</a>
+			</li>
+			<li>
+				<a href="#entretien">Entretien final</a>
+			</li>
+			<li>
+				<a href="#commentaires">Commentaires</a>
+			</li>
+		</ul>
+
+		<div id="questionnaire">
+
+			<div>Date questionnaire : <input value="<?php if(isset($this->questionnaire['date'])) echo $this->questionnaire['date']; ?>" style="border:1px solid #aaaaaa;" type="text" name="date_questionnaire" id="date_questionnaire" class="datepicker" size="10" maxlength="10" /></div>
+			<br />
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+				<th>Total</th>
+				<th>Actif</th>
+			</tr>
+			<?php 
+			$module ='';
+			foreach($this->listeQuestion as $index => $question):?>
+			<?php
+ if($question['support_eval'] =='question'){		
+if($question['module']!= $module)
+{
+echo '<tr><td colspan="4" id="'.$question['module'].'" style="text-align:center;background-color:#007DC5;color:#FFFFFF;">'.$question['libelle_module'].'</td></tr>';}
+?>
+
+				<tr >
+					<td><?php echo $question['name']; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->questionnaire['notes'][$index])):?>value="<?php echo $this->questionnaire['notes'][$index]?>"<?php endif;?> type="text" size="4" name='questionnaire_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $question['value']; ?>
+						<input value="<?php echo $question['value']; ?>" type="hidden" size="4" name='questionnaireTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->questionnaire['actif'][$index])):?> <?php endif;?> type="checkbox"  <?php if($this->questionnaire['actif'][$index] =='actif'){echo 'checked';}?> name='questionnaireActif_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+				</tr>
+				<?php 
+					$module = $question['module']; 
+}else{
+	?>
+	<input <?php if(isset($this->questionnaire['notes'][$index])):?>value="<?php echo $this->questionnaire['notes'][$index]?>"<?php endif;?> type="hidden" size="4" name='questionnaire_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<input value="<?php echo $question['value']; ?>" type="hidden" size="4" name='questionnaireTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<input <?php if(isset($this->questionnaire['actif'][$index])):?>value="<?php echo $this->questionnaire['actif'][$index]?>"  <?php endif;?> type="hidden"  name='questionnaireActif_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<?php 
+}
+
+
+
+
+?>
+			<?php endforeach;?>
+			</table>
+
+		</div>
+
+		<div id="observation">
+
+			<div>Date observation : <input value="<?php if(isset($this->observation['date'])) echo $this->observation['date']; ?>" style="border:1px solid #aaaaaa;" type="text" name="date_observation" id="date_observation" class="datepicker" size="10" maxlength="10" /></div>
+			<br />
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+				<th>Total</th>
+				<th>Actif</th>
+			</tr>
+			<?php 
+	  $module_obs ='';
+      foreach($this->listeObservations as $index => $observation):
+       if($observation['support_eval'] =='observation'){
+	if($observation['module']!= $module_obs)
+{
+echo '<tr><td colspan="4" id="'.$observation['module'].'" style="text-align:center;background-color:#007DC5;color:#FFFFFF;">'.$observation['libelle_module'].'</td></tr>';}
+?>
+				
+				<tr>
+					<td><?php echo $observation['name']; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['notes'][$index])):?>value="<?php echo $this->observation['notes'][$index]?>"<?php endif;?> type="text" size="4" name='observations_ccsp[<?php echo $index;?>]' style="border:none;"  />
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $observation['value']; ?>
+						<input value="<?php echo $observation['value']; ?>" type="hidden" size="4" name='observationsTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->observation['actif'][$index])):?> <?php endif;?> type="checkbox"    <?php if($this->observation['actif'][$index] =='actif'){echo 'checked';}?>  name='observationsActif_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+				</tr>
+				
+				
+<?php
+       
+		$module_obs = $observation['module']; 
+       }else{
+	?>
+	<input <?php if(isset($this->observation['notes'][$index])):?>value="<?php echo $this->observation['notes'][$index]?>"<?php endif;?> type="hidden" size="4" name='observations_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<input value="<?php echo $question['value']; ?>" type="hidden" size="4" name='observationsTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<input <?php if(isset($this->observation['actif'][$index])):?>value="<?php echo $this->observation['actif'][$index]?>"  <?php endif;?> type="hidden"  name='observationsActif_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<?php 
+}
+       
+       
+
+ 		endforeach;?>
+			</table>
+
+		</div>
+
+		<div id="entretien">
+
+			<div>Date entretien : <input value="<?php if(isset($this->entretien['date'])) echo $this->entretien['date']; ?>" style="border:1px solid #aaaaaa;" type="text" name="date_entretien" id="date_entretien" class="datepicker" size="10" maxlength="10" /></div>
+			<br />
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+				<th width="80%"></th>
+				<th>Note</th>
+				<th>Total</th>
+			</tr>
+
+			<?php 
+				  $module_ent ='';
+			foreach($this->listeEntretiens as $index => $entretien):
+
+			if($this->observation['actif'][$index] == 'actif' || $this->questionnaire['actif'][$index]=='actif' )
+			{
+if($entretien['module']!= $module_ent)
+{echo '<tr><td colspan="3" id="'.$entretien['module'].'" style="text-align:center;background-color:#007DC5;color:#FFFFFF;">'.$entretien['libelle_module'].'</td></tr>';}
+?>
+				<tr>
+					<td><?php echo $entretien['name']; ?></td>
+					<td style="text-align:center;">
+						<input <?php if(isset($this->entretien['notes'][$index])):?>value="<?php echo $this->entretien['notes'][$index]?>"<?php endif;?> type="text" size="4" name='entretiens_ccsp[<?php echo $index;?>]' style="border:none;"  />
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $entretien['value']; ?>
+						<input value="<?php echo $entretien['value']; ?>" type="hidden" size="4" name='entretiensTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+				</tr>
+			<?php 
+			}else{
+	?>
+	<input <?php if(isset($this->entretien['notes'][$index])):?>value="<?php echo $this->entretien['notes'][$index]?>"<?php endif;?> type="hidden" size="4" name='entretiens_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<input value="<?php echo $entretien['value']; ?>" type="hidden" size="4" name='entretiensTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+	<?php 
+}
+				$module_ent = $entretien['module']; 
+			
+			endforeach;?>
+			</table>
+
+		</div>
+
+		<div id="commentaires">
+
+			<table border=1 width="100%" style="border-collapse:collapse" >
+				<tr>
+					<th style="width:230px;"></th>
+					<th style="text-align:center;">Commentaires</th>
+				</tr>
+				<tr >
+					<td style="width:230px;">Commentaire:</td>
+					<td style="text-align:center;">
+					<TEXTAREA name="value_co" id="value_co" rows=10 COLS=100><?php echo $this->coValue; ?></TEXTAREA> <P>
+				</tr>
+				<tr style="display: none;">
+					<td>Expression orale :</td>
+					<td style="text-align:center;"><input type="text" name="value_eo" id="value_eo" value="<?php echo $this->eoValue; ?>" size="100" /></td>
+				</tr>
+				<tr style="display: none;">
+					<td>Compréhension écrite :</td>
+					<td style="text-align:center;"><input type="text" name="value_ce" id="value_ce" value="<?php echo $this->ceValue; ?>" size="100" /></td>
+				</tr>
+				<tr style="display: none;">
+					<td>Expression écrite :</td>
+					<td style="text-align:center;"><input type="text" name="value_ee" id="value_ee" value="<?php echo $this->eeValue; ?>" size="100" /></td>
+				</tr>
+				<tr style="display: none;">
+					<td>Raisonnement cognitif, logique et numérique :</td>
+					<td style="text-align:center;"><input type="text" name="value_rcln" id="value_rcln" value="<?php echo $this->rclnValue; ?>" size="100" /></td>
+				</tr>
+				<tr style="display: none;">
+					<td>Repères spacio-temporels :</td>
+					<td style="text-align:center;"><input type="text" name="value_rst" id="value_rst" value="<?php echo $this->rstValue; ?>" size="100" /></td>
+				</tr>
+			</table>
+
+		</div>
+			<div id="reperage" style="display:none;">
+			<div>Date du rep&eacute;rage : <input value="<?php if(isset($this->date_reperage)) echo $this->date_reperage; ?>" style="border:1px solid #aaaaaa;" type="text" name="date_reperage" id="date_reperage" class="datepicker" size="10" maxlength="10" /></div>
+			<table border=1 width="100%" style="border-collapse:collapse" >
+				<tr>
+					<th style="width:230px;"></th>
+					<th style="text-align:center;">Rep&eacute;rage</th>
+				</tr>
+				<tr>
+					<td style="width:230px;">Compréhension orale :</td>
+					<td style="text-align:center;"><input type="text" name="value_core" id="value_core" value="<?php echo $this->coValuere; ?>" size="100" /></td>
+				</tr>
+				<tr>
+					<td>Expression orale :</td>
+					<td style="text-align:center;"><input type="text" name="value_eore" id="value_eore" value="<?php echo $this->eoValuere; ?>" size="100" /></td>
+				</tr>
+				<tr>
+					<td>Compréhension écrite :</td>
+					<td style="text-align:center;"><input type="text" name="value_cere" id="value_cere" value="<?php echo $this->ceValuere; ?>" size="100" /></td>
+				</tr>
+				<tr>
+					<td>Expression écrite :</td>
+					<td style="text-align:center;"><input type="text" name="value_eere" id="value_eere" value="<?php echo $this->eeValuere; ?>" size="100" /></td>
+				</tr>
+				<tr>
+					<td>Raisonnement cognitif, logique et numérique :</td>
+					<td style="text-align:center;"><input type="text" name="value_rclnre" id="value_rclnre" value="<?php echo $this->rclnValuere; ?>" size="100" /></td>
+				</tr>
+				<tr>
+					<td>Repères spacio-temporels :</td>
+					<td style="text-align:center;"><input type="text" name="value_rstre" id="value_rstre" value="<?php echo $this->rstValuere; ?>" size="100" /></td>
+				</tr>
+			</table>
+
+		</div>
+		
+		
+
+		<?php if(isset($this->roIdQuestionnaire)):?>
+			<input type="hidden" name="resultatIdQuestionnaire" value="<?php echo $this->roIdQuestionnaire; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdObservation)):?>
+			<input type="hidden" name="resultatIdObservation" value="<?php echo $this->roIdObservation; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdEntretien)):?>
+			<input type="hidden" name="resultatIdEntretien" value="<?php echo $this->roIdEntretien; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdCo)):?>
+			<input type="hidden" name="resultatIdCo" value="<?php echo $this->roIdCo; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdEo)):?>
+			<input type="hidden" name="resultatIdEo" value="<?php echo $this->roIdEo; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdCe)):?>
+			<input type="hidden" name="resultatIdCe" value="<?php echo $this->roIdCe; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdEe)):?>
+			<input type="hidden" name="resultatIdEe" value="<?php echo $this->roIdEe; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdRcln)):?>
+			<input type="hidden" name="resultatIdRcln" value="<?php echo $this->roIdRcln; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdRst)):?>
+			<input type="hidden" name="resultatIdRst" value="<?php echo $this->roIdRst; ?>" />
+		
+		<?php endif; ?>
+			<?php if(isset($this->roIdCore)):?>
+			<input type="hidden" name="resultatIdCore" value="<?php echo $this->roIdCore; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdEore)):?>
+			<input type="hidden" name="resultatIdEore" value="<?php echo $this->roIdEore; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdCere)):?>
+			<input type="hidden" name="resultatIdCere" value="<?php echo $this->roIdCere; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdEere)):?>
+			<input type="hidden" name="resultatIdEere" value="<?php echo $this->roIdEere; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdRclnre)):?>
+			<input type="hidden" name="resultatIdRclnre" value="<?php echo $this->roIdRclnre; ?>" />
+		<?php endif; ?>
+
+		<?php if(isset($this->roIdRstre)):?>
+			<input type="hidden" name="resultatIdRstre" value="<?php echo $this->roIdRstre; ?>" />
+		<?php endif; ?>
+		
+		
+	</div>
+
+	<a href="#" onclick="javascript:document.forms['formNotes'].submit();" class="button record" >Enregistrer</a>
+
+<?php endif; ?>
+
+	<input type="hidden" name="demarche" value="<?php echo $this->demarche; ?>" />
+	<input type="hidden" name="resultat_id" value="<?php echo $this->resultat_id; ?>" />
+	<input type="hidden" name="candidat_metier_id" value="<?php echo $this->candidat_metier_id; ?>" />
+		
+</form>
+
+<?php if( $this->demarche == "diplome" ): ?>
+
+	<script type="text/javascript" >
+
+		$(document).ready(function(){
+			$("a.button.record").click(function(){
+				document.forms['diplomeForm'].submit();
+			});
+		});
+
+	</script>
+
+	<?php if( isset( $this->res ) ): ?>
+
+	<form method="POST" name="diplomeForm" action="" enctype="multipart/form-data" >
+
+		<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all">
+			<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+				<span class="ui-dialog-title" style="-moz-user-select: none;">
+					<?php if( !isset($this->candidats) ): ?>
+					Sélectionnez un fichier sur votre disque-dur
+					<?php else: ?>
+					Sélectionnez le candidat dans la liste
+					<?php endif; ?>
+				</span>
+			</div>
+			<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; height: auto;">
+				<?php if( !isset($this->candidats) ): ?><input type="file" name="filename" /><?php endif; ?>
+				<input type="hidden" name="file" value="<?php echo $this->file; ?>" />
+				<br />
+				<?php if( $this->candidats ): ?><select name="candidat_id_access" ><?php echo $this->candidats; ?></select><?php endif; ?>
+				<br />
+				<a href="#" class="button record" >
+					<?php if( !isset($this->candidats) ): ?>
+					Etape suivante
+					<?php else: ?>
+					Enregistrer les notes
+					<?php endif; ?>
+				</a>
+			</div>
+		</div>
+
+	</form>
+
+	<?php else: ?>
+
+	<div class="ui-widget" >
+		<div class="ui-state-error ui-corner-all" style="padding: 0 .7em;" >
+			<p><span class="ui-icon ui-icon-alert" style="float: left; margin-right: .3em;"></span> 
+			Les notes pour ce candidat ont déjà été saisies.
+		</div>
+	</div>
+
+	<?php endif; ?>
+
+<?php endif; ?>

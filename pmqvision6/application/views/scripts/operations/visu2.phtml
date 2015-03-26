@@ -1,0 +1,403 @@
+<?php echo $this->headScript()->appendFile($this->baseUrl().'/js/buttons.js','text/javascript'); ?>
+
+<script type="text/javascript" >
+
+	$(document).ready(function(){
+
+		$("select#entreprise_id").hide();
+		$("select#contact_entreprise_id").hide();
+
+		<?php if( isset( $this->contactEntreprise['contact_id'] ) ): ?>
+		$("select#entreprise_id").change(
+			function(){
+				$.post(
+					baseUrl + '/ajax/getcontacts/',
+					{
+						entite_id : $("select#entreprise_id").val()
+					},
+					function(data){
+						$("select#contact_entreprise_id").html( data );
+						$("select#contact_entreprise_id option[value=<?php echo $this->contactEntreprise['contact_id']; ?>]").attr('selected','selected');
+					}
+				);
+			}
+		).trigger("change");
+		<?php endif; ?>
+
+		$("p#entreprise").toggle(
+			function(){
+				$("p#entreprise").removeClass("ui-icon-refresh");
+				$("p#entreprise").addClass("ui-icon-check");
+				$("p#entreprise").attr("title", "Enregistrer");
+				$("select#entreprise_id").show();
+				$("select#contact_entreprise_id").show();
+				$("select#entreprise_id + em").hide();
+				$("select#contact_entreprise_id + em").hide();
+			},
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'entite',
+						type : 'entreprise',
+						entite_id : $("select#entreprise_id").val(),
+						contact_id : $("select#contact_entreprise_id").val()
+					},function( data ){
+						a = data.split('***');
+						$("select#entreprise_id + em").html( a[0] );
+						$("select#contact_entreprise_id + em").html( a[1] );
+					}
+				);
+				$("p#entreprise").removeClass("ui-icon-check");
+				$("p#entreprise").addClass("ui-icon-refresh");
+				$("p#entreprise").attr("title", "Changer");
+				$("select#entreprise_id").hide();
+				$("select#contact_entreprise_id").hide();
+				$("select#entreprise_id + em").show();
+				$("select#contact_entreprise_id + em").show();
+			}
+		);
+
+		$("select#org_ref_id").hide();
+		$("select#contact_org_ref_id").hide();
+
+		<?php if( isset( $this->contactOrgRef['contact_id'] ) ): ?>
+		$("select#org_ref_id").change(
+			function(){
+				$.post(
+					baseUrl + '/ajax/getcontacts/',
+					{
+						entite_id : $("select#org_ref_id").val()
+					},
+					function(data){
+						$("select#contact_org_ref_id").html( data );
+						$("select#contact_org_ref_id option[value=<?php echo $this->contactOrgRef['contact_id']; ?>]").attr('selected','selected');
+					}
+				);
+			}
+		).trigger("change");
+		<?php endif; ?>
+
+		$("p#org_ref").toggle(
+			function(){
+				$("p#org_ref").removeClass("ui-icon-refresh");
+				$("p#org_ref").addClass("ui-icon-check");
+				$("p#org_ref").attr("title", "Enregistrer");
+				$("select#org_ref_id").show();
+				$("select#contact_org_ref_id").show();
+				$("select#org_ref_id + em").hide();
+				$("select#contact_org_ref_id + em").hide();
+			},
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'entite',
+						type : 'organisme référent',
+						entite_id : $("select#org_ref_id").val(),
+						contact_id : $("select#contact_org_ref_id").val()
+					},function( data ){
+						a = data.split('***');
+						$("select#org_ref_id + em").html( a[0] );
+						$("select#contact_org_ref_id + em").html( a[1] );
+					}
+				);
+				$("p#org_ref").removeClass("ui-icon-check");
+				$("p#org_ref").addClass("ui-icon-refresh");
+				$("p#org_ref").attr("title", "Changer");
+				$("select#org_ref_id").hide();
+				$("select#contact_org_ref_id").hide();
+				$("select#org_ref_id + em").show();
+				$("select#contact_org_ref_id + em").show();
+			}
+		);
+
+		$("select#del_id").hide();
+		$("select#contact_del_id").hide();
+
+		<?php if( isset( $this->contactOrgDel['contact_id'] ) ): ?>
+		$("select#del_id").change(
+			function(){
+				$.post(
+					baseUrl + '/ajax/getcontacts/',
+					{
+						entite_id : $("select#del_id").val()
+					},
+					function(data){
+						$("select#contact_del_id").html( data );
+						$("select#contact_del_id option[value=<?php echo $this->contactOrgDel['contact_id']; ?>]").attr('selected','selected');
+					}
+				);
+			}
+		).trigger("change");
+		<?php endif; ?>
+
+		$("p#delegation").toggle(
+			function(){
+				$("p#delegation").removeClass("ui-icon-refresh");
+				$("p#delegation").addClass("ui-icon-check");
+				$("p#delegation").attr("title", "Enregistrer");
+				$("select#del_id").show();
+				$("select#contact_del_id").show();
+				$("select#del_id + em").hide();
+				$("select#contact_del_id + em").hide();
+			},
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'entite',
+						type : 'délégation',
+						entite_id : $("select#del_id").val(),
+						contact_id : $("select#contact_del_id").val()
+					},function( data ){
+						a = data.split('***');
+						$("select#del_id + em").html( a[0] );
+						$("select#contact_del_id + em").html( a[1] );
+					}
+				);
+				$("p#delegation").removeClass("ui-icon-check");
+				$("p#delegation").addClass("ui-icon-refresh");
+				$("p#delegation").attr("title", "Changer");
+				$("select#del_id").hide();
+				$("select#contact_del_id").hide();
+				$("select#del_id + em").show();
+				$("select#contact_del_id + em").show();
+			}
+		);
+
+
+
+
+
+		
+		$("select#greta_ref_id").hide();
+		$("select#contact_greta_ref_id").hide();
+
+		$("select#greta_ref_id").change(
+			function(){
+				$.post(
+					baseUrl + '/ajax/getcontacts/',
+					{
+						entite_id : $("select#greta_ref_id").val()
+					},
+					function(data){
+						$("select#contact_greta_ref_id").html( data );
+						<?php if( isset( $this->contactgretaRef['contact_id'] ) ): ?>
+						$("select#contact_greta_ref_id option[value=<?php echo $this->contactgretaRef['contact_id']; ?>]").attr('selected','selected');
+						<?php endif; ?>
+						
+					}
+				);
+			}
+		).trigger("change");
+		
+		$("p#greta_ref").toggle(
+			function(){
+				$("p#greta_ref").removeClass("ui-icon-refresh");
+				$("p#greta_ref").addClass("ui-icon-check");
+				$("p#greta_ref").attr("title", "Enregistrer");
+				$("select#greta_ref_id").show();
+				$("select#contact_greta_ref_id").show();
+				$("select#greta_ref_id + em").hide();
+				$("select#contact_greta_ref_id + em").hide();
+			},
+			function(){
+				$.post(
+					baseUrl + "/ajax/updateoperation/",
+					{
+						fiche_id : <?php echo $this->operation->fiche_id; ?>,
+						field : 'entite',
+						type : 'greta',
+						entite_id : $("select#greta_ref_id").val(),
+						contact_id : $("select#contact_greta_ref_id").val()
+					},function( data ){
+						a = data.split('***');
+						$("select#greta_ref_id + em").html( a[0] );
+						$("select#contact_greta_ref_id + em").html( a[1] );
+					}
+				);
+				$("p#greta_ref").removeClass("ui-icon-check");
+				$("p#greta_ref").addClass("ui-icon-refresh");
+				$("p#greta_ref").attr("title", "Changer");
+				$("select#greta_ref_id").hide();
+				$("select#contact_greta_ref_id").hide();
+				$("select#greta_ref_id + em").show();
+				$("select#contact_greta_ref_id + em").show();
+			}
+		);
+
+
+
+		
+
+		$('div#refresh').fadeOut('fast');
+
+	});
+
+</script>
+
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<p class="ui-icon ui-icon-pencil" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png); " title="Changer" id="entreprise" ></p>
+<?php endif; ?>
+
+<?php if( isset( $this->entreprise->entite_id ) && $this->entreprise->entite_id > 0 ): ?>
+
+	<strong>Entreprise : </strong>
+	<select id="entreprise_id" >
+		<?php foreach( $this->entreprises as $entreprise ): ?>
+
+			<?php
+				$select = "";
+				if( $entreprise['entite_id'] == $this->entreprise->entite_id ) $select = " selected ";
+			?>
+			<option value="<?php echo $entreprise['entite_id']; ?>" <?php echo $select; ?> ><?php echo $entreprise['entite_nom']; ?></option>
+
+		<?php endforeach; ?>
+	</select>
+	<em><?php echo ucwords($this->entreprise->entite_nom); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->entreprise->entite_id; ?>" >
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png); " title="Détails" ></p>
+	</a>
+	<br />
+
+<?php endif; ?>
+
+<?php if( isset( $this->contactEntreprise['contact_id'] ) && $this->contactEntreprise['contact_id'] > 0 ): ?>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contact : </strong>
+	<select id="contact_entreprise_id" ></select>
+	<em><?php echo ucwords($this->contactEntreprise['civilite'].' '.$this->contactEntreprise['personne_prenom'].' '.$this->contactEntreprise['personne_nom']); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/contacts/details/?contact_id=<?php echo $this->contactEntreprise['contact_id']; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+	</a>
+	<br />
+
+<?php endif; ?>
+
+<br />
+
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<p class="ui-icon ui-icon-pencil" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Changer" id="org_ref" ></p>
+<?php endif; ?>
+
+<?php if( isset( $this->org_ref->entite_id ) && $this->org_ref->entite_id > 0 ): ?>
+
+	<strong>Organisme référent : </strong>
+	<select id="org_ref_id" >
+		<?php foreach( $this->organismes_ref as $org_ref ): ?>
+
+		<?php
+			$select = "";
+			if( $org_ref['entite_id'] == $this->org_ref->entite_id ) $select = " selected ";
+		?>
+		<option value="<?php echo $org_ref['entite_id']; ?>" <?php echo $select; ?> ><?php echo $org_ref['entite_nom']; ?></option>
+		
+		<?php endforeach; ?>
+	</select>
+	<em><?php echo ucwords($this->org_ref->entite_nom); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->org_ref->entite_id; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png); " title="Détails" ></p>
+	</a>
+	<br />
+	
+<?php endif; ?>
+
+<?php if( isset( $this->contactOrgRef['contact_id'] ) && $this->contactOrgRef['contact_id'] > 0 ): ?>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contact : </strong>
+	<select id="contact_org_ref_id" ></select>
+	<em><?php echo ucwords($this->contactOrgRef['civilite'].' '.$this->contactOrgRef['personne_prenom'].' '.$this->contactOrgRef['personne_nom']); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/contacts/details/?contact_id=<?php echo $this->contactOrgRef['contact_id']; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+	</a>
+	<br />
+
+<?php endif; ?>
+
+<br />
+
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<p class="ui-icon ui-icon-pencil" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Changer" id="delegation" ></p>
+<?php endif; ?>
+
+<?php if( isset( $this->org_del->entite_id ) && $this->org_del->entite_id > 0 ): ?>
+
+	<strong>Entité Opcalia : </strong>
+	<select id="del_id" >
+		<?php foreach( $this->delegations as $del ): ?>
+
+		<?php
+			$select = "";
+			if( $del['entite_id'] == $this->org_del->entite_id ) $select = " selected ";
+		?>
+		<option value="<?php echo $del['entite_id']; ?>" <?php echo $select; ?> ><?php echo $del['entite_nom']; ?></option>
+
+		<?php endforeach; ?>
+	</select>
+	<em><?php echo ucwords($this->org_del->entite_nom); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->org_del->entite_id; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+	</a>
+	<br />
+<?php endif; ?>
+
+<?php if( isset( $this->contactOrgDel['contact_id'] ) && $this->contactOrgDel['contact_id'] > 0 ): ?>
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contact : </strong>
+	<select id="contact_del_id" ></select>
+	<em><?php echo ucwords($this->contactOrgDel['civilite'].' '.$this->contactOrgDel['personne_prenom'].' '.$this->contactOrgDel['personne_nom']); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/contacts/details/?contact_id=<?php echo $this->contactOrgDel['contact_id']; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+	</a>
+	
+<?php endif; ?>
+
+<br />
+<br />
+<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+<p class="ui-icon ui-icon-pencil" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Changer" id="greta_ref" ></p>
+<?php endif; ?>
+
+
+
+	<strong>Greta (si PMQ DIPLOME) : </strong>
+	<select id="greta_ref_id" >
+	<option value="0">Selectionner un greta</option>
+		<?php foreach( $this->greta as $greta_ref ): ?>
+<?php if( isset( $this->greta_ref->entite_id ) && $this->greta_ref->entite_id > 0 ): ?>
+		<?php
+			$select = "";
+			if( $greta_ref['entite_id'] == $this->greta_ref->entite_id ) $select = " selected ";
+		?>
+<?php endif; ?>		
+		<option value="<?php echo $greta_ref['entite_id']; ?>" <?php echo $select; ?> ><?php echo $greta_ref['entite_nom']; ?></option>
+		
+		<?php endforeach; ?>
+	</select>
+<?php if( isset( $this->greta_ref->entite_id ) && $this->greta_ref->entite_id > 0 ): ?>	
+	<em><?php echo ucwords($this->greta_ref->entite_nom); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->greta_ref->entite_id; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png); " title="Détails" ></p>
+	</a>
+<?php endif; ?>		
+	<br />
+	
+
+
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Contact : </strong>
+	<select id="contact_greta_ref_id" ></select>
+	
+<?php if( isset( $this->contactgretaRef['contact_id'] ) && $this->contactgretaRef['contact_id'] > 0 ): ?>
+	
+	<em><?php echo ucwords($this->contactgretaRef['civilite'].' '.$this->contactgretaRef['personne_prenom'].' '.$this->contactgretaRef['personne_nom']); ?></em>
+	<a href="<?php echo $this->baseUrl(); ?>/contacts/details/?contact_id=<?php echo $this->contactgretaRef['contact_id']; ?>">
+		<p class="ui-icon ui-icon-zoomin" style="margin: 0; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+	</a>
+<?php endif; ?>	
+	<br />
+
+

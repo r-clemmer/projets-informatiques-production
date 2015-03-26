@@ -1,0 +1,84 @@
+<?php $entite = $this->entite; ?>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"><?php echo ucwords( $entite['entite_nom'] ); ?></span>
+
+	</div>
+	<div id="entite" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="width:150px;" valign="top">Date de création :</td>
+				<td><?php echo $entite['entite_date_creation']; ?></td>
+			</tr>
+			<tr>
+				<td>Code :</td>
+				<td><?php echo $entite['entite_code']; ?></td>
+			</tr>
+			<tr>
+				<td>Adresse :</td>
+				<td>
+					<?php
+						echo $entite['entite_adresse'];
+						if( $entite['entite_ville'] ) echo ', '.ucwords($entite['entite_ville']);
+						echo '('.$entite['entite_cp'].')';
+					?>
+				</td>
+			</tr>
+			<tr>
+				<td>Activité :</td>
+				<td><?php echo ucwords( $entite['entite_activite'] ); ?></td>
+			</tr>
+			<tr>
+				<td>Téléphone :</td>
+				<td><?php echo $entite['entite_tel']; ?></td>
+			</tr>
+			<tr>
+				<td>Types d'entité :</td>
+				<td>
+					<ul>
+					<?php
+						foreach( $this->types as $type ){
+							echo '<li>';
+							if( $type['type_entite_libelle'] == 'forthac')
+							{
+								echo 'Opcalia';
+							}elseif( $type['type_entite_libelle'] == 'délégation')
+							{
+								echo 'Entité Opcalia';
+							}else{
+								echo ucfirst( $type['type_entite_libelle'] );
+							}
+							echo '</li>';
+						}
+					?>
+					</ul>
+				</td>
+			</tr>
+			<tr>
+				<td>Branche :</td>
+				<td><?php echo ucwords( $this->parent['entite_nom'] ); ?></td>
+			</tr>
+						<tr>
+				<td>Visible ?</td>
+				<td><?php echo ucwords( $entite['visible'] ); ?></td>
+			</tr>
+			<tr style="display: none;">
+				<td>Login :</td>
+				<td><?php echo $entite['entite_login']; ?></td>
+			</tr>
+			<!--<tr>
+				<td>Mot de passe :</td>
+				<td><?php //echo $entite['entite_password']; ?></td>
+			</tr>-->
+		</table>
+
+	</div>
+</div>
+
+<br />
+<a href="<?php echo $this->baseUrl(); ?>/entites/update/?entite_id=<?php echo $entite['entite_id']; ?>" class="button modif" >Modifier</a>
+<a href="<?php echo $this->baseUrl(); ?>/entites/delete/?entite_id=<?php echo $entite['entite_id']; ?>" class="button delete" >Supprimer</a>
+<a href="<?php echo $this->baseUrl(); ?>/entites/" class="button return" >Retour</a>

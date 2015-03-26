@@ -1,0 +1,118 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+		
+		$("#list").jqGrid({
+		   	url: baseUrl + '/ajax/getlistequestions/?valide=<?php echo $this->valide; ?>',
+			datatype: "json",
+			mtype: 'POST',
+			height: "100%",
+			width: 650,
+		   	colNames:['Date','Auteur', 'Objet','Importance', 'Rép.', ''],
+		   	colModel:[
+				{name:'question_date',index:'question_date'},
+		   		{name:'question_auteur',index:'question_auteur'},
+		   		{name:'question_objet',index:'question_objet'},
+		   		{name:'question_severite',index:'question_severite', align: "center"},
+		   		{name:'count',index:'count', align: "right"},
+		   		{name:'actions',index:'actions', align: "center", sortable:false}
+		   	],
+		   	rowNum:10,
+		   	rowList:[10,20,30],
+		   	pager: '#pager',
+		   	sortname: 'question_date',
+		    viewrecords: false,
+		    sortorder: "DESC",
+		    loadonce: false
+		}).navGrid('#pager',{edit:false,add:false,del:false,search:false});
+
+		$("#question_auteur").keyup(
+			function(){
+				if($("#question_auteur").val() == ""){
+					$("#question_auteur + span").show();
+				}else{
+					$("#question_auteur + span").hide();
+				}
+			}
+		);
+
+		$("#question_objet").keyup(
+			function(){
+				if($("#question_objet").val() == ""){
+					$("#question_objet + span").show();
+				}else{
+					$("#question_objet + span").hide();
+				}
+			}
+		);
+
+		$("#question_message").keyup(
+			function(){
+				if($("#question_message").val() == ""){
+					$("#question_message + span").show();
+				}else{
+					$("#question_message + span").hide();
+				}
+			}
+		);
+
+		$(".rating").rating(
+			{
+				showCancel: false
+			}
+		);
+		
+	});
+
+	function verif(){
+		var test = $("span.error:not([style])").length;
+		if(test == 0){
+			alert("Votre message sera visible après validation par le Forthac");
+			document.forms['creermessage'].submit();
+		}else{
+			alert("Certains champs saisis ne sont pas correct !");
+		}
+	}
+	
+</script>
+
+<?php echo $this->test; ?>
+
+<table id="list" class="jqgrid"></table>
+<div id="pager"></div>
+
+<br />
+
+<fieldset>
+	<legend>Envoyer un nouveau message :</legend>
+
+	<form method="POST" action="#" name="creermessage" >
+	
+		<label>Votre nom :</label>
+		<input type="text" name="question_auteur" id="question_auteur" />
+		<span class="error">Vous devez saisir votre nom.</span>
+		<br />
+		
+		<label>L'objet du message :</label>
+		<input type="text" name="question_objet" id="question_objet" />
+		<span class="error">Vous devez saisir l'objet du message.</span>
+		<br />
+		
+		<label>Votre message :</label>
+		<textarea rows="5" cols="50" name="question_message" id="question_message" ></textarea>
+		<span id="message" class="error">Vous devez saisir un message.</span>
+		<br />
+		
+		<label>Importance :</label>
+		<select name="question_severite" id="question_severite" class="rating">
+			<option value="0" selected="selected">0</option>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+		</select>
+		<br />
+		
+		<a href="#" onclick="javacript:verif();" class="button mail" >Envoyer</a>
+		
+	</form>
+	
+</fieldset>

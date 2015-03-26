@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configdata>
+	<nav>
+		<recherche>
+			<label>Recherche</label>
+			<controller>recherche</controller>
+			<title>Faire une recherche</title>
+			<pages>
+				<recherche_nonvalidees>
+					<label>Opérations non validées</label>
+					<controller>recherche</controller>
+					<action>nonvalidee</action>
+				</recherche_nonvalidees>
+				<recherche_num>
+					<label>Par numéro d'opération</label>
+					<controller>recherche</controller>
+					<action>num</action>
+				</recherche_num>
+				<recherche_date>
+					<label>Par date</label>
+					<controller>recherche</controller>
+					<action>date</action>
+				</recherche_date>
+				<recherche_nom>
+					<label>Par nom</label>
+					<controller>recherche</controller>
+					<action>nom</action>
+				</recherche_nom>
+				<recherche_demarchetitre>
+					<label>Par démarche/titre</label>
+					<controller>recherche</controller>
+					<action>demarchetitre</action>
+				</recherche_demarchetitre>
+			</pages>
+		</recherche>
+		<operations>
+			<label>Opérations</label>
+			<controller>operations</controller>
+			<pages>
+				<new_fiche>
+					<label>Créer une nouvelle opération</label>
+					<controller>operations</controller>
+					<action>new</action>    	
+				</new_fiche>
+				<fiche_visu>
+					<label>Visualiser une opération</label>
+					<controller>operations</controller>
+					<action>visu</action>
+					<visible>0</visible>
+				</fiche_visu>
+			</pages>
+		</operations>
+		<intervenants>
+			<label>Acteurs</label>
+			<controller>intervenants</controller>
+			<title>Gestion des intervenants</title>
+			<pages>
+				<gerer_entites>
+					<label>Gérer les entités</label>
+					<controller>entites</controller>
+					<pages>
+						<entite_details>
+							<label>Détails d'une entité</label>
+							<controller>entites</controller>
+							<action>details</action>
+							<visible>0</visible>
+						</entite_details>
+						<entite_add>
+							<label>Créer une entité</label>
+							<controller>entites</controller>
+							<action>add</action>
+							<visible>0</visible>
+						</entite_add>
+						<entite_update>
+							<label>Modifier une entité</label>
+							<controller>entites</controller>
+							<action>update</action>
+							<visible>0</visible>
+						</entite_update>
+						<entite_delete>
+							<label>Supprimer une entité</label>
+							<controller>entites</controller>
+							<action>delete</action>
+							<visible>0</visible>
+						</entite_delete>
+					</pages>
+				</gerer_entites>
+				<gerer_contacts>
+					<label>Gérer les contacts</label>
+					<controller>contacts</controller>
+					<pages>
+						<contact_details>
+							<label>Détails d'un contact</label>
+							<controller>contacts</controller>
+							<action>details</action>
+							<visible>0</visible>
+						</contact_details>
+						<contact_add>
+							<label>Créer un contact</label>
+							<controller>contacts</controller>
+							<action>add</action>
+							<visible>0</visible>
+						</contact_add>
+						<contact_update>
+							<label>Modifier un contact</label>
+							<controller>contacts</controller>
+							<action>update</action>
+							<visible>0</visible>
+						</contact_update>
+						<contact_delete>
+							<label>Supprimer un contact</label>
+							<controller>contacts</controller>
+							<action>delete</action>
+							<visible>0</visible>
+						</contact_delete>
+					</pages>
+				</gerer_contacts>
+			</pages>
+		</intervenants>
+		<formations>
+			<label>Formations</label>
+			<controller>formations</controller>
+			<title>Gérer les formations</title>
+			<pages>
+				<formation_details>
+					<label>Détails d'une formation</label>
+					<controller>formations</controller>
+					<action>details</action>
+					<visible>0</visible>
+				</formation_details>
+				<formation_add>
+					<label>Créer une formation</label>
+					<controller>formations</controller>
+					<action>add</action>
+					<visible>0</visible>
+				</formation_add>
+				<formation_update>
+					<label>Modifier une formation</label>
+					<controller>formations</controller>
+					<action>update</action>
+					<visible>0</visible>
+				</formation_update>
+				<formation_delete>
+					<label>Supprimer une formation</label>
+					<controller>formations</controller>
+					<action>delete</action>
+					<visible>0</visible>
+				</formation_delete>
+				<formation_candidats>
+					<label>Liste des candidats de la formation</label>
+					<controller>formations</controller>
+					<action>candidats</action>
+					<visible>0</visible>
+				</formation_candidats>
+			</pages>
+		</formations>
+		<jurys>
+			<label>Jurys</label>
+			<controller>jurys</controller>
+			<title>Gérer les jurys</title>
+			<pages>
+				<jury_details>
+					<label>Détails d'un jury</label>
+					<controller>jurys</controller>
+					<action>details</action>
+					<visible>0</visible>
+				</jury_details>
+				<jury_add>
+					<label>Créer un jury</label>
+					<controller>jurys</controller>
+					<action>add</action>
+					<visible>0</visible>
+				</jury_add>
+				<jury_update>
+					<label>Modifier un jury</label>
+					<controller>jurys</controller>
+					<action>update</action>
+					<visible>0</visible>
+				</jury_update>
+				<jury_delete>
+					<label>Supprimer un jury</label>
+					<controller>jurys</controller>
+					<action>delete</action>
+					<visible>0</visible>
+				</jury_delete>
+				<jury_candidats>
+					<label>Attribuer des candidats</label>
+					<controller>jurys</controller>
+					<action>attributecandidats</action>
+					<visible>0</visible>
+				</jury_candidats>
+			</pages>
+		</jurys>
+		<outils>
+			<label>Outils</label>
+			<controller>outils</controller>
+			<title>Accéder aux outils de mise en oeuvre</title>
+		</outils>
+		<calendrier>
+			<label>Calendrier</label>
+			<controller>calendrier</controller>
+			<title>Accéder au calendrier</title>
+		</calendrier>
+		<statistiques>
+			<label>Statistiques</label>
+			<controller>statistiques</controller>
+			<title>Exporter en fichier Excel</title>
+		</statistiques>
+	</nav>
+</configdata>

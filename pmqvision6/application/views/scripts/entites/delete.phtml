@@ -1,0 +1,35 @@
+<?php if ($this->entite) : ?>
+	<?php
+		if(count($this->personnes)>0){
+			echo 'Les personnes suivantes sont liées à cette entité. Le fait de la supprimer influera sur ces personnes.<br />';
+			echo '<ul>';
+			foreach($this->personnes as $personne){
+				echo '<li>';
+				echo $personne['civilite'].' '.$personne['personne_prenom'].' '.$personne['personne_nom'];
+				echo '</li>';
+			}
+			echo '</ul>';
+		}
+		if(count($this->operations)>0){
+			echo 'Les opérations suivantes sont liées à cette entité. Le fait de la supprimer influera sur ces opérations.<br />';
+			echo '<ul>';
+			foreach($this->operations as $operation){
+				echo '<li>';
+				echo $operation['fiche_id'];
+				echo '</li>';
+			}
+			echo '</ul>';
+		}
+	?>
+	<p>Etes-vous sûr de vouloir supprimer l'entité "<?php echo ucwords($this->entite->entite_nom); ?>" ?</p>
+	<form action="<?php echo $this->baseUrl(); ?>/entites/delete/?entite_id=<?php echo $this->entite->entite_id; ?>" method="post">
+		<div>
+		    <input type="hidden" name="entite_id" value="<?php echo $this->entite->entite_id; ?>" />
+		    <input type="submit" name="del" value="Oui" />
+		    <input type="submit" name="del" value="Non" />
+		</div>
+	</form>
+<?php else: ?>
+	<p>Impossible de trouver l'entité sélectionnée.</p>
+	<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>" class="button return" >Retour</a>
+<?php endif;?>

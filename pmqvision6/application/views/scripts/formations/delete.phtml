@@ -1,0 +1,13 @@
+<?php if ($this->formation) : ?>
+	<p>Etes-vous sûr de vouloir supprimer cette formation "<?php echo ucwords( $this->formation['formation_libelle'] ); ?>" ?</p>
+	<form action="<?php echo $this->baseUrl(); ?>/formations/delete/id/<?php echo $this->formation['formation_id']; ?>" method="post">
+		<div>
+		    <input type="hidden" name="formation_id" value="<?php echo $this->formation['formation_id']; ?>" />
+		    <input type="submit" name="del" value="Oui" />
+		    <input type="submit" name="del" value="Non" />
+		</div>
+	</form>
+<?php else: ?>
+	<p>Impossible de trouver la formation sélectionnée.</p>
+	<a href="<?php echo $_SERVER['HTTP_REFERER']; ?>">Retour</a>
+<?php endif;?>

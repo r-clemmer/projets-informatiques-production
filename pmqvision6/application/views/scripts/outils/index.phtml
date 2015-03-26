@@ -1,0 +1,119 @@
+<script type="text/javascript">
+	var role = "<?php echo $_SESSION['Zend_Auth']['storage']->role;?>";
+
+	$(document).ready( function() {
+		if(role!="forthac"){
+			desactiveContextMenu();
+		}
+		
+	});
+</script>
+<div id='enTete' >
+<span>Explorateur d'outils</span>
+</div>
+
+<div id="tree" class="filetree">
+	<span id='rootDir'><img align="top" src='<?php echo $this->baseUrl(); ?>/js/jqueryFileTree/images/server.png' /><a rel="./documents/ressources/"  class="link_dir">Racine</a></span>
+	<div id='tree_content'></div>
+</div>
+
+<div id='contentFolder'></div>
+
+<br class='clear'/>
+
+<div id='action' >
+	<div id='uploadFile' class='actionFile' style='display: none;'>
+		<form enctype="multipart/form-data" action="<?php echo $this->baseUrl(); ?>/outils/upload" method="POST">
+		    <input type="hidden" name="MAX_FILE_SIZE" value="1000000000" />
+		    <input type="hidden" id='dir_pathUp' name="dir_pathUp" value="" />
+		        Fichier :
+		    <input name="uploadedfile" type="file" />
+		    <input type="submit" value="Telecharger" style='float: right;'/>
+		</form>
+	</div>
+	<div id='renameDir' class='actionFile' style='display: none;'>
+		<form  action="<?php echo $this->baseUrl(); ?>/outils/renamedir" method="POST">
+		    <input type="hidden" id='dir_pathRename' name="dir_pathRename" value="" />
+		        Nouveau nom :
+		    <input type='text' name='newName' />
+		    <input type="submit" value="Renommer" style='float: right;'/>
+		</form>
+	</div>
+	<div id='deleteDir' class='actionFile' style='display: none;'>
+		<form  action="<?php echo $this->baseUrl(); ?>/outils/deletedir" method="POST">
+		    <input type="hidden" id='dir_pathDelete' name="dir_pathDelete" value="" />
+		        Supprimer ?
+		     <input type="button" id='deleteCancel' value="Non" style='float: right;'/>
+		    <input type="submit" value="Oui" style='float: right;'/>
+		</form>
+	</div>
+	<div id='newDir' class='actionFile' style='display: none;'>
+		<form  action="<?php echo $this->baseUrl(); ?>/outils/createdirectory" method="POST">
+			<input type="hidden" id='dir_newDir' name="dir_newDir" value="" />
+			Nom du dossier :
+		     <input type="text" id='dir_new' name='dir_new'/>
+		    <input type="submit" value="Créer" style='float: right;'/>
+		</form>
+	</div>
+	<div id='renameFile' class='actionFile' style='display: none;'>
+		<form  action="<?php echo $this->baseUrl(); ?>/outils/renamefile" method="POST">
+		    <input type="hidden" id='fileDirRename' name="fileDirRename" value="" />
+		        Nouveau nom de fichier :
+		    <input type='text' name='newName' />
+		    <input type="submit" value="Renommer" style='float: right;'/>
+		</form>
+	</div>
+	<div id='deleteFile' class='actionFile' style='display: none;'>
+		<form  action="<?php echo $this->baseUrl(); ?>/outils/deletefile" method="POST">
+		    <input type="hidden" id='fileDelete' name="fileDelete" value="" />
+		        Supprimer ?
+		     <input type="button" id='deleteCancel' value="Non" style='float: right;'/>
+		    <input type="submit" value="Oui" style='float: right;'/>
+		</form>
+	</div>
+</div>
+<ul id="myMenuDirRoot" class="contextMenu">
+	<li class="upload">
+        <a href="#upload">Upload</a>
+    </li>
+    <li class="add">
+        <a href="#add">Ajouter un dossier</a>
+    </li>
+</ul>
+<ul id="myMenuDir" class="contextMenu">
+	<li class="upload">
+        <a href="#upload">Upload</a>
+    </li>
+    <li class="add">
+        <a href="#add">Ajouter un dossier</a>
+    </li>
+    <li class="rename">
+        <a href="#rename">Renommer</a>
+    </li>
+    <li class="delete separator">
+        <a href="#delete">Supprimer</a>
+    </li>
+</ul>
+
+<ul id="myMenuFile" class="contextMenu">
+	<li class="down">
+        <a href="#down">Télécharger</a>
+    </li>
+    <li class="rename">
+        <a href="#rename">Renommer</a>
+    </li>
+    <li class="delete">
+        <a href="#delete">Supprimer</a>
+    </li>
+</ul>
+
+<div id="refresh" style="display:none;color:#000;width:100%;height:100%;background-color: rgb(255, 255, 255); opacity: 0.85;position:absolute;top:0px;left:0px;z-index:999999;">
+	<div style="margin-left:auto;margin-right:auto;width:100px;padding-left:50px;margin-top:300px;">
+	<img alt="" src="<?php echo $this->BaseUrl();?>/img/ajax-loader.gif">
+	<br />
+	<br />
+	</div>
+	<div style="margin-left:auto;margin-right: auto;width:150px;text-align: center">
+		<span style="font-family:Arial;font-size:10pt;color:gray;font-weight:bold;">Chargement en cours</span>
+	</div>
+</div>

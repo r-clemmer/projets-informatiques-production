@@ -1,0 +1,110 @@
+<?php 
+	header('P3P:CP="IDC DSP COR ADM DEVi TAIi PSA PSD IVAi IVDi CONi HIS OUR IND CNT"');
+?>
+
+<!DOCTYPE html
+    PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+	
+		<?php $this->headLink()->appendStylesheet($this->baseUrl()."/css/general.css"); ?>
+		<?php $this->headLink()->appendStylesheet($this->baseUrl()."/css/general-ie.css","screen",'IE'); ?>
+		<?php $this->headLink()->appendStylesheet($this->baseUrl()."/css/filariane.css"); ?>
+		<?php $this->headLink()->appendStylesheet($this->baseUrl()."/css/menu.css"); ?>
+		<?php $this->headLink()->appendStylesheet($this->baseUrl()."/css/jquery-forthac/jquery-ui-1.8.2.custom.css"); ?>
+		<?php $this->headLink()->appendStylesheet($this->baseUrl()."/css/buttons.css"); ?>
+		
+		<?php $this->headScript()->prependFile($this->baseUrl().'/js/jquery-1.3.2.min.js','text/javascript'); ?>
+		<?php $this->headScript()->appendFile($this->baseUrl().'/js/jquery-ui-1.8.2.custom.min.js','text/javascript'); ?>
+		<?php $this->headScript()->appendFile($this->baseUrl().'/js/jquery-regex.js','text/javascript'); ?>
+		<?php $this->headScript()->appendFile($this->baseUrl().'/js/buttons.js','text/javascript'); ?>
+	
+		<?php echo $this->headTitle(); ?>
+		<?php echo $this->headLink(); ?>
+		<?php echo $this->headStyle(); ?>
+		<?php echo $this->headScript(); ?>
+		<?php echo $this->headMeta(); ?>
+		
+		<script type="text/javascript" >
+
+			var baseUrl = '<?php echo $this->baseUrl(); ?>';
+
+			$(document).ready(function(){
+
+				<?php if( isset($this->onglets) || isset($this->ong)) :?>
+
+					$("#contenu").tabs();
+				
+				<?php endif; ?>
+			});
+
+		</script>
+		
+	</head>
+	<body>
+	
+		<div style="float: left; position: absolute; ">
+			<?php
+				/*****************************************/
+				/*********a supprimer a l integration*****/
+				/*****************************************/
+				/*
+				$auth = Zend_Auth::getInstance();
+				if($auth->hasIdentity()){
+					$auth = Zend_Auth::getInstance()->getIdentity();
+					$entite_id = $auth->entite_id;
+					$mEntite = new Model_Entite();
+					$entite = $mEntite->get($entite_id);
+					$typeentite = $mEntite->getTypeEntite($entite_id);
+					echo $entite->entite_nom;
+					echo " ( droits : ".$auth->role." ) ";
+					echo '<a href="'.$this->baseUrl().'/login/logout" class="button logout" >Déconnexion</a>';
+				}
+				*/
+				/*****************************************/
+			?>
+		</div>
+		<div id="filariane">
+		</div>
+		<div id="menu">
+			<?php echo $this->navigation()->menu(); ?>
+		</div>
+		<p id="titre"><?php echo $this->escape($this->title); ?></p>
+		<div id="contenu">
+			<?php
+				if(isset($this->ong)){
+					echo '<ul>';
+					$i=1;
+					foreach($this->ong as $ong){
+						echo '<li><a href="#content-'.$i.'">'.$ong.'</a></li>';
+						$i++;
+					}
+					echo '</ul>';
+				}
+				if(isset($this->onglets)){
+					echo '<ul>';
+					foreach($this->onglets as $key => $onglet){
+						echo '<li><a href="'.$this->baseUrl().'/'.$this->controller.'/'.$key.'">'.$onglet.'</a></li>';
+					}
+					echo '</ul>';
+				}
+			?>
+			<div id="content">
+				<?php echo $this->layout()->content; ?>
+			</div>
+		</div>
+
+		<div id="refresh" style="display:none; color:#000;width:100%;height:100%;background-color: rgb(255, 255, 255); opacity: 0.85;position:absolute;top:0px;left:0px;z-index:999999;">
+			<div style="margin-left:auto;margin-right:auto;width:100px;padding-left:50px;margin-top:300px;">
+				<img alt="chargement en cours..." src="<?php echo $this->baseUrl();?>/img/ajax-loader.gif" />
+				<br />
+				<br />
+			</div>
+			<div style="margin-left:auto;margin-right: auto;width:150px;text-align: center">
+				<span style="font-family:Arial;font-size:10pt;color:gray;font-weight:bold;">Chargement en cours...</span>
+			</div>
+		</div>
+
+	</body>
+</html>

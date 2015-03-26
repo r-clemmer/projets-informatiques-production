@@ -1,0 +1,64 @@
+<?php $contact = $this->contact; ?>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"><?php echo ucwords( $contact['civilite_lib'].' '.$contact['personne_prenom'].' '.$contact['personne_nom'] ); ?></span>
+
+	</div>
+	<div id="fiche" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="max-width:250px;" valign="top">
+					<ul>
+						<li>Âge : <?php echo $this->age; ?></li>
+						<li>Entité : <?php echo ucwords($this->entite['entite_nom']); ?>
+							<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->entite['entite_id']; ?>">
+								<p class="ui-icon ui-icon-zoomin" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+							</a>
+						</li>
+						<li>E-Mail : <?php echo $contact['personne_mail']; ?></li>
+						<li>Téléphone : <?php echo $contact['personne_tel']; ?></li>
+						<li>Mobile : <?php echo $contact['personne_port']; ?></li>
+						
+					</ul>
+				</td>
+				<td  style="max-width:450px;" valign="top">
+					<ul>
+						<li>Poste occupé : <?php echo $contact['personne_poste']; ?></li>
+						<li>Visible ? <?php echo $contact['visible']; ?></li>
+						<li>
+							Fonctions :
+							<?php echo $this->fonctions; ?>
+						</li>
+						<li>
+							Expertises :
+							<?php echo $this->expertises; ?>
+						</li>
+						<li>
+							<?php if( $contact['contact_forme'] == 1 ): ?>
+								Date de formation : <?php echo $contact['contact_date_formation']; ?>
+							<?php elseif( $contact['contact_forme'] == 0 ): ?>
+								Non formé.
+							<?php endif; ?>
+						</li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<ul>
+			<li>
+				Fichiers :
+				<?php echo $this->files; ?>
+			</li>
+		</ul>
+
+	</div>
+</div>
+
+<br />
+<a href="<?php echo $this->baseUrl(); ?>/contacts/update/?contact_id=<?php echo $contact['contact_id']; ?>" class="button modif" >Modifier</a>
+<a href="<?php echo $this->baseUrl(); ?>/contacts/delete/?contact_id=<?php echo $contact['contact_id']; ?>" class="button delete" >Supprimer</a>
+<a href="<?php echo $this->baseUrl(); ?>/contacts/" class="button return" >Retour</a>

@@ -1,0 +1,328 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$(':checkbox').click(function(){
+			document.forms['form'].submit();
+		});
+
+	});
+
+</script>
+
+<style type="text/css" media="print">
+
+@media print
+{
+
+#header
+{
+font-family:arial;
+background-color:#D3D3D3;
+font-size: 12px;
+}
+
+#data
+{
+font-family:arial;
+font-size: 12px;
+}
+
+}
+
+
+</style>
+
+<form method="POST" action="<?php echo $this->baseUrl(); ?>/fichepedago/update/" name="form" >
+
+	<input type="hidden" name="resultat_outil_id" value="<?php echo $this->resultat_outil_id; ?>" />
+	<input type="hidden" name="resultat_id" value="<?php echo $this->resultat_id; ?>" />
+	<input type="hidden" name="id" value="<?php echo $this->id; ?>" />
+	<input type="hidden" name="candidat_metier_id" value="<?php echo $this->candidat_metier_id; ?>" />
+	<input type="hidden" name="passage" value="<?php echo $this->passage; ?>" />
+
+	<?php
+		switch( $this->demarche ){
+			case 'cqp' :
+	?>
+
+	<p id="titre" ><?php echo $this->title; ?></p>
+
+	<div style="display: block; height: auto; width: 700px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" style="-moz-user-select: none;">Résultats attendus observables et/ou mesurables</span>
+
+		</div>
+		<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 120px; height: auto;">
+
+			<ul>
+				<?php
+				if(count($this->capacite_definition)>0)
+					{
+				
+				foreach( $this->capacite_definition as $ra ): ?>
+					<li><?php echo $ra['texte']; ?></li>
+				<?php endforeach; 
+					}?>
+			</ul>
+
+		</div>
+	</div>
+
+	<div style="display: block; height: auto; width: 700px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" style="-moz-user-select: none;">Eléments de preuve</span>
+
+		</div>
+		<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 120px; height: auto;">
+
+			<div style="display: block; height: auto; width: 49%;margin-left:auto;margin-right:auto;position:relative; float:left;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+				<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+					<span class="ui-dialog-title" style="-moz-user-select: none;">Mesurables</span>
+
+				</div>
+				<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 120px; height: auto;">
+
+					<?php $i=0; 
+					if(count($this->capacite)>0)
+					{
+					?>
+					<?php foreach( $this->capacite as $mesurable ): ?>
+						<?php 
+						
+						if($mesurable['outils'] == 'mesurable'){
+						$check=""; ?>
+						<?php if( isset( $this->notes[$i] ) && $this->notes[$i] == 1 ) $check = 'checked="checked"'; ?>
+						<input type="checkbox" name="capacite[<?php echo $i; ?>]" <?php echo $check; ?> />
+						<?php echo $mesurable['texte']; ?>
+						<br />
+					<?php $i++;} 
+					?>
+					<?php endforeach;
+					} ?>
+
+				</div>
+			</div>
+
+			<div style="display: block; height: auto; width: 49%;margin-left:auto;margin-right:auto;position:relative; float:right;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+				<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+					<span class="ui-dialog-title" style="-moz-user-select: none;">Observables</span>
+
+				</div>
+				<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 120px; height: auto;">
+
+					<?php 
+					if(count($this->capacite)>0)
+					{
+					foreach( $this->capacite as $observable ): ?>
+						<?php 
+						
+						if($observable['outils'] == 'observable'){
+						$check=""; ?>
+						<?php if( isset( $this->notes[$i] ) && $this->notes[$i] == 1 ) $check = 'checked="checked"'; ?>
+						<input type="checkbox" name="capacite[<?php echo $i; ?>]" <?php echo $check; ?> />
+						<?php echo $observable['texte']; ?>
+						<br />
+					<?php $i++;}  ?>
+					<?php  ?>
+					<?php endforeach;
+					}
+					$nb_items = $i; ?>
+
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+	<?php
+				break;
+			case 'ccsp' :
+	?>
+	
+		<p id="titre" ><?php echo $this->title; ?></p>
+		<a href="#" OnClick="javascript:window.print()"  class="button print" >Imprimer</a> 
+		<div style="display: block; height: auto; width: 700px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all">
+			<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+				Liste des savoirs mobilisés pour le Module <?php echo $_GET["module"];?>
+			</div>
+			<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 120px; height: auto;">
+
+			<div id="questionnaire">
+			<table border=1 width="100%" style="border-collapse:collapse">
+			
+			<tr>
+			<th colspan="4" bgcolor=lightgrey>Questionnaire</th>
+			</tr>
+			<tr>
+				<th width="85%"></th>
+				<th>Note</th>
+				<th>Total</th>
+			</tr>
+			<?php 
+			$module ='';
+			$note_ques= 0;
+			$note_ques_total = 0;
+			foreach($this->listeQuestionaire as $index => $question):?>
+			<?php
+ if($question['support_eval'] =='question' && $this->questionnaire['actif'][$index] =="actif"&& $question['nom_module'] == $_GET["module"]){	
+if($question['module']!= $module)
+{
+echo '<tr><td colspan="4" id="'.$question['module'].'" style="text-align:center;background-color:#007DC5;color:#FFFFFF;">'.$question['libelle_module'].'</td></tr>';}
+?>
+
+				<tr >
+					<td><?php echo $question['name']; ?></td>
+					<td style="text-align:center;" align="center">
+					<?php echo $this->questionnaire['notes'][$index];$note_ques+=$this->questionnaire['notes'][$index];?>
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $question['value']; $note_ques_total+=$question['value'];?>
+						<input value="<?php echo $question['value']; ?>" type="hidden" size="4" name='questionnaireTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+				</tr>
+				<?php 
+}
+
+
+
+	$module = $question['module']; 
+?>
+			<?php endforeach;?>
+			<tr>
+			<td  bgcolor="navajowhite">TOTAL</td>
+			<td style="text-align:center;" colspan="2"  bgcolor="navajowhite">
+						<b><?php echo $note_ques;?>/<?php echo $note_ques_total;?></b>
+					</td>
+			</tr>
+			</table>
+
+		</div>
+		<br></br>
+<div id="observation">
+
+			
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+			<th colspan="4" bgcolor=lightgrey>Observation</th>
+			</tr>
+			<tr>
+				<th width="85%"></th>
+				<th>Note</th>
+				<th>Total</th>
+				
+			</tr>
+			<?php 
+	  $module_obs ='';
+	  $note_obs = 0;
+	  $note_obs_total = 0;
+	 
+      foreach($this->listeObservation as $index => $observation):
+       if($question['support_eval'] =='observation' && $this->observation['actif'][$index] =="actif" && $observation['nom_module'] == $_GET["module"]){
+	if($observation['module']!= $module_obs)
+{
+echo '<tr><td colspan="4" id="'.$observation['module'].'" style="text-align:center;background-color:#007DC5;color:#FFFFFF;">'.$observation['libelle_module'].'</td></tr>';}
+?>
+				
+				<tr>
+					<td><?php echo $observation['name']; ?></td>
+					<td style="text-align:center;" align="center">
+					<?php echo $this->observation['notes'][$index];$note_obs+=$this->observation['notes'][$index];?>
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $observation['value']; ?>
+						<input value="<?php echo $observation['value'];$note_obs_total+=$observation['value'];  ?>" type="hidden" size="4" name='observationsTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+					
+				</tr>
+				
+				
+<?php
+       }
+       
+       
+       
+		$module_obs = $observation['module']; 
+ 		endforeach;?>
+ 		
+ 		<tr>
+			<td  bgcolor="navajowhite">TOTAL</td>
+			<td style="text-align:center;" colspan="2"  bgcolor="navajowhite">
+						<b><?php echo $note_obs;?>/<?php echo $note_obs_total;?></b>
+					</td>
+			</tr>
+			</table>
+
+		</div>		
+		
+<br>		
+<div id="entretien">
+
+			
+			<table border=1 width="100%" style="border-collapse:collapse">
+			<tr>
+			<th colspan="4" bgcolor=lightgrey>Entretien</th>
+			</tr>
+			<tr>
+				<th width="85%"></th>
+				<th>Note</th>
+				<th>Total</th>
+			</tr>
+
+			<?php 
+				  $module_ent ='';
+				  $note_ent = 0;
+				  $note_ent_total = 0;
+				  
+			foreach($this->listeEntretien as $index => $entretien):
+			if(($this->observation['actif'][$index] == 'actif' || $this->questionnaire['actif'][$index]=='actif') && $entretien['nom_module'] == $_GET["module"])
+			{
+if($entretien['module']!= $module_ent)
+{echo '<tr><td colspan="3" id="'.$entretien['module'].'" style="text-align:center;background-color:#007DC5;color:#FFFFFF;">'.$entretien['libelle_module'].'</td></tr>';}
+?>
+				<tr>
+					<td><?php echo $entretien['name']; ?></td>
+					<td style="text-align:center;">
+						<?php echo $this->entretien['notes'][$index];$note_ent+=$this->entretien['notes'][$index];?>
+					</td>
+					<td style="text-align:center;" align="center">
+						<?php echo $entretien['value']; $note_ent_total+=$entretien['value'];?>
+						<input value="<?php echo $entretien['value']; ?>" type="hidden" size="4" name='entretiensTotal_ccsp[<?php echo $index;?>]' style="border:none;" />
+					</td>
+				</tr>
+			<?php 
+			}
+			
+				$module_ent = $entretien['module']; 
+			
+			endforeach;?>
+			<tr>
+			<td bgcolor="navajowhite">TOTAL</td>
+			<td style="text-align:center;" colspan="2"  bgcolor="navajowhite">
+						<b><?php echo $note_ent;?>/<?php echo $note_ent_total;?></b>
+					</td>
+			</tr>
+			</table>
+
+		</div>
+
+
+
+
+			</div>
+		</div>
+
+	<?php
+				break;
+			case 'diplome' :
+				break;
+		}
+	?>
+
+	<input type="hidden" name="nombre" value="<?php echo $this->capacite_active; ?>" />
+
+</form>

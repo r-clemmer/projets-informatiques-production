@@ -1,0 +1,142 @@
+#selectTypeDate {
+	float: right;
+	margin-bottom: 5px;
+	*margin-left: 30px;
+}
+#selectDate {
+	float: right;
+	margin-bottom: 5px;
+}
+#selectMois {
+	margin-right: 15px;
+}
+#selectAnnee {
+	margin-right: 15px;
+}
+
+.ui-widget-content a {
+	color: #FFFFFF !important;
+}
+
+/* tooltip styling */ 
+#tooltips { 
+    display:none; 
+    font-size:12px; 
+    width:	525px; 
+    min-height: 70px;
+    color:#000000;     
+    z-index: 999999;
+}
+#tips_haut {
+	 background-image: url(../img/tooltip_hautGauche.png);
+	 display: block;
+	 width: 400px;
+	 height: 35px;
+	 
+}
+#tips_bas {
+	 background:transparent url(../img/tooltip_bas.png);
+	 display: block;
+	 width: 400px;
+	 height: 20px;
+}
+#tips_content {
+	 background:transparent url(../img/tooltip_center.png);
+	 display: block;
+	 width: 369px;
+	 min-height: 1px;
+	 padding: 5px;
+	 padding-left: 25px;
+}
+#tips_haut img{
+	float: right;
+	margin-right: 12px;
+	margin-top: 25px;	
+	cursor: pointer;
+}
+
+.linkToolTip {
+	color: red;
+}
+
+#tooltips label {
+	width: 45%;
+	display: block;
+	float: left;
+	font-weight: bold;
+}
+#tooltips span.desc {
+	width: 50%;
+	display: block;
+	float: left;
+}
+
+#mainTable {
+	width: 90%;
+	border-collapse: collapse;
+}
+#mainTable td, #mainTable th {
+	border: 1px solid #000000;	
+	
+}
+.juryIdTd {
+	width: 15%;
+}
+.juryVilleTd {
+	width: 75%;
+}
+
+#ajaxLoader {
+	display: block;
+	height: 100%;
+	width: 100%;
+	background-color: #FFFFFF;
+}
+#ajaxLoader img{
+	margin-top: 200px;
+}
+
+.op a{
+	background-color: red !important;	
+}
+.dossier a{
+	background-color: blue !important;	
+}
+.jury a{
+	background-color: green !important;	
+}
+.outils a{
+	background-color: #004a75 !important;	
+}
+
+img #closeToolTip {
+	z-index: 99999;	
+}
+
+
+/*  LEGEND  */
+#legend {
+	margin-top: 20px;	
+}
+.itemLegend {
+	float: left;
+	height: 20px;
+	line-height: 20px;
+	width: 165px;
+	display: block;	
+}
+.legendLabel {
+	display: block;
+	float: left;
+}
+.legendCouleur{
+	display: block;
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-right: 10px;
+}
+
+.afficheAll {
+	font-weight: bold;
+}

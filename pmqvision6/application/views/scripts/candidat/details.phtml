@@ -1,0 +1,135 @@
+<script type="text/javascript" >
+
+	$(document).ready(function(){
+
+		/*$("input[name=abandon]").click(function(){
+			$.ajax({
+				type: 'POST',
+				url: baseUrl+'/ajax/setabandon/',
+				data: 'candidat_metier_id=<?php //echo $this->candidat_metier_id; ?>'
+			});
+			$("input[name=abandon]").attr("disabled","disabled");
+		});*/
+
+	});
+
+</script>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"><?php echo $this->nom; ?></span>
+
+	</div>
+	<div id="ficheCand" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="max-width:250px;" valign="top">
+					<ul>
+						<li>Âge : <?php echo $this->age; ?></li>
+						<li>Ancienneté : <?php echo $this->anciennete; ?></li>
+						<li>Code : <?php echo $this->code; ?></li>
+						<li>Entité : <?php echo $this->entite; ?>
+							<a href="<?php echo $this->baseUrl(); ?>/entites/details/?entite_id=<?php echo $this->entite_id; ?>">
+								<p class="ui-icon ui-icon-zoomin" style="margin: 0pt; display: inline-block; vertical-align: middle; background-image: url(<?php echo $this->baseUrl(); ?>/css/jquery-forthac/images/ui-icons_007dc5_256x240.png);" title="Détails" ></p>
+							</a>
+						</li>
+						<li>Poste occupé : <?php echo $this->poste; ?></li>
+						<li>Type de contrat : <?php echo $this->contrat; ?></li>
+					</ul>
+				</td>
+				<td  style="max-width:450px;" valign="top">
+					<ul>
+						<li>Titres : <?php echo $this->titres; ?></li>
+						<li >Premi&egrave;re certification ? : <?php if( $this->cursus != '' ) echo $this->cursus; else echo 'Aucun'; ?></li>
+						<li>Formations effectuées : <?php echo $this->formations; ?></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<?php if( $this->role != 'branche' && $this->role != 'délégation' ): ?>
+		<ul>
+			<li>
+				Fichiers :
+				<?php echo $this->files; ?>
+				<form enctype="multipart/form-data" action="<?php echo $this->baseUrl(); ?>/outils/upload/" method="POST" >
+					<input type="hidden" name="MAX_FILE_SIZE" value="10000000" />
+					<input type="hidden" id='dir_pathUp' name="dir_pathUp" value="./documents/candidats/<?php echo $this->candidat_id; ?>/" />
+					<input type="hidden" name="redirect" value="/candidat/details/?id=<?php echo $this->candidat_id; if( $this->operation_id ) echo '&operation_id='.$this->operation_id; ?>" />
+					<input name="uploadedfile" type="file" />
+					<input type="submit" value="Telecharger" />
+				</form>
+			</li>
+		</ul>
+		<?php endif; ?>
+
+		<a href="<?php echo $this->baseUrl(); ?>/candidat/update/?id=<?php echo $this->candidat_id; ?>" class="button modif">Modifier</a>
+
+	</div>
+</div>
+
+<?php if( $this->operation_id ): ?>
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;">Opération n°<?php echo $this->operation_id; ?></span>
+	</div>
+
+	<div id="operation" class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<table width="630px" border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td style="max-width:550px;" valign="top">
+					<ul>
+						<li>Titre : <?php echo $this->titre2.$this->titre; ?></li>
+						<?php if($this->titre == 'Compétences Clés en Situation Professionnelle')
+						{?>
+						<li>Expert métier : <?php echo $this->expert; ?></li>
+						<li>Référent acompagnateur entreprise : <?php echo $this->evaluateur; ?></li>
+						<li>Organisme spécialisé : <?php echo $this->organisme; ?></li>
+						<?php }
+						else if ($this->titre2 == 'cqpbranche'){
+							?>
+							<li>Expert métier : <?php echo $this->expert; ?></li>
+							<?php 
+						}
+						
+						else{?>
+						<li>Expert métier : <?php echo $this->expert; ?></li>
+						<li>Référent évaluateur : <?php echo $this->evaluateur; ?></li>
+						<?php } ?>
+						
+						
+						
+						<li>Fiche enquête : <?php echo $this->fiche_enquete; ?></li>
+						<li>Etat : <?php echo $this->etat; ?></li>
+						<li>Formation : <?php echo $this->formation; ?></li>
+						<li>Jury : <?php echo $this->jury; ?></li>
+					</ul>
+				</td>
+			</tr>
+		</table>
+
+		<a href="<?php echo $this->baseUrl(); ?>/candidat/update/?id=<?php echo $this->candidat_id; ?>&operation_id=<?php echo $this->operation_id; ?>" class="button modif" >Modifier</a>
+		<a href="<?php echo $this->baseUrl(); ?>/saisie/index/metier/<?php echo $this->candidat_id_get; ?>" class="button modif" >Saisie des notes</a>
+		
+		<?php 
+		if ($this->titre2 == 'cqpbranche'){
+							?>
+		<a href="<?php echo $this->baseUrl(); ?>/tableauresultats/index/?id=<?php echo $this->candidat_id_get; ?>&passage=1" class="button script" >Tableau de résultats</a>
+<?php }else{
+?>
+<a href="<?php echo $this->baseUrl(); ?>/tableauresultats/index/?id=<?php echo $this->candidat_id_get; ?>&passage=2" class="button script" >Tableau de résultats</a>
+<?php 
+}?>
+	</div>
+</div>
+	<br />
+	<a href="<?php echo $this->baseUrl(); ?>/operations/visu/num/<?php echo $this->operation_id; ?>#ui-tabs-5" class="button return" >Retour</a>
+<?php else: ?>
+	<br />
+<a href="<?php echo $this->baseUrl(); ?>/operations/" class="button return" >Annuler</a>
+
+<?php endif; ?>

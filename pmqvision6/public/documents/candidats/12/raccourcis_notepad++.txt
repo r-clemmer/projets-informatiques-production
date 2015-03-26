@@ -1,0 +1,6 @@
+Enregistrer sous					Alt+S
+Recherche incrémentielle			Ctrl+Alt+I
+Aller au délimiteur symétrique		Ctrl+B
+Recherche volatile suivante			Ctrl+F3
+Recherche volatile précédente		Ctrl+Shift+F3
+

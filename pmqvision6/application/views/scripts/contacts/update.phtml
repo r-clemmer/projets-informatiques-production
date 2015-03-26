@@ -1,0 +1,438 @@
+<?php
+	$contact = $this->contact;
+	$entite = $this->entite;
+?>
+
+<script type="text/javascript">
+
+	function loadDemarches(){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+'/ajax/getlistedemarches',
+			async: false,
+			success: function( data ){
+				$("select.expertise#demarche_id").html( data ).show();
+				loadBloc1( $("select.expertise#demarche_id").val() );
+			}
+		});
+	}
+
+	function loadBloc1( demarche_id ){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+'/ajax/getlistebloc1',
+			data: 'demarche_id='+demarche_id,
+			async: false,
+			success: function( data ){
+				$("select.expertise#bloc1_id").html( data ).show();
+				loadBloc2( $("select.expertise#demarche_id").val(), $("select.expertise#bloc1_id").val() );
+			}
+		});
+	}
+
+	function loadBloc2( demarche_id, bloc1_id ){
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+'/ajax/getlistebloc2',
+			data: 'demarche_id='+demarche_id+'&bloc1_id='+bloc1_id,
+			async: false,
+			success: function( data ){
+				if( data == '' ){
+					$("select.expertise#bloc2_id").hide();
+				}else{
+					$("select.expertise#bloc2_id").html( data ).show();
+				}
+			}
+		});
+	}
+
+	function loadExpertises( contact_id ){
+		$("ul.expertise").html( '<li><img src="'+baseUrl+'/img/ajax-loader_s.gif" alt="chargement..." /></li>' );
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+'/ajax/getexpertises',
+			data: 'contact_id='+contact_id,
+			async: false,
+			success: function( data ){
+				$("ul.expertise").html( data );
+			}
+		});
+	}
+
+	function verif(){
+		var test = $("span.error:not([style])").length;
+		if(test == 0){
+			document.forms['modifcontact'].submit();
+		}else{
+			alert("Certains champs saisis ne sont pas correct !");
+		}
+	}
+
+	$(document).ready(function(){
+
+		//nom
+		if($("input#personne_nom").val() != ""){
+			$("span.error#personne_nom").hide();
+		}
+		$("input#personne_nom").change(
+			function(){
+				if($("input#personne_nom").val() == ""){
+					$("span.error#personne_nom").show();
+				}else{
+					$("span.error#personne_nom").hide();
+				}
+			}
+		);
+
+		//prenom
+		if($("input#personne_prenom").val() != ""){
+			$("span.error#personne_prenom").hide();
+		}
+		$("input#personne_prenom").change(
+			function(){
+				if($("input#personne_prenom").val() == ""){
+					$("span.error#personne_prenom").show();
+				}else{
+					$("span.error#personne_prenom").hide();
+				}
+			}
+		);
+
+		//date naissance
+		if($("input#personne_date_naissance").val() != ""){
+			$("span.error#personne_date_naissance").hide();
+		}
+		$("input#personne_date_naissance").change(
+			function(){
+				if($("input#personne_date_naissance").val() == ""){
+					$("input#personne_date_naissance + span").show();
+				}else{
+					var regle = "(0[1-9]|[12][0-9]|3[01])[- /.](0[1-9]|1[012])[- /.](19|20)([0-9][0-9])";
+					if($('input#personne_date_naissance').regex(regle) == true){
+						$("span.error#personne_date_naissance").hide();
+					}else{
+						$("span.error#personne_date_naissance").show();
+					}
+				}
+			}
+		);
+
+		//entité
+		if($("input#entite_id").val() != ""){
+			$("span.error#entite_id").hide();
+		}
+		$("input#entite_id").change(
+			function(){
+				if($("input#entite_id").val()==""){
+					$("span.error#entite_id").show();
+					$('#fonctions').html("");
+				}else{
+					$("span.error#entite_id").hide();
+				}
+			}
+		).trigger("change");
+		$("input#inputString").keyup(
+			function(){
+				$("input#entite_id").val("");
+				$("input#entite_id").change();
+			}
+		);
+
+		//fonctions
+		$.ajax({
+			type: 'POST',
+			url: baseUrl+"/ajax/getfonctionsbyentite",
+			data: 'entite_id='+$("input#entite_id").val()+'&contact_id='+<?php echo $contact['contact_id']; ?>,
+			async: false,
+			success: function(data){
+				if(data.length >0) {
+					$('#fonctions').html(data);
+					$('#fonctions').removeAttr("disabled");
+					$("span.error#fonctions").show();
+					$("select#fonctions option:selected").each(
+						function(){
+							$("span.error#fonctions").hide();
+							if( $(this).text() == "référent évaluateur" || $(this).text()== "référent acompagnateur" || $(this).text() == "expert métier" ){
+								$("input#contact_forme").removeAttr("disabled");
+							}
+						}
+					);
+				}
+			}
+		});
+		$("select#fonctions").change(
+			function(){
+				test = 0;
+				var fonctions = new Array;
+				$("select#fonctions option:selected").each(
+					function(){
+						fonctions[test] = $(this).text();
+						test++;
+					}
+				);
+				if(test != 0){
+					$("span.error#fonctions").hide();
+				}else{
+					$("span.error#fonctions").show();
+				}
+				var t = 0;
+				for( i=0; i<test; i++){
+					if(fonctions[i] == "référent évaluateur" || fonctions[i] == "référent acompagnateur" || fonctions[i] == "expert métier"){
+						t++;
+					}
+				}
+				if(t != 0){
+					$("input#contact_forme").removeAttr('disabled');
+					$("table.expertise").show();
+					loadDemarches();
+				}else{
+					$("input#contact_forme").removeAttr("checked");
+					$("input#contact_forme").attr('disabled', 'disabled');
+					$("input#contact_date_formation").val("");
+					$("input#contact_date_formation").attr('disabled', 'disabled');
+					$("span.error#contact_date_formation").hide();
+					$("table.expertise").hide();
+				}
+			}
+		).trigger('change');
+
+		//forme
+		if($("input#contact_forme").attr('checked') == false){
+			$("input#contact_date_formation").val("");
+		}else{
+			$("input#contact_date_formation").removeAttr('disabled');
+			$("span.error#contact_date_formation").hide();
+		}
+		$("input#contact_forme").change(
+			function(){
+				if($("input#contact_forme").attr('checked') == false){
+					$("input#contact_date_formation").val("");
+					$("input#contact_date_formation").attr('disabled', 'disabled');
+					$("span.error#contact_date_formation").hide();
+				}else{
+					$("input#contact_date_formation").removeAttr('disabled');
+					$("span.error#contact_date_formation").show();
+				}
+			}
+		);
+
+		//date formation
+		$("input#contact_date_formation").change(
+			function(){
+				if($("input#contact_date_formation").val() == ""){
+					$("span.error#contact_date_formation").show();
+				}else{
+					$("span.error#contact_date_formation").hide();
+				}
+			}
+		);
+
+		//demarche/titre
+		if( $("table.expertise:visible").length > 0 ){
+
+			loadExpertises( <?php echo $contact['contact_id']; ?> );
+
+			$("select.expertise#demarche_id").change(
+				function(){
+					loadBloc1( $("select.expertise#demarche_id").val() );
+				}
+			).trigger("change");
+
+			$("select.expertise#bloc1_id").change(
+				function(){
+					loadBloc2( $("select.expertise#demarche_id").val(), $("select.expertise#bloc1_id").val() );
+				}
+			).trigger("change");
+
+			$("a.button.add").click(
+				function(){
+					demarche_id = $("select.expertise#demarche_id").val();
+					bloc1_id = $("select.expertise#bloc1_id").val();
+					bloc2_id = $("select.expertise#bloc2_id").val();
+					$.ajax({
+						type: 'POST',
+						url: baseUrl+'/ajax/addexpertise',
+						data: 'contact_id='+<?php echo $contact['contact_id']; ?>+'&demarche_id='+demarche_id+'&bloc1_id='+bloc1_id+'&bloc2_id='+bloc2_id,
+						async: false,
+						success: function(){
+							loadExpertises( <?php echo $contact['contact_id']; ?> );
+						}
+					});
+				}
+			);
+
+			$("p.delete.expertise").live(
+				"click",
+				function(){
+					expertise_id = $(this).attr("id");
+					$.ajax({
+						type: "POST",
+						url: baseUrl+"/ajax/deleteexpertise",
+						data: 'expertise_id='+expertise_id,
+						async: false,
+						success: function(){
+							loadExpertises( <?php echo $contact['contact_id']; ?> );
+						}
+					});
+				}
+			);
+			
+		}
+
+	});
+
+</script>
+
+<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" id="ui-dialog-title-ficheCand" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<form name="modifcontact" method="POST" action="<?php echo $this->baseUrl(); ?>/contacts/update/?contact_id=<?php echo $contact['contact_id']; ?>" >
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="width:150px;" valign="top">Civilité :</td>
+					<td style="width:210px;" valign="top">
+						<select name="civilite_id" id="civilite_id">
+							<?php
+								foreach($this->civilites as $civilite){
+									if($contact['civilite_id'] == $civilite['civilite_id']){
+										$select = " selected ";
+									}else{
+										$select = " ";
+									}
+									$libelle = ucwords($civilite['civilite_libelle']);
+									echo '<option value="'.$civilite['civilite_id'].'" '.$select.'>'.$libelle.'</option>';
+								}
+							?>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Nom :</td>
+					<td><input type="text" name="personne_nom" id="personne_nom" value="<?php echo $contact['personne_nom']; ?>" /></td>
+					<td><span class="error" id="personne_nom">Vous devez saisir un nom de famille.</span></td>
+				</tr>
+				<tr>
+					<td>Prénom :</td>
+					<td><input type="text" name="personne_prenom" id="personne_prenom" value="<?php echo $contact['personne_prenom']; ?>" /></td>
+					<td><span class="error" id="personne_prenom">Vous devez saisir un prénom.</span></td>
+				</tr>
+				<tr>
+					<td>Date de naissance :</td>
+					<td><input type="text" name="personne_date_naissance" id="personne_date_naissance" class="datepicker" value="<?php echo $contact['personne_date_naissance']; ?>" /></td>
+					<td><span class="error" id="personne_date_naissance">Vous devez saisir une date valide (JJ/MM/AAAA).</span></td>
+				</tr>
+				<tr>
+					<td>Téléphone :</td>
+					<td><input type="text" name="personne_tel" id="personne_tel" value="<?php echo $contact['personne_tel']; ?>" /></td>
+				</tr>
+				<tr>
+					<td>Téléphone portable :</td>
+					<td><input type="text" name="personne_port" id="personne_port" value="<?php echo $contact['personne_port']; ?>" /></td>
+				</tr>
+				<tr>
+					<td>E-mail :</td>
+					<td><input type="text" name="personne_mail" id="personne_mail" value="<?php echo $contact['personne_mail']; ?>" /></td>
+				</tr>
+				<tr>
+					<td>Poste :</td>
+					<td><input type="text" name="personne_poste" id="personne_poste" value="<?php echo $contact['personne_poste']; ?>" /></td>
+				</tr>
+				<?php 
+					$visible = $entite['visible'];
+					if($visible == 'oui' ){
+						
+									$checked_actif = ' checked = "checked" ';
+									$visible2 ="on";
+								}else{
+									$checked_actif = '';
+									$visible2 ="off";
+								}
+				if( $this->role == 'forthac' ){?>
+				<tr>
+					<td>Visible ?</td>
+					<td>
+					<?php 
+				
+						?>
+					
+					<input type="checkbox"  name="visible" <?php echo $checked_actif; ?> ></td>
+				</tr>
+				<?php }else{?>
+				<input type="hidden"  name="visible" value="<?php echo $visible2; ?>" >
+				<?php }?>
+				<tr>
+					<td>Entité :</td>
+					<td>
+						<input type="text" id="inputString" name="entite_nom" value="<?php if($entite['entite_nom']!=""){ echo $entite['entite_nom']; } ?>" />
+						<input type="hidden" id="entite_id" name="entite_id" value="<?php echo $contact['entite_id']; ?>" />
+						<br />
+						<div class="suggestionsBox" id="suggestions" style="display: none;"> <!-- bloc contenant les eventuelles suggestions -->
+							<img src="<?php echo $this->baseUrl(); ?>/img/upArrow.png" style="position: relative; top: -12px; left: 30px;" alt="upArrow" /> <!-- image de la fleche vers le haut -->
+							<div class="suggestionList" id="autoSuggestionsList"><!-- liste contenant les suggestions -->
+								&nbsp;
+							</div>
+						</div>
+					</td>
+					<td><span class="error" id="entite_id" >Commencez à saisir et choisissez dans la liste.</span></td>
+				</tr>
+				<tr>
+					<td>Fonction(s) :</td>
+					<td><select name="fonctions[]" id="fonctions" multiple size="6" ></select></td>
+					<td><span class="error" id="fonctions">Vous devez sélectionner au minimum une fonction.</span></td>
+				</tr>
+				<tr>
+					<td>Formé :</td>
+					<td>
+						<?php
+							$check = "";
+							if($contact['contact_forme'] == 1){
+								$check = " checked ";
+							}
+						?>
+						<input type="checkbox" id="contact_forme" name="contact_forme" <?php echo $check; ?> />
+					</td>
+				</tr>
+				<tr>
+					<td>Date de formation :</td>
+					<td><input type="text" id="contact_date_formation" name="contact_date_formation" class="datepicker" value="<?php echo $contact['contact_date_formation']; ?>" /></td>
+					<td><span class="error" id="contact_date_formation">Vous devez saisir une date valide (JJ/MM/AAAA).</span></td>
+				</tr>
+			</table>
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0" class="expertise" >
+				<tr>
+					<td style="max-width:150px;" >Expertises :</td>
+					<td style="max-width:480px;">
+						<ul class="expertise" ></ul>
+						<ul>
+							<select name="demarche_id" class="expertise" id="demarche_id" ></select>
+							<select name="bloc1_id" class="expertise" id="bloc1_id" ></select>
+							<select name="bloc2_id" class="expertise" id="bloc2_id" ></select>
+							<a href="#" class="button add expertise" >Ajouter</a>
+						</ul>
+					</td>
+				</tr>
+			</table>
+		</form>
+
+		<br />
+		Ajouter un fichier :
+		<form enctype="multipart/form-data" action="<?php echo $this->baseUrl(); ?>/outils/upload/" method="POST" >
+			<input type="hidden" name="MAX_FILE_SIZE" value="10000000000" />
+			<input type="hidden" id='dir_pathUp' name="dir_pathUp" value="./documents/contacts/<?php echo $_GET['contact_id']; ?>/" />
+			<input type="hidden" name="redirect" value="/contacts/details/?contact=&contact_id=<?php echo $_GET['contact_id']; ?>" />
+			<input name="uploadedfile" type="file" />
+			<input type="submit" value="Telecharger" />
+		</form>
+
+	</div>
+</div>
+
+<a href="#" onclick="javascript:verif();" class="button record" >Enregistrer</a>
+<a href="<?php echo $this->baseUrl(); ?>/contacts/details/?contact_id=<?php echo $contact['contact_id']; ?>" class="button return" >Annuler</a>

@@ -1,0 +1,233 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+/*		$("select#type_entite_id > option:not(#entreprise)").click(
+			function(){
+				$("select#parent_id").val("0");
+				$("select#parent_id").attr("disabled","disabled");
+			}
+		);*/
+
+		$("input#entite_nom").keyup(
+			function(){
+				if($("input#entite_nom").val().length == 0){
+					$("span.error#entite_nom").show();
+				}else{
+					$("span.error#entite_nom").hide();
+				}
+			}
+		);
+
+		$("input#entite_adresse").keyup(
+			function(){
+				if($("input#entite_adresse").val().length == 0){
+					$("span.error#entite_adresse").show();
+				}else{
+					$("span.error#entite_adresse").hide();
+				}
+			}
+		);
+
+		$("input#entite_ville").keyup(
+			function(){
+				if($("input#entite_ville").val().length == 0) $("span.error#entite_ville").show();
+				else $("span.error#entite_ville").hide();
+			}
+		);
+
+		$("input#entite_cp").keyup(
+			function(){
+				if($("input#entite_cp").val().length == 0) $("span.error#entite_cp").show();
+				else $("span.error#entite_cp").hide();
+			}
+		);
+
+/*		$("select#type_entite_id").click(
+			function(){
+				$("span.error#type_entite_id").hide();
+			}
+		);*/
+
+		//$("select#parent_id").attr("disabled","disabled");
+/*		$("select#type_entite_id").click(function(){
+			test = 0;
+			$.each(
+				$('select#type_entite_id > option:selected'),
+				function(){
+					if( $(this).text() == "Entreprise" ){
+						test++;
+					}
+				}
+			);
+			if( test > 0 ){
+				$("select#parent_id").attr("disabled","");
+			}else{
+				$("select#parent_id").attr("disabled","disabled");
+			}
+		});*/
+		$("input.type_entite_id").change(function(){
+			var i=test=0;
+			$("input.type_entite_id:checked").each(function(){
+				if( $(this).next().text() == 'Entreprise' ){
+					$("select#parent_id").attr("disabled","");
+					test++;
+				}
+				i++;
+			});
+			if( i==0 ){
+				$("span.error#type_entite_id").show();
+				if( test == 0 ){
+					$("select#parent_id").attr("disabled","disabled");
+				}
+			}else{
+				$("span.error#type_entite_id").hide();
+			}
+		});
+
+		$("span.error#entite_login").hide();
+		$("input#entite_login").keyup(
+			function(){
+				if( $("input#entite_login").val() != '' ){
+					$.post(
+						baseUrl + "/ajax/checklogin/",
+						{
+							string : $("input#entite_login").val()
+						},
+						function( data ){
+							if( data > 0 ){
+								$("span.error#entite_login").show();
+							}else{
+								$("span.error#entite_login").hide();
+							}
+						}
+					);
+				}else{
+					$("span.error#entite_login").hide();
+				}
+			}
+		);
+
+	});
+
+	function verif(){
+		var test = $("span.error:not([style])").length;
+		if(test == 0){
+			document.forms['creerentite'].submit();
+		}else{
+			alert("Certains champs saisis ne sont pas correct !");
+		}
+	}
+
+</script>
+
+<form name="creerentite" method="POST" action="" >
+
+	<div style="display: block; height: auto; width: 656px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all " aria-labelledby="ui-dialog-title-ficheCand">
+		<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+			<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+		</div>
+		<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+			<table width="630px" border="0" cellspacing="0" cellpadding="0">
+				<tr>
+					<td style="width:150px;" valign="top">Nom :</td>
+					<td style="width:250px;" valign="top"><input type="text" name="entite_nom" id="entite_nom" /></td>
+					<td><span class="error" id="entite_nom" >Vous devez saisir un nom.</span></td>
+				</tr>
+				<tr>
+					<td>Code :</td>
+					<td><input type="text" name="entite_code" /></td>
+				</tr>
+				<tr>
+					<td>Adresse :</td>
+					<td><input type="text" name="entite_adresse" id="entite_adresse" /></td>
+					<td><span class="error" id="entite_adresse" >Vous devez saisir une adresse.</span></td>
+				</tr>
+				<tr>
+					<td>Ville :</td>
+					<td><input type="text" name="entite_ville" id="entite_ville" /></td>
+					<td><span class="error" id="entite_ville">Vous devez saisir une ville.</span></td>
+				</tr>
+				<tr>
+					<td>Code postal :</td>
+					<td><input type="text" name="entite_cp" id="entite_cp" maxlength="5" /></td>
+					<td><span class="error" id="entite_cp">Vous devez saisir un code postal.</span></td>
+				</tr>
+				<tr>
+					<td>Activité :</td>
+					<td><input type="text" name="entite_activite" /></td>
+				</tr>
+				<tr>
+					<td>Téléphone :</td>
+					<td><input type="text" name="entite_tel" /></td>
+				</tr>
+				<tr>
+					<td>Type d'entité :</td>
+					<td>
+						<ul>
+						<?php foreach($this->types as $type) : ?>
+							<li style="list-style-type: none;" >
+								<input type="checkbox" value="<?php echo $type['type_entite_id']; ?>" name="type_entite_id[]" class="type_entite_id" /> 
+								<label>
+								<?php 
+									if( $type['type_entite_libelle'] == 'forthac')
+									{
+										echo 'Opcalia';
+									}elseif( $type['type_entite_libelle'] == 'délégation')
+									{
+										echo 'Entité Opcalia';
+									}else{
+										echo ucfirst( $type['type_entite_libelle'] );
+									}
+																
+								?>
+								</label>
+							</li>
+						<?php endforeach; ?>
+						</ul>
+					</td>
+					<td><span class="error" id="type_entite_id">Vous devez sélectionner au minimum un type.</span></td>
+				</tr>
+				<tr>
+					<td>Branche :</td>
+					<td>
+						<select name="parent_id" id="parent_id">
+							<option value="0">Aucune</option>
+							<?php
+								foreach($this->branches as $branche){
+									echo '<option value="'.$branche['entite_id'].'">'.ucwords( $branche['entite_nom'] ).'</option>';
+								}
+							?>
+						</select>
+					</td>
+				</tr>
+				<?php if( $this->role == 'forthac' ){?>
+				<tr>
+					<td>Visible ?</td>
+					<td>					
+					<input type="checkbox"  name="visible" checked = "checked" ></td>
+				</tr>
+				<?php }else{?>
+				<input type="hidden"  name="visible" value="on" >
+				<?php }?>
+				<tr style="display: none;">
+					<td>Login :</td>
+					<td><input type="text" name="entite_login" id="entite_login" /></td>
+					<td><span class="error" id="entite_login">Ce login est déjà utilisé !</span></td>
+				</tr>
+				<!--<tr>
+					<td>Mot de passe :</td>
+					<td><input type="text" name="entite_password" /></td>
+				</tr>-->
+			</table>
+
+		</div>
+	</div>
+
+</form>
+
+<a href="#" onclick="javascript:verif();" class="button record" >Enregistrer</a>
+<a href="<?php echo $this->baseUrl(); ?>/entites/" class="button return" >Annuler</a>

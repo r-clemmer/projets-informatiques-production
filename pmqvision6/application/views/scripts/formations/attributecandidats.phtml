@@ -1,0 +1,54 @@
+<script type="text/javascript">
+
+	$(document).ready(function(){
+
+		$("#list_candidats").jqGrid({
+		   	url: baseUrl + '/ajax/getlistecandidats/?string=',
+			datatype: "json",
+			mtype: 'POST',
+		   	colNames:['Candidats','Entreprise', 'Opération', 'Titre'],
+		   	colModel:[
+		   		{name:'personne_nom',index:'personne_nom'},
+		   		{name:'entite_nom',index:'entite_nom'},
+				{name:'fiche_id',index:'fiche_id', align:'center'},
+		   		{name:'metier_id',index:'metier_id'}
+		   	],
+		   	rowNum:25,
+		   	rowList:[25,50,100],
+		   	pager: '#pager_candidats',
+		   	sortname: 'personne_nom',
+		    viewrecords: true,
+		    sortorder: "ASC",
+		    caption:"Candidats",
+		    loadonce: false,
+			width: 650,
+		    height: "100%",
+			multiselect : true
+		}).navGrid("#pager_candidats",{edit:false,add:false,del:false,search:false});
+
+		$("a.record").click( function() {
+			var s = new String( $("#list_candidats").jqGrid('getGridParam','selarrrow') );
+			s.split(',');
+			$.post(
+				baseUrl + '/ajax/attributecandidatstoformation/',
+				{
+					formation_id : <?php echo $this->formation_id; ?>,
+					ids : s
+				},
+				function(){
+					document.location.href=baseUrl+'/formations/details/?id=<?php echo $this->formation_id; ?>';
+				}
+			);
+		});
+
+	});
+
+</script>
+
+<table id="list_candidats"></table>
+<div id="pager_candidats"></div>
+
+<br />
+
+<a href="#" class="button record" >Attribuer</a>
+<a href="<?php echo $this->baseUrl(); ?>/jurys/details/?id=<?php echo $this->formation_id; ?>" class="button return" >Annuler</a>

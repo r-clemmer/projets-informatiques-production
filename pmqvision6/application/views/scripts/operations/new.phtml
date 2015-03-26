@@ -1,0 +1,362 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("select#c_entreprise_id").hide();
+		$("select#c_org_ref_id").hide();
+		$("select#c_greta_ref_id").hide();
+		$("select#c_org_del_id").hide();
+
+		//entreprise
+		$("select#entreprise_id").change(
+			function(){
+				
+				$("input#v_entreprise").val( $("select#entreprise_id option:selected").val() );
+				$("span#entreprise").text( $("select#entreprise_id option:selected").text() );
+				
+				if( $("select#entreprise_id option:selected").val() != -1 ){
+					$.post(
+						baseUrl + "/ajax/getlistecontacts/",
+						{
+							entite_id : $("select#entreprise_id option:selected").val()
+						},
+						function(data){
+							if(data.length >0) {
+								$('select#c_entreprise_id').html(data);
+								$('select#c_entreprise_id').show();
+							}
+						}
+					);
+				}else{
+					$("select#c_entreprise_id").hide();
+					$("input#v_entreprise").val( 0 );
+					$("span#entreprise").text( "Aucune" );
+					$("input#v_c_entreprise").val( 0 );
+					$("span#c_entreprise").text( "Aucun" );
+				}
+				
+			}
+		);
+
+		//contact entreprise
+		$("select#c_entreprise_id").change(
+			function(){
+
+				if( $("select#c_entreprise_id option:selected").val() != -1 ){
+					
+					$("input#v_c_entreprise").val( $("select#c_entreprise_id option:selected").val() );
+					$("span#c_entreprise").text( $("select#c_entreprise_id option:selected").text() );
+					
+				}else{
+
+					$("input#v_c_entreprise").val( 0 );
+					$("span#c_entreprise").text( "Aucun" );
+					
+				}
+				
+				
+			}
+		);
+
+		//organisme referent
+		$("select#org_ref_id").change(
+			function(){
+				
+				$("input#v_org_ref").val( $("select#org_ref_id option:selected").val() );
+				$("span#org_ref").text( $("select#org_ref_id option:selected").text() );
+				
+				if( $("select#org_ref_id option:selected").val() != -1 ){
+					$.post(
+						baseUrl + "/ajax/getlistecontacts/",
+						{
+							entite_id : $("select#org_ref_id option:selected").val()
+						},
+						function(data){
+							if(data.length >0) {
+								$('select#c_org_ref_id').html(data);
+								$('select#c_org_ref_id').show();
+							}
+						}
+					);
+				}else{
+					$("select#c_org_ref_id").hide();
+					$("input#v_org_ref").val( 0 );
+					$("span#org_ref").text( "Aucun" );
+					$("input#v_c_org_ref").val( 0 );
+					$("span#c_org_ref").text( "Aucun" );
+				}
+				
+			}
+		);
+
+		//contact org referent
+		$("select#c_org_ref_id").change(
+			function(){
+
+				if( $("select#c_org_ref_id option:selected").val() != -1 ){
+					
+					$("input#v_c_org_ref").val( $("select#c_org_ref_id option:selected").val() );
+					$("span#c_org_ref").text( $("select#c_org_ref_id option:selected").text() );
+					
+				}else{
+
+					$("input#v_c_org_ref").val( 0 );
+					$("span#c_org_ref").text( "Aucun" );
+					
+				}
+				
+				
+			}
+		);
+
+		//délégation
+		$("select#org_del_id").change(
+			function(){
+				
+				$("input#v_org_del").val( $("select#org_del_id option:selected").val() );
+				$("span#org_del").text( $("select#org_del_id option:selected").text() );
+				
+				if( $("select#org_del_id option:selected").val() != -1 ){
+					$.post(
+						baseUrl + "/ajax/getlistecontacts/",
+						{
+							entite_id : $("select#org_del_id option:selected").val()
+						},
+						function(data){
+							if(data.length >0) {
+								$('select#c_org_del_id').html(data);
+								$('select#c_org_del_id').show();
+							}
+						}
+					);
+				}else{
+					$("select#c_org_del_id").hide();
+					$("input#v_org_del").val( 0 );
+					$("span#org_del").text( "Aucun" );
+					$("input#v_c_org_del").val( 0 );
+					$("span#c_org_del").text( "Aucun" );
+				}
+				
+			}
+		);
+
+		//contact délégation
+		$("select#c_org_del_id").change(
+			function(){
+
+				if( $("select#c_org_del_id option:selected").val() != -1 ){
+					
+					$("input#v_c_org_del").val( $("select#c_org_del_id option:selected").val() );
+					$("span#c_org_del").text( $("select#c_org_del_id option:selected").text() );
+					
+				}else{
+
+					$("input#v_c_org_del").val( 0 );
+					$("span#c_org_del").text( "Aucun" );
+					
+				}
+				
+				
+			}
+		);
+		
+
+
+
+
+	//GRETA
+	$("select#greta_ref_id").change(
+		function(){
+			
+			$("input#v_greta_ref").val( $("select#greta_ref_id option:selected").val() );
+			$("span#greta_ref").text( $("select#greta_ref_id option:selected").text() );
+			
+			if( $("select#greta_ref_id option:selected").val() != -1 ){
+				$.post(
+					baseUrl + "/ajax/getlistecontacts/",
+					{
+						entite_id : $("select#greta_ref_id option:selected").val()
+					},
+					function(data){
+						if(data.length >0) {
+							$('select#c_greta_ref_id').html(data);
+							$('select#c_greta_ref_id').show();
+						}
+					}
+				);
+			}else{
+				$("select#c_greta_ref_id").hide();
+				$("input#v_greta_ref").val( 0 );
+				$("span#greta_ref").text( "Aucun" );
+				$("input#v_c_greta_ref").val( 0 );
+				$("span#c_greta_ref").text( "Aucun" );
+			}
+			
+		}
+	);
+
+	//contact org referent
+	$("select#c_greta_ref_id").change(
+		function(){
+
+			if( $("select#c_greta_ref_id option:selected").val() != -1 ){
+				
+				$("input#v_c_greta_ref").val( $("select#c_greta_ref_id option:selected").val() );
+				$("span#c_greta_ref").text( $("select#c_greta_ref_id option:selected").text() );
+				
+			}else{
+
+				$("input#v_c_greta_ref").val( 0 );
+				$("span#c_greta_ref").text( "Aucun" );
+				
+			}
+			
+			
+		}
+	);
+	
+	});
+	
+
+	function valideFiche(){
+	
+			document.forms['form'].submit();
+	
+	}
+
+
+
+
+
+
+
+
+
+	
+</script>
+
+<div id="content-1">
+	<select id="entreprise_id" name="entreprise_id" >
+		<option value="-1">Veuillez choisir une entreprise</option>
+		<?php
+			foreach($this->listeEntreprises as $entreprise){
+		?>
+				<option value="<?php echo $entreprise['entite_id']; ?>" ><?php echo ucwords($entreprise['entite_nom']); ?></option>
+		<?php
+			} 
+		?>
+	</select>
+	<select id="c_entreprise_id" name="c_entreprise_id">
+	</select>
+	<br />
+	<a href="<?php echo $this->baseUrl(); ?>/operations/" class="button return" >Annuler</a>
+</div>
+
+<div id="content-2">
+	<select id="org_ref_id" name="org_ref_id" >
+		<option value="-1">Veuillez choisir un organisme référent</option>
+		<?php
+			foreach($this->listeOrgRef as $org_ref){
+		?>
+				<option value="<?php echo $org_ref['entite_id']; ?>" ><?php echo ucwords($org_ref['entite_nom']); ?></option>
+		<?php
+			}
+		?>
+	</select>
+	<select id="c_org_ref_id" name="c_org_ref_id" >
+	</select>
+	<br />
+	<a href="<?php echo $this->baseUrl(); ?>/operations/" class="button return" >Annuler</a>
+</div>
+
+
+
+
+<div id="content-3">
+	<select id="org_del_id" name="org_del_id" >
+		<option value="-1">Veuillez choisir une Entité Opcalia</option>
+		<?php
+			foreach($this->listeDel as $org_del){
+		?>
+				<option value="<?php echo $org_del['entite_id']; ?>" ><?php echo ucwords($org_del['entite_nom']); ?></option>
+		<?php
+			}
+		?>
+	</select>
+	<select id="c_org_del_id" name="c_org_del_id" >
+	</select>
+	<br />
+	<a href="<?php echo $this->baseUrl(); ?>/operations/" class="button return" >Annuler</a>
+</div>
+
+<div id="content-4">
+Si PMQ DIPLOME<br><br>
+	<select id="greta_ref_id" name="greta_ref_id" >
+		<option value="-1">Veuillez choisir un Greta</option>
+		<?php
+			foreach($this->listeGretaRef as $greta_ref){
+		?>
+				<option value="<?php echo $greta_ref['entite_id']; ?>" ><?php echo ucwords($greta_ref['entite_nom']); ?></option>
+		<?php
+			}
+		?>
+	</select>
+	<select id="c_greta_ref_id" name="c_greta_ref_id" >
+	</select>
+	<br /><br>
+	<a href="<?php echo $this->baseUrl(); ?>/operations/" class="button return" >Annuler</a>
+</div>
+
+
+<div id="content-5">
+	Résumé des sélections :
+	<table id="new-fiche" class="decoration">
+		<tr>
+			<th>Entreprise</th>
+			<td><span id="entreprise">Aucune</span></td>
+		</tr>
+		<tr>
+			<th>Contact entreprise</th>
+			<td><span id="c_entreprise">Aucun</span></td>
+		</tr>
+		<tr>
+			<th>Organisme référent</th>
+			<td><span id="org_ref">Aucun</span></td>
+		</tr>
+		<tr>
+			<th>Contact organisme référent</th>
+			<td><span id="c_org_ref">Aucun</span></td>
+		</tr>
+		<tr>
+			<th>Entité Opcalia</th>
+			<td><span id="org_del">Aucun</span></td>
+		</tr>
+		<tr>
+			<th>Contact Entité Opcalia</th>
+			<td><span id="c_org_del">Aucun</span></td>
+		</tr>
+		<tr>
+			<th>GRETA</th>
+			<td><span id="greta_ref">Aucun</span></td>
+		</tr>
+		<tr>
+			<th>Contact GRETA</th>
+			<td><span id="c_greta_ref">Aucun</span></td>
+		</tr>
+		
+		
+	</table>
+	<span id="error"></span><br />
+	<form method="POST" name="form" action="#" >
+		<input type="hidden" id="v_entreprise" name="entreprise" value="0" />
+		<input type="hidden" id="v_c_entreprise" name="c_entreprise" value="0" />
+		<input type="hidden" id="v_org_ref" name="org_ref" value="0" />
+		<input type="hidden" id="v_c_org_ref" name="c_org_ref" value="0" />
+		<input type="hidden" id="v_greta_ref" name="greta_ref" value="0" />
+		<input type="hidden" id="v_c_greta_ref" name="c_greta_ref" value="0" />
+		<input type="hidden" id="v_org_del" name="org_del" value="0" />
+		<input type="hidden" id="v_c_org_del" name="c_org_del" value="0" />
+	</form>
+	<br />
+	<a href="javascript:valideFiche();" class="button record" >Enregistrer</a>
+	<a href="<?php echo $this->baseUrl(); ?>/operations/" class="button return" >Annuler</a>
+</div>

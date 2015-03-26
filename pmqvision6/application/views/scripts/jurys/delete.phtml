@@ -1,0 +1,21 @@
+<?php if( $this->nb_membres > 0 ): ?>
+	<p>Il est impossible de supprimer ce jury. Vous devez lui enlever au préalable tous ses membres.</p>
+	<a href="<?php echo $this->baseUrl(); ?>/jurys/details/?id=<?php echo $this->jury['jury_id']; ?>" class="button return" >Retour</a>
+	<br />
+<?php endif; ?>
+
+<?php if( $this->nb_candidats > 0 ): ?>
+	<p>Il est impossible de supprimer ce jury. Vous devez lui enlever au préalable tous les candidats qui y sont liés.</p>
+	<a href="<?php echo $this->baseUrl(); ?>/jurys/details/?id=<?php echo $this->jury['jury_id']; ?>" class="button return" >Retour</a>
+	<br />
+<?php endif; ?>
+
+<?php if( $this->nb_membres == 0 && $this->nb_candidats == 0 ): ?>
+	<p>Etes-vous sûr de vouloir supprimer le jury ?</p>
+	<form action="<?php echo $this->baseUrl(); ?>/jurys/delete/?id=<?php echo $this->jury['jury_id']; ?>" method="post">
+		<div>
+			<input type="submit" name="del" value="Oui" />
+			<input type="submit" name="del" value="Non" />
+		</div>
+	</form>
+<?php endif; ?>

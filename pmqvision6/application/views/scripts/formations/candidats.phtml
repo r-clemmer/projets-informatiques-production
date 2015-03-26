@@ -1,0 +1,53 @@
+<script type="text/javascript">
+	$(document).ready(function(){
+
+		$("#list").jqGrid({
+		   	url: baseUrl + '/ajax/getcandidatsbyformation/?formation_id=<?php echo $this->formation_id; ?>',
+			datatype: "json",
+			mtype: 'POST',
+			height: "100%",
+			width: 650,
+		   	colNames:['Candidat', 'Entreprise', 'Opération', 'Démarche/Titre','Durée estimée', 'Durée réalisée'],
+		   	colModel:[
+				{name:'personne_nom',index:'personne_nom'},
+		   		{name:'entite_id',index:'entite_id'},
+		   		{name:'fiche_id',index:'fiche_id', sortable:false},
+		   		{name:'metier_id',index:'metier_id', sortable:false},
+				{name:'duree_estimee',index:'duree_estimee', sortable:false, align: "center"},
+		   		{name:'duree_realisee',index:'duree_realisee', sortable:false, align: "center"}
+		   	],
+		   	rowNum:10,
+		   	rowList:[10,20,30],
+		   	pager: '#pager',
+		   	sortname: 'personne_nom',
+		    viewrecords: false,
+		    sortorder: "ASC",
+		    loadonce: false,
+			multiselect: true
+		}).navGrid('#pager',{edit:false,add:false,del:false,search:false});
+
+		$("a#candidat.delete").click( function() {
+			var s = new String( $("#list").jqGrid('getGridParam','selarrrow') );
+			s.split(',');
+			$.post(
+				baseUrl + '/ajax/deletecandidatformation/',
+				{
+					formation_id : <?php echo $this->formation_id; ?>,
+					ids : s
+				},
+				function(){
+					$("#list").trigger("reloadGrid");
+				}
+			);
+		});
+
+	});
+
+</script>
+
+<table id="list" class="jqgrid"></table>
+<div id="pager"></div>
+
+<a href="<?php echo $this->baseUrl(); ?>/formations/attributecandidats/?id=<?php echo $this->formation_id; ?>" class="button add" id="candidat" >Attribuer des candidats</a>
+<a href="#" class="button delete" id="candidat" >Enlever la sélection</a>
+<a href="<?php echo $this->baseUrl(); ?>/formations/details/id/<?php echo $this->formation_id; ?>" class="button return" >Retour</a>

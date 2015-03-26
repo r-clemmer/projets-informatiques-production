@@ -1,0 +1,258 @@
+<?php
+
+	if( isset( $_POST['choice2'] ) ) $choice2 = $_POST['choice2'];
+	else $choice2 = '';
+
+	if( isset( $_POST['choice1'] ) ) $choice1 = $_POST['choice1'];
+	else $choice1 = '';
+
+	if( isset( $_POST['string'] ) ) $string = $_POST['string'];
+	else $string = '';
+
+?>
+
+<script type="text/javascript" >
+
+	$(document).ready(
+		function(){
+
+			//init
+			$("select#choice2").hide();
+			$("img#loading").hide();
+			$("span.error").hide();
+	
+			//select 1
+			$("select#choice1").change(
+				function(){
+					$("select#choice2").text('').hide();
+					if( $("select#choice1").val() == 'personne' ){
+						$("img#loading").show();
+						$.post(
+							baseUrl + "/ajax/gettypespersonne/",
+							function(data){
+								$("select#choice2").html(data);
+								$("select#choice2").show();
+								$("img#loading").hide();
+								<?php if( $choice2 ): ?>
+									$("select#choice2 option#<?php echo $choice2; ?>").attr("selected", "selected");
+								<?php endif; ?>
+							}
+						);
+					}else if( $("select#choice1").val() == 'entite' ){
+						$("img#loading").show();
+						$.post(
+							baseUrl + "/ajax/gettypesentite/",
+							function(data){
+								$("select#choice2").html(data);
+								$("select#choice2").show();
+								$("img#loading").hide();
+								<?php if( $choice2 ): ?>
+									$("select#choice2 option#<?php echo $choice2; ?>").attr("selected", "selected");
+								<?php endif; ?>
+							}
+						);
+					}else{
+						$("select#choice2").text('').hide();
+					}
+				}
+			).trigger('change');
+	
+			//string
+			$("input#string").focus(
+				function(){
+					if( $("input#string").val() == 'Tapez votre texte ici...' ){
+						$("input#string").val("");
+					}
+				}
+			);
+			$("input#string").blur(
+				function(){
+					if( $("input#string").val() == '' ){
+						$("input#string").val("Tapez votre texte ici...");
+					}
+				}
+			);
+
+			<?php if( $this->resultats ): ?>
+
+				<?php if( $choice1 == 'personne' ): ?>
+
+					<?php if( $choice2 == '' ): ?>
+
+						$("#list").jqGrid({
+							url: baseUrl + '/ajax/getrecherchenom/?search=<?php echo $string; ?>&choice1=<?php echo $choice1; ?>&choice2=<?php echo $choice2; ?>',
+							datatype: "json",
+							mtype: 'POST',
+							colNames:['Personne','Entité'],
+							colModel:[
+								{name:'personne_nom',index:'personne_nom'},
+								{name:'entite_id',index:'entite_id'}
+							],
+							rowNum:10,
+							rowList:[10,20,30],
+							pager: '#pager',
+							sortname: 'personne_nom',
+							viewrecords: true,
+							sortorder: "ASC",
+							caption:"Résultats pour une personne ( recherche : <?php echo $string; ?> ) ",
+							loadonce: false,
+							height: "100%",
+							width: 630
+						}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+					<?php elseif( $choice2 == 'candidat' ): ?>
+
+						$("#list").jqGrid({
+							url: baseUrl + '/ajax/getrecherchenom/?search=<?php echo $string; ?>&choice1=<?php echo $choice1; ?>&choice2=<?php echo $choice2; ?>',
+							datatype: "json",
+							mtype: 'POST',
+							colNames:['Candidat','Entité', 'Opération', 'Titres'],
+							colModel:[
+								{name:'personne_nom',index:'personne_nom'},
+								{name:'entite_id',index:'entite_id'},
+								{name:'operations',index:'operations', sortable:false, align: "center", width: 70},
+								{name:'metiers',index:'metiers', sortable:false}
+							],
+							rowNum:10,
+							rowList:[10,20,30],
+							pager: '#pager',
+							sortname: 'personne_nom',
+							viewrecords: true,
+							sortorder: "ASC",
+							caption:"Résultats pour un candidat ( recherche : <?php echo $string; ?> ) ",
+							loadonce: false,
+							height: "100%",
+							width: 630
+						}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+					<?php else: ?>
+
+						$("#list").jqGrid({
+							url: baseUrl + '/ajax/getrecherchenom/?search=<?php echo $string; ?>&choice1=<?php echo $choice1; ?>&choice2=<?php echo $choice2; ?>',
+							datatype: "json",
+							mtype: 'POST',
+							colNames:['Contact','Entité', 'Opération'],
+							colModel:[
+								{name:'personne_nom',index:'personne_nom'},
+								{name:'entite_id',index:'entite_id'},
+								{name:'operations',index:'operations', sortable:false, width: 80}
+							],
+							rowNum:10,
+							rowList:[10,20,30],
+							pager: '#pager',
+							sortname: 'personne_nom',
+							viewrecords: true,
+							sortorder: "ASC",
+							caption:"Résultats pour un contact ( recherche : <?php echo $string; ?> ) ",
+							loadonce: false,
+							height: "100%",
+							width: 630
+						}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+					<?php endif; ?>
+
+				<?php elseif( $choice1 == 'entite' ): ?>
+
+					<?php if( $choice2 == '' ): ?>
+
+						$("#list").jqGrid({
+							url: baseUrl + '/ajax/getrecherchenom/?search=<?php echo $string; ?>&choice1=<?php echo $choice1; ?>&choice2=<?php echo $choice2; ?>',
+							datatype: "json",
+							mtype: 'POST',
+							colNames:['Nom','Type', 'Opérations'],
+							colModel:[
+								{name:'entite_nom',index:'entite_nom'},
+								{name:'type',index:'type', sortable:false},
+								{name:'fiches',index:'fiches', sortable:false}
+							],
+							rowNum:10,
+							rowList:[10,20,30],
+							pager: '#pager',
+							sortname: 'entite_nom',
+							viewrecords: true,
+							sortorder: "ASC",
+							caption:"Résultats pour une entité ( recherche : <?php echo $string; ?> ) ",
+							loadonce: false,
+							height: "100%",
+							width: 630
+						}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+					<?php else: ?>
+
+						$("#list").jqGrid({
+							url: baseUrl + '/ajax/getrecherchenom/?search=<?php echo $string; ?>&choice1=<?php echo $choice1; ?>&choice2=<?php echo $choice2; ?>',
+							datatype: "json",
+							mtype: 'POST',
+							colNames:['Nom', 'Opérations'],
+							colModel:[
+								{name:'entite_nom',index:'entite_nom'},
+								{name:'fiches',index:'fiches', sortable:false}
+							],
+							rowNum:10,
+							rowList:[10,20,30],
+							pager: '#pager',
+							sortname: 'entite_nom',
+							viewrecords: true,
+							sortorder: "ASC",
+							caption:"Résultats pour une entité ( recherche : <?php echo $string; ?> ) ",
+							loadonce: false,
+							height: "100%",
+							width: 630
+						}).navGrid("#pager",{edit:false,add:false,del:false,search:false});
+
+					<?php endif; ?>
+					
+				<?php endif; ?>
+			
+			<?php endif; ?>
+		
+		}
+	);
+
+	function verif(){
+		if( $("input#string").val() != 'Tapez votre texte ici...' ){
+			if( $("select#choice1").val() != '' ){
+				document.forms['nameSearchForm'].submit();
+			}else{
+				$("span.error").text("Vous devez spécifier ce que vous voulez chercher...").show();
+			}
+		}
+	}
+
+</script>
+
+<div style="display: block; height: auto; width: 630px;margin-left:auto;margin-right:auto;position:relative;" class="ui-dialog ui-widget ui-widget-content ui-corner-all ">
+	<div class="ui-dialog-titlebar ui-widget-header ui-corner-all ui-helper-clearfix" style="-moz-user-select: none;text-align:center;">
+
+		<span class="ui-dialog-title" style="-moz-user-select: none;"></span>
+
+	</div>
+	<div class="ui-dialog-content ui-widget-content" style="width: auto; display: block; min-height: 121px; height: auto;">
+
+		<form name="nameSearchForm" method="POST" action="<?php echo $this->baseUrl(); ?>/recherche/nom/" >
+
+			<select name="choice1" id="choice1" >
+				<option value="" <?php if( !isset( $choice1 ) ) echo ' selected '; ?> >Que recherchez-vous ?</option>
+				<option value="personne" <?php if( isset( $choice1 ) && $choice1 == 'personne' ) echo ' selected '; ?> >Une personne</option>
+				<option value="entite" <?php if( isset( $choice1 ) && $choice1 == 'entite' ) echo ' selected '; ?> >Une entité</option>
+			</select>
+
+			<img alt="chargement..." src="<?php echo $this->baseUrl(); ?>/img/ajax-loader_s.gif" id="loading" />
+			<select name="choice2" id="choice2" ></select>
+
+			<br />
+			<input type="text" name="string" id="string" value="<?php if( $string ): ?><?php echo $string; ?><?php else: ?>Tapez votre texte ici...<?php endif; ?>" />
+
+			<br />
+			<a href="#" onclick="javascript:verif();" class="button search" >Rechercher</a>
+
+			<br />
+			<span class="error"></span>
+			
+		</form>
+
+	</div>
+</div>
+
+<table id="list"></table>
+<div id="pager"></div>
