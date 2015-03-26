@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<PMQ>
+	<diplome num="2" nom="CAP : Agent d'entreposage et de messagerie" abrege="CAP_AM" titre="DIPLOME">
+		<specialites>
+			<specialite num="2" nom="Textile/Habillement" code="1" option="Textile/Habillement" />
+		</specialites>
+	</diplome>
+	<diplome num="3" nom="BP : Pilote d'installations de production par procédés" abrege="BP_PIPP" titre="DIPLOME">
+		<specialites>
+			<specialite num="1" nom="Textile/Habillement" code="1" option="Textile/Habillement" />
+		</specialites>
+	</diplome>
+
+</PMQ>

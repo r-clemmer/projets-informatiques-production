@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMQ>
+	<ccsp num="1" nom="Compétences Clés en Situation Professionelle" abrege="CCSP">
+		<modules nb_modules="8">
+			<module num="1" alias="M1" nom="Orale" >
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirs texte="Les documents blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirs texte="La nature des écarts blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>
+		    <module num="2" alias="M2" nom="Ecrit">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirs texte="Les documents blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirs texte="La nature des écarts blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>
+			<module num="3" alias="M3" nom="Calcul">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirs texte="Les documents blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirs texte="La nature des écarts blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>	
+			<module num="4" alias="M4" nom="Espace-temps">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirs texte="Les documents blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirs texte="La nature des écarts blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>
+			<module num="5" alias="M5" nom="Informatique">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirs texte="Les documents blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirs texte="La nature des écarts blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>	
+			<module num="6" alias="M6" nom="Attitudes et comportement">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>
+			<module num="7" alias="M7" nom="Geste, posture et observation">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>	
+			<module num="8" alias="M8" nom="Réglementaire">
+				<ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <ra texte="blblblblblblblbllblblalbalalbalblablablablalbalb" num="2"/>
+	            <savoirfaires texte="localise blblblblblblblbllblblalbalalbalblablablablalbalb" num="1" />
+	            <savoirfaires texte="Procède à la blblblblblblblbllblblalbalalbalblablablablalbalb" num="2" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="3" />
+	            <savoirfaires texte="Détecte blblblblblblblbllblblalbalalbalblablablablalbalb" num="4" />
+	            <savoirfaires texte="Applique blblblblblblblbllblblalbalalbalblablablablalbalb" num="5" />
+			</module>
+		</modules>  
+		<questions nb_questions="53">
+		<![CDATA[F1:1@F2:5@F3:4@F4:4@F5:4@F6:4@F7:1@F8:7@F9:2@F10:6@C1:5@C1bis:6@C2:5@C3:5@C4:3@C5:3@C6:3@C7:4@C8:4@C9:5@C10:2@C11:3@C11bis:3@C12:2@C13:4@C14:3@C14bis:3@C15:2@C16:6@C17a:7@C17b:5@C17c:2@C17d:2@C17e:2@C17f:2@C18a:2@C18b:1@C18c:1@C19:3@C20a:5@C20b:4@C20c:4@C21:6@C22:5@C23:7@C24:2@C25:2@C26:2@C27:3@C28:4@C28bis:5@C29:3@C30:6]]>
+		</questions>
+		<ventilations>
+			<ventilation>
+				<module num="1" ventilation="1@2@3@4@5@6@7@8@9@10@26@27" />
+				<module num="2" ventilation="11@12@13@14@15@16@26@27@28@29@44@45"/>
+				<module num="3" ventilation="15@16@17@18@19@24@30@31@32@33@34@35@36@37@38@39@46@47@48@49"/>
+				<module num="4" ventilation="21@22@23@24@25@40@41@42@43@50@51@52"/>
+				<module num="5" ventilation="53"/>
+			</ventilation>
+		</ventilations>
+	</ccsp>
+</PMQ>	

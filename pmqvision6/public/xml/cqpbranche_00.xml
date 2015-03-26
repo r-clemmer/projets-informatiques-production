@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PMQ>
+<cqpbranche num="1" nom="CQP Formateur Interne" codeRNCP="Formateur Interne" abrege="FI">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="311m Transport, manutention, magasinage"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+</cqpbranche>
+</PMQ>	

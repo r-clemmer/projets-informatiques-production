@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMQ>
+	<ccsp num="1" nom="Compétences Clés en Situation Professionnelle" abrege="CCSP">
+	<specialites>
+		</specialites>
+		<modules nb_modules="8">
+			<module num="1" alias="M1" nom="Oral">
+	            <savoir texte="Ecouter, répéter des consignes." num="1Od1" />
+				<savoir texte="Répondre à une question fermée." num="1Od2" />
+				<savoir texte="Répondre à une question ouverte." num="1Od3" />
+				<savoir texte="Utiliser les mots du lexique professionnel." num="2Od1" />
+				<savoir texte="Nommer des causes et des effets." num="2Od2" />
+				<savoir texte="Raisonner par analogie." num="2Od3" />
+				<savoir texte="Ecouter, transmettre une information." num="3Od1" />
+				<savoir texte="Vérifier que l’on a compris et que l’on est compris." num="3Od2" />
+				<savoir texte="Affirmer une position à l’oral." num="4Od1" />
+				<savoir texte="Argumenter un point de vue." num="4Od2" />
+				<savoir texte="Démontrer en citant des règles ou des lois." num="4Od3" />
+				<savoir texte="Prendre la parole pour signaler un problème." num="5Od1" />
+				<savoir texte="Recourir à des démarches empiriques." num="5Od2" />
+				<savoir texte="Proposer des solutions pour résoudre un aléa." num="5Od3" />
+				<savoir texte="Reformuler un énoncé, une formule…" num="6Od2" />
+				<savoir texte="Synthétiser. Verbaliser son activité, ses acquis." num="6Od3" />
+				<savoir texte="Oser parler avec assurance." num="7Od1" />
+				<savoir texte="Rechercher des moments d’échanges. Faire des propositions d’amélioration ou d’optimisation.." num="7Od2" />
+			</module>
+		    <module num="2" alias="M2" nom="Ecrit">
+	            <savoir texte="Identifier des signes graphiques (signaux, pictogrammes, logos…)." num="1Ed1" />
+				<savoir texte="Identifier la fonction d’un document (note, circulaire, consigne)." num="1Ed2" />
+				<savoir texte="Utiliser des documents (mode d’emploi, bon de commande, planning, QCM)." num="1Ed3" />
+				<savoir texte="Déchiffrer une consigne et en tenir compte." num="2Ed1" />
+				<savoir texte="Déchiffrer et écrire des textes simples." num="2Ed2" />
+				<savoir texte="Reformuler ou commenter un texte simple." num="2Ed3" />
+				<savoir texte="Utiliser des éléments de signalisation." num="3Ed1" />
+				<savoir texte="Utiliser un cahier de liaison." num="3Ed2" />
+				<savoir texte="Renseigner un document technique." num="3Ed3" />
+				<savoir texte="Lire un compte-rendu." num="4Ed1" />
+				<savoir texte="Noter une anomalie sur un cahier de liaison (contexte, date, dysfonct…)." num="5Ed1" />
+				<savoir texte="Ecrire des recommandations sur un cahier de liaison." num="5Ed2" />
+				<savoir texte="Recopier de l’information. Accumuler des données." num="6Ed1" />
+				<savoir texte="Classer des documents, des données." num="6Ed2" />
+				<savoir texte="Identifier des données manquantes dans un document." num="6Ed3" />
+				<savoir texte="Renseigner des documents qualité." num="7Ed1" />
+				<savoir texte="Proposer des améliorations dans un document." num="7Ed3" />
+			</module>
+			<module num="3" alias="M3" nom="Calcul">
+				<savoir texte="Compter, dénombrer." num="1Cd1" />
+				<savoir texte="Utiliser les unités de mesure." num="1Cd2" />
+				<savoir texte="Calculer une quantité." num="1Cd3" />
+				<savoir texte="Utiliser des relations d’ordre (avant, après, plus petit, plus grand…)." num="2Cd1" />
+				<savoir texte="Utiliser les 4 opérations." num="2Cd2" />
+				<savoir texte="Utiliser les pourcentages (dosages, soldes…)." num="2Cd3" />
+				<savoir texte="Communiquer des quantités." num="3Cd1" />
+				<savoir texte="Expliciter des relations de causes à effets." num="5Cd1" />
+				<savoir texte="Prendre en compte la fréquence d’évènements." num="5Cd2" />
+				<savoir texte="Evaluer les coûts d’aléas observés." num="5Cd3" />
+				<savoir texte="Enregistrer des données chiffrées." num="6Cd1" />
+				<savoir texte="Identifier des disproportions." num="6Cd2" />
+				<savoir texte="Evaluer des proportions." num="6Cd3" />
+				<savoir texte="Evaluer des marges de fonctionnement." num="7Cd1" />
+				<savoir texte="Expliciter des écarts à des objectifs." num="7Cd2" />
+			</module>	
+			<module num="4" alias="M4" nom="Espace-temps">
+	            <savoir texte="Mesurer, enregistrer des mesures." num="1ETd1" />
+				<savoir texte="Situer dans l’espace et dans le temps." num="1ETd2" />
+				<savoir texte="Ordonner les étapes d’une action." num="1ETd3" />
+				<savoir texte="Utiliser des termes de géométrie (cercle, rectangle…)." num="2ETd1" />
+				<savoir texte="Situer deux points dans un plan, une zone de travail." num="2ETd2" />
+				<savoir texte="Evaluer un temps de réalisation d’une tâche." num="2ETd3" />
+				<savoir texte="Lire un planning." num="3ETd1" />
+				<savoir texte="Expliquer un itinéraire." num="3ETd2" />
+				<savoir texte="Connaître l’organigramme de l’entreprise." num="4ETd1" />
+				<savoir texte="Se positionner dans l’organisation de l’entreprise." num="4ETd2" />
+				<savoir texte="Modifier ou adapter sa place dans son environnement de travail." num="4ETd3" />
+				<savoir texte="Proposer des mesures correctives face à un aléa." num="5ETd2" />
+				<savoir texte="Mettre en place des mesures préventives pour éviter le retour d’un aléa." num="5ETd3" />
+				<savoir texte="Utiliser des outils de traçabilité." num="6ETd1" />
+				<savoir texte="Evaluer des temps moyens et des dates d’exécution." num="6ETd2" />
+				<savoir texte="S’organiser pour atteindre un objectif." num="7ETd1" />
+				<savoir texte="Planifier un projet simple d’amélioration." num="7ETd3" />
+			</module>
+			<module num="5" alias="M5" nom="Informatique">
+	            <savoir texte="Utiliser la procédure pour démarrer un outil informatique (PC, pistolet, scanner…)." num="1Id1" />
+				<savoir texte="Utiliser le clavier et la souris." num="1Id2" />
+				<savoir texte="Identifier les commandes et applications disponibles sur l’outil numérique." num="1Id3" />
+				<savoir texte="Anticiper le comportement d’un outil numérique." num="2Id1" />
+				<savoir texte="Utiliser une application." num="2Id2" />
+				<savoir texte="Régler une machine à commande numérique." num="2Id3" />
+				<savoir texte="Utiliser une messagerie électronique." num="3Id2" />
+				<savoir texte="Partager des documents." num="3Id3" />
+				<savoir texte="Identifier une défaillance de l’outil numérique." num="5Id1" />
+				<savoir texte="Sauvegarder des données." num="5Id2" />
+				<savoir texte="Caractériser une panne informatique." num="5Id3" />
+				<savoir texte="Tester une application." num="6Id2" />
+				<savoir texte="Choisir un outil informatique adapté à son activité." num="7Id3" />
+			</module>	
+			<module num="6" alias="M6" nom="Attitudes et comportements">
+				<savoir texte=" Faire preuve d’exactitude." num="1acD1" />
+				<savoir texte="Contrôler les résultats de son action." num="1acD2" />
+				<savoir texte="S’organiser dans son travail." num="1ACd3" />
+				<savoir texte="Prendre en compte des exigences de qualité." num="2ACd1" />
+				<savoir texte="Mettre en avant une règle pour justifier son action." num="2ACd2" />
+				<savoir texte="Agir selon ses capacités." num="2ACd3" />
+				<savoir texte="Accepter de clarifier son propos, de reformuler." num="3ACd1" />
+				<savoir texte="Solliciter l’attention des autres." num="3ACd2" />
+				<savoir texte="Travailler en équipe." num="3ACd3" />
+				<savoir texte="Rendre compte d’un incident." num="5ACd1" />
+				<savoir texte="Saisir des opportunités." num="5ACd2" />
+				<savoir texte="Prendre des responsabilités." num="5ACd3" />
+				<savoir texte="Retenir des expériences." num="6ACd1" />
+				<savoir texte="Effectuer des démarches seul (e)." num="7ACd1" />
+			</module>
+			<module num="7" alias="M7" nom="Gestes, postures et observation">
+	            <savoir texte="Maîtriser et acquérir les automatismes gestuels. Mémoriser la disposition d’un ensemble d’objets." num="1GPO" />
+				<savoir texte="Décomposer un geste et choisir un geste adapté. Analyser un bruit, une couleur..." num="2GPO" />
+				<savoir texte="Utiliser et contrôler les Equipements de Protection Individuelle (EPI). Observer un phénomène intermittent." num="5GPO" />
+				<savoir texte="Maîtriser les automatismes gestuels. Tenir compte d’indices (visuels, olfactifs)." num="6GPO" />
+				<savoir texte="Optimiser ses gestes pour réduire la fatigue." num="7GPO" />
+			</module>	
+			<module num="8" alias="M8" nom="Réglementaire">
+	            <savoir texte="Respecter un règlement sécurité ou une procédure qualité." num="1R" />
+				<savoir texte="Expliciter les consignes sécurité ou qualité." num="2R" />
+				<savoir texte="Transmettre un règlement ou une procédure." num="3R" />
+				<savoir texte="Prévenir ou corriger un dysfonctionnement, un risque." num="4R" />
+				<savoir texte="Décrire un dysfonctionnement." num="5R" />
+				<savoir texte="Déterminer les risques et les sources de non-conformité." num="6R" />
+				<savoir texte="Mettre en place une mesure préventive sur son poste." num="7R" />
+			</module>
+		</modules>  
+		<questions nb_questions="53">
+		<![CDATA[F1:1@F2:5@F3:4@F4:4@F5:4@F6:4@F7:1@F8:7@F9:2@F10:6@C1:5@C1bis:6@C2:5@C3:5@C4:3@C5:3@C6:3@C7:4@C8:4@C9:5@C10:2@C11:3@C11bis:3@C12:2@C13:4@C14:3@C14bis:3@C15:2@C16:6@C17a:7@C17b:5@C17c:2@C17d:2@C17e:2@C17f:2@C18a:2@C18b:1@C18c:1@C19:3@C20a:5@C20b:4@C20c:4@C21:6@C22:5@C23:7@C24:2@C25:2@C26:2@C27:3@C28:4@C28bis:5@C29:3@C30:6]]>
+		</questions>
+		<ventilations>
+			<ventilation>
+				<module num="1" ventilation="1@2@3@4@5@6@7@8@9@10@26@27" />
+				<module num="2" ventilation="11@12@13@14@15@16@26@27@28@29@44@45"/>
+				<module num="3" ventilation="15@16@17@18@19@24@30@31@32@33@34@35@36@37@38@39@46@47@48@49"/>
+				<module num="4" ventilation="21@22@23@24@25@40@41@42@43@50@51@52"/>
+				<module num="5" ventilation="53"/>
+			</ventilation>
+		</ventilations>
+	</ccsp>
+</PMQ>	

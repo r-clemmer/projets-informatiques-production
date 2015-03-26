@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<PMQ>
+<cqp num="1" nom="CQPi Agent logistique" codeRNCP="Agent(e) logistique" abrege="AL">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="311m Transport, manutention, magasinage"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+<cqp num="2" nom="CQP Contrôleur - Visiteur" abrege="CV" codeRNCP="Opérateur(trice) qualité">
+		<specialites>
+		<specialite num="1" nom="Textiles" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+<cqp num="3" nom="CQPi Conduite d'équipements industriels" abrege="CEI" codeRNCP="Conducteur(trice) d'équipements Industriels">
+		<specialites>
+			<specialite num="1" nom="Production et traitement textile" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="2" nom="Tannerie Mégisserie" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="3" nom="Non tissé" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux" />
+			<specialite num="4" nom="Moussage thermoformage" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="5" nom="Plasturgie Générique" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="6" nom="Chaussure" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="7" nom="Ameublement" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="8" nom="Filature" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="9" nom="Tissage large" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="10" nom="Ennoblissement" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="11" nom="Tissage étroit" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="12" nom="Plasturgie Extrusion-Gonflage" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="13" nom="Tricotage/Maille" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="20" nom="Transverse" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+<cqp num="4" nom="CQPi Technicien en Maintenance Industrielle" abrege="TMI" codeRNCP="Technicien(ne) en  maintenance industrielle">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="201r Technologie de commandes des transformations industrielles (contrôle, prévention, entretien)"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+     </cqp>
+ <cqp num="5" nom="CQP Opératrice Multipostes en Confection" abrege="OMC" codeRNCP="Operateur(trice) Multipostes en Confection">
+		<specialites>
+			<specialite num="1" nom="Maille"  NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="2" nom="Chaîne et trame"  NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="3" nom="Lingerie - Corsetterie"  NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="4" nom="Linge de maison - Ameublement"  NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="10" nom="Transverse"  NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+		</specialites>
+		<ventilations>
+		</ventilations> 
+    </cqp>
+<cqp num="6" nom="CQP Monteuse Prototypiste" abrege="MP" codeRNCP="Monteur(se) Prototypiste">
+		<specialites>
+			<specialite num="1" nom="Maille" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="2" nom="Chaîne et trame" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="3" nom="Lingerie - Corsetterie" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="4" nom="Linge de maison - Ameublement" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="10" nom="Transverse" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>	    
+<cqp num="7" nom="CQPi Opérateur de Maintenance Industrielle" abrege="OMI" codeRNCP="Opérateur(trice) de maintenance industrielle">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="201r Technologie de commandes des transformations industrielles (contrôle, prévention, entretien)"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>    
+<cqp num="8" nom="CQP Styliste Modéliste Chaussure" abrege="SMC" codeRNCP="Styliste Modeliste Chaussure">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="243n Conception, stylisme, en cuirs et peaux"/>
+		</specialites>
+		<ventilations>
+		</ventilations> 
+	</cqp>	
+<cqp num="9" nom="CQPi Technicien de la Qualité" abrege="TQ" codeRNCP="Technicien(ne) de la Qualité">
+		<specialites>
+			<specialite num="1" nom="Transverse"  NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>	 
+<cqp num="10" nom="CQPi Opérateur Qualité" abrege="OQ" codeRNCP="Opérateur(trice) qualité">
+		<specialites>
+			<specialite num="1" nom="Surfaces textiles" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="2" nom="Confection" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="3" nom="Chaussure" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="4" nom="Cuirs" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="5" nom="PLASTURGIE" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="10" nom="Transverse" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>  
+<cqp num="11" nom="CQP Régleur de machines de production" abrege="RMP" codeRNCP="Regleur(euse) de machines de production">
+		<specialites>
+			<specialite num="1" nom="Tissage" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="2" nom="Tissage large" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="3" nom="Tissage étroit" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="4" nom="Tricotage/Maille" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="5" nom="Confection/Habillement" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="6" nom="Maille" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>	
+<cqp num="12" nom="CQP Agent de service" abrege="AS" codeRNCP="Agent de service">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="300 Spécialités plurivalentes des services"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+     </cqp>	  
+<cqp num="13" nom="CQPi Animateur d'équipe" abrege="AE" codeRNCP="Animateur(trice) d'équipe">
+		<specialites>
+			<specialite num="1" nom="Transverse" NSFgenerique="240p Spécialités pluritechnologiques matériaux souples : organisation, gestion"/>
+		</specialites>
+			<ventilations>
+			</ventilations>
+     </cqp>
+     
+<cqp num="14" nom="CQPi Animateur d équipe-V2" abrege="AE V2" codeRNCP="Animateur(trice) d'équipe">
+		<specialites>
+			<specialite num="1" nom="Transverse-V2" NSFgenerique="240p Spécialités pluritechnologiques matériaux souples : organisation, gestion"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+	
+	
+<cqp num="15" nom="CQPi Agent logistique-V2" abrege="AL V2" codeRNCP="Agent(e) logistique" >
+		<specialites>
+			<specialite num="1" nom="Transverse-V2" NSFgenerique="311m Transport, manutention, magasinage"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>	
+     
+<cqp num="16" nom="CQP Agent de service-V2" abrege="AS V2" codeRNCP="Agent de service">
+		<specialites>
+			<specialite num="1" nom="Entretien des textiles - V2" NSFgenerique="300 Spécialités plurivalentes des services"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+	
+	
+<cqp num="17" nom="CQPi Conduite d'équipements industriels-V2" abrege="CEI V2" codeRNCP="Conducteur(trice) d'équipements Industriels">
+		<specialites>
+			<specialite num="1" nom="Textile/Habillement-V2" NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="2" nom="Production Chaussure-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="3" nom="Tannerie-mégisserie-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="4" nom="Ennoblissement-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="5" nom="Extrusion Gonflage-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="6" nom="Filature-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="7" nom="Plasturgie-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="8" nom="Tricotage/Maille-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="9" nom="Moussage thermoformage-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="10" nom="Non tissé-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="11" nom="Tissage large-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+			<specialite num="12" nom="Tissage étroit-V2"  NSFTextile="241u Conduite et réglage de machines de fabrication textile" NSFHabillement="242u Habillement(conduite,surveillance de machines)" NSFChaussure="243s Tannage des peaux, fabrication de chaussures, articles" NSFCuirsetPeaux="243u Conduite de machines de travail des cuirs et peaux"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+	
+<cqp num="18" nom="CQP Coupe-V2" abrege="CO V2" codeRNCP="Coupeur(se) Chaussure">
+		<specialites>
+			<specialite num="1" nom="Matières Textiles-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="240 spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="2" nom="Matières Textiles et Cuirs pour la Chaussure-V2" NSFgenerique="243s Tannage des peaux, fabrication de chaussures, articles de vêtements en peau"/>
+			<specialite num="3" nom="Matières Cuirs-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="240 spécialités pluritechnologiques matériaux souples"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+	
+<cqp num="19" nom="CQP Fabrication-V2" abrege="FM V2" codeRNCP="Operateur(trice) de Fabrication Chaussure">
+		<specialites>
+			<specialite num="1" nom="Montage Cousue-V2" NSFgenerique="243s Tannage des peaux, fabrication de chaussures, articles de vêtements en peau"/>
+			<specialite num="2" nom="Montage soudée-V2" NSFgenerique="243s Tannage des peaux, fabrication de chaussures, articles de vêtements en peau"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+    
+<cqp num="20" nom="CQP Monteuse Prototypiste-V2" abrege="MP V2" codeRNCP="Monteur(se) Prototypiste">
+		<specialites>
+			<specialite num="1" nom="Lingeries-corsetteries-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)" />
+			<specialite num="2" nom="Chaîne et trame-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="3" nom="Maille-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement ( mode, couture)"/>
+			<specialite num="4" nom="Linge de maison et Ameublement-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>	
+	
+<cqp num="21" nom="CQP Opératrice Multipostes en Confection-V2" abrege="OMC V2" codeRNCP="Operateur(trice) Multipostes en Confection">
+		<specialites>
+			<specialite num="1" nom="Chaîne et trame-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="2" nom="Maille-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="3" nom="Lingeries-corsetteries-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="4" nom="Linges de maison et ameublement-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+			<specialite num="5" nom="Finition points main-V2" NSFTextile="242s Coupe, confection des vêtements" NSFHabillement="242 Habillement (mode, couture)"/>
+		</specialites>
+		<ventilations>
+		</ventilations> 
+    </cqp> 
+    	
+
+<cqp num="22" nom="CQPi Opérateur de Maintenance Industrielle-V2" abrege="OMI V2" codeRNCP="Opérateur(trice) de maintenance industrielle">
+		<specialites>
+			<specialite num="1" nom="Transverse-V2" NSFgenerique="201r Technologie de commandes des transformations industrielles (contrôle, prévention, entretien)"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>    
+<cqp num="23" nom="CQPi Opérateur Qualité-V2" abrege="OQ V2" codeRNCP="Opérateur(trice) qualité">
+		<specialites>
+			<specialite num="1" nom="Produits finis confection/habillement-V2" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="2" nom="Surfaces textiles-V2" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="3" nom="Surfaces cuirs et peaux-V2" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="4" nom="Produits plastiques-V2" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+			<specialite num="5" nom="Chaussure-V2" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+<cqp num="24" nom="CQP Piqûre-V2" abrege="PI V2" codeRNCP="Piqûeur(se) Chaussure">
+		<specialites>
+			<specialite num="1" nom="Fabrication Chaussure-V2" NSFgenerique="243s Tannage des peaux, fabrication de chaussures, articles de vêtements en peau" />
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+<cqp num="25" nom="CQP Régleur de machines de production-V2" abrege="RMP V2" codeRNCP="Regleur(euse) de machines de production">
+		<specialites>
+			<specialite num="1" nom="Tissage large-V2" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="2" nom="Tissage Etroit-V2"  NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="3" nom="Maille-V2"  NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="4" nom="Filature-V2"  NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>
+			<specialite num="5" nom="Confection-V2" NSFTextile="241u Conduite et réglage de machines de fabication textile" NSFHabillement="240 Spécialités pluritechnologiques matériaux souples"/>		
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+<cqp num="26" nom="CQP Styliste Modéliste-V2" abrege="SMC V2" codeRNCP="Styliste Modeliste Chaussure">
+		<specialites>
+			<specialite num="1" nom="Chaussure-V2" NSFgenerique="243n Conception, stylisme, en cuirs et peaux"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+<cqp num="27" nom="CQPi Technicien en Maintenance Industrielle-V2" abrege="TMI V2" codeRNCP="Technicien(ne) en  maintenance industrielle">
+		<specialites>
+			<specialite num="1" nom="Transverse-V2" NSFgenerique="201r Technologie de commandes des transformations industrielles (contrôle, prévention, entretien)"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+<cqp num="28" nom="CQPi Technicien de la Qualité-V2" abrege="TQ V2" codeRNCP="Technicien(ne) de la Qualité">
+		<specialites>
+			<specialite num="1" nom="Transverse-V2" NSFgenerique="200r Contrôle qualité de produits et procédés industriels"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+
+ <cqp num="29" nom="CQPi Vente Conseil en magasin-V2" abrege="VCM V2" codeRNCP="Vendeur(se) conseil en magasin">
+		<specialites>
+			<specialite num="1" nom="Pret-à-porter-V2" NSFgenerique="312 Commerce, vente"/>
+			<specialite num="2" nom="Linge de maison-V2" NSFgenerique="312 Commerce, vente"/>
+			<specialite num="3" nom="Maroquinerie-V2" NSFgenerique="312 Commerce, vente"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>
+    
+  <cqp num="30" nom="BP PIPP Production textile" abrege="PIPP V2">
+		<specialites>
+			<specialite num="1" nom="Textile/Habillement-V2" />
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>   
+    
+     <cqp num="31" nom="BP PIPP Traitement des textiles" abrege="TPIPP V2">
+		<specialites>
+			<specialite num="1" nom="Textile/Habillement-V2" />
+		</specialites>
+		<ventilations>
+		</ventilations>
+    </cqp>  
+      
+    <cqp num="68" nom="CQPi VENTE CONSEIL A DISTANCE-V2" abrege="VSD V2" codeRNCP="Vendeur(se) conseil à distance">
+		<specialites>
+			<specialite num="1" nom="Textile/Habillement" NSFgenerique="312 Commerce, vente"/>
+		</specialites>
+		<ventilations>
+		</ventilations>
+	</cqp>
+    
+</PMQ>
+
+
+
+
+
+
+
+
+
+
+
+<!-- ' ... ouevre -->

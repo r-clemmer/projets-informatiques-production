@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PMQ>
+	<diplome num="1" nom="CAP Conduite de systèmes industriels" abrege="CAP CSI" metier="Conducteur de machines" niveaux="Notion@Maîtrise">
+		<specialites>
+			<specialite num="1" nom="Filature, fibres naturelles" code="Aa" option="Production" />
+			<specialite num="2" nom="Filature, fibres chimiques" code="Ac" option="Production" />
+			<specialite num="3" nom="Tissage" code="Ba" option="Production" />
+			<specialite num="4" nom="Tissage étroit" code="Bb" option="Production" />
+			<specialite num="5" nom="Tissage armures complexes et façonné" code="Bc" option="Production" />
+			<specialite num="6" nom="Tissage tissus techniques" code="Bd" option="Production" />
+			<specialite num="7" nom="Tricotage rectiligne" code="Ca" option="Production" />
+			<specialite num="8" nom="Tricotage circulaire grand diamètre" code="Cb" option="Production" />
+			<specialite num="9" nom="Tricotage circulaire petit diamètre" code="Cc" option="Production" />
+			<specialite num="10" nom="Conditionnement–finition" code="Ja" option="Production" />
+			<specialite num="11" nom="Conditionnement produits finis" code="Jb" option="Production" />
+			<specialite num="12" nom="Coupe-matelassage" code="Jc" option="Production" />
+			<specialite num="13" nom="Moussage-thermoformage" code="Jd" option="Production" />
+			<specialite num="14" nom="Complexage-collage" code="Je" option="Production" />
+			<specialite num="15" nom="Production dentelle" code="La" option="Production" />
+			<specialite num="16" nom="Tannerie mégisserie" code="Ma" option="Production" />
+			<specialite num="17" nom="Non-tissé : liage mécanique" code="Na" option="Production" />
+			<specialite num="18" nom="Non-tissé liage chimique" code="Nb" option="Production" />
+			<specialite num="19" nom="Non-tissé tufting" code="Nc" option="Production" />
+			<specialite num="20" nom="Non-tissé : voie fondue" code="Nd" option="Production" />
+			<specialite num="21" nom="Revêtements de sols" code="Ne" option="Production" />
+			<specialite num="22" nom="Fils guipés" code="Sa" option="Production" />
+			<specialite num="23" nom="Fils retords" code="Sb" option="Production" />
+			<specialite num="24" nom="Fils tressés" code="Sc" option="Production" />
+			<specialite num="25" nom="Broderie" code="Va" option="Production" />
+			<specialite num="26" nom="Impression et gravure" code="Da" option="Traitement" />
+			<specialite num="27" nom="Teinture fils et pièces" code="Db" option="Traitement" />
+			<specialite num="28" nom="Blanchisserie industrielle" code="Pa" option="Traitement" />
+		</specialites>
+		<epreuves nb="5">
+			<epreuve num="EP1" nom="Préparation Approvisionnement Réglages Mise en route">
+				<sous-epreuve unite="UP1" nom="" />
+			</epreuve>
+			<epreuve num="EP2" nom="Conduite Exploitation et production en entreprise">
+				<sous-epreuve unite="UP2" nom="" />
+			</epreuve>
+			<epreuve num="EP3" nom="Mode dégradé Maintenance">
+				<sous-epreuve unite="UP3" nom="" />
+			</epreuve>
+			<epreuve num="EG1" nom="Français et Histoire géographie">
+				<sous-epreuve unite="UG1" nom="" />
+			</epreuve>
+			<epreuve num="EG2" nom="Mathématiques et Sciences">
+				<sous-epreuve unite="UG2" nom="" />
+			</epreuve>
+		</epreuves>
+		<unites nb="5" >
+			<unite num="UP1" nb="6" >
+	             <module num="1" nom="Matières d'oeuvre"  />
+	             <module num="2" nom="Organisation de la production" />
+				 <module num="3" nom="Machines et procédés" />
+				 <module num="4" nom="Périphériques et outillages" />
+				 <module num="5" nom="Réglages Mise en route" />
+				 <module num="6" nom="Vie sociale et professionnelle" />
+			</unite>
+			<unite num="UP2" nb="6" >
+	             <module num="7" nom="Systèmes automatisés"  />
+	             <module num="8" nom="Systèmes automatisés" />
+				 <module num="9" nom="Qualité Contrôle" />
+				 <module num="10" nom="Hygiène sécurité" />
+				 <module num="11" nom="Connaissance de l'entreprise" />
+				 <module num="12" nom="Informatique" />
+			</unite>
+			<unite num="UP3" nb="2" >
+	             <module num="13" nom="Maintenance"  />
+	             <module num="14" nom="Communication technique" />
+			</unite>
+			<unite num="UG1" nb="3" >
+				 <module num="15" nom="Expression écrite" />
+				 <module num="16" nom="Expression orale" />
+				 <module num="17" nom="Histoire Géo" />
+				 
+			</unite>
+			<unite num="UG2" nb="3" >
+				 <module num="18" nom="Mathématiques" />
+	             <module num="19" nom="Physique"  />
+	             <module num="20" nom="Chimie" />
+			</unite>
+		</unites>
+	</diplome>
+	<diplome num="2" nom="CAP prêt à porter" abrege="CAP PAP" metier="Opératrice de confection" niveaux="Notion@Maîtrise">
+		<specialites>
+			<specialite num="1" nom="Confection - Habillement" code="Ha" option="" />
+		</specialites>
+		<epreuves nb="4" >
+			<epreuve num="EP1" nom="Préparation du travail et technologie">
+				<sous-epreuve unite="UP1" nom="" />
+			</epreuve>
+			<epreuve num="EP2" nom="Réalisation d'un produit">
+				<sous-epreuve unite="UP2" nom="" />
+			</epreuve>
+			<epreuve num="EG1" nom="Français et Histoire géographie">
+				<sous-epreuve unite="UG1" nom="" />
+			</epreuve>
+			<epreuve num="EG2" nom="Mathématiques Sciences">
+				<sous-epreuve unite="UG2" nom="" />
+			</epreuve>
+		</epreuves>
+		<unites nb="4" >
+			<unite num="UP1" nb="4" >
+	             <module num="1" nom="Matières d'oeuvre"  />
+	             <module num="2" nom="Conception du modèle/produit" />
+				 <module num="3" nom="Gestion des réalisations" />
+				 <module num="4" nom="Arts appliqués" />
+			</unite>
+			<unite num="UP2" nb="8" >
+				 <module num="5" nom="Préparation Placement" />
+				 <module num="6" nom="Découpage matelassage" />
+	             <module num="7" nom="piquage"  />
+	             <module num="8" nom="Surjet" />
+				 <module num="9" nom="Machine spéciales" />
+				 <module num="10" nom="Sécurité Maintenance" />
+				 <module num="11" nom="Qualité Contrôle" />
+				 <module num="12" nom="VSP" />
+			</unite>
+			<unite num="UG1" nb="3" >
+	             <module num="13" nom="Expression Ecrite"  />
+	             <module num="14" nom="Expression orale" />
+				 <module num="15" nom="Histoire Géo" />
+			</unite>
+			<unite num="UG2" nb="3" >
+				 <module num="16" nom="Mathématiques" />
+				 <module num="17" nom="Physique" />
+				 <module num="18" nom="Chimie" />
+			</unite>
+		</unites>
+	</diplome>
+	<diplome num="3" nom="CAP Agent d’entreposage et de messagerie" abrege="CAP AEM" metier="Agent de plate-forme logistique" niveaux="Résultats">
+		<specialites>
+			<specialite num="1" nom="Entreposage et messagerie" code="Ga" option="" />
+		</specialites>
+		<epreuves nb="4" >
+			<epreuve num="EP1" nom="Travaux de réception, dégroupage, entreposage">
+				<sous-epreuve unite="UP1" nom="" />
+			</epreuve>
+			<epreuve num="EP2" nom="Travaux de groupage, préparation de commande, expédition">
+				<sous-epreuve unite="UP2" nom="" />
+			</epreuve>
+			<epreuve num="EG1" nom="Français et Histoire géographie">
+				<sous-epreuve unite="UG1" nom="" />
+			</epreuve>
+			<epreuve num="EG2" nom="Mathématiques Sciences">
+				<sous-epreuve unite="UG2" nom="" />
+			</epreuve>
+		</epreuves>
+		<unites nb="4" >
+			<unite num="UP1" nb="8" >
+	             <module num="1" nom="Conduite"  />
+	             <module num="2" nom="Déchargement" />
+				 <module num="3" nom="Réception" />
+				 <module num="4" nom="Dégroupage" />
+				 <module num="5" nom="Entreposage" />
+				 <module num="6" nom="Informatique" />
+	             <module num="7" nom="Economie juridique"  />
+	             <module num="8" nom="Vie sociale et professionnelle" />
+			</unite>
+			<unite num="UP2" nb="6" >
+				 <module num="9" nom="Préparation commande" />
+				 <module num="10" nom="Groupage" />
+				 <module num="11" nom="Expédition Chargement" />
+				 <module num="12" nom="Contrôle" />
+				 <module num="13" nom="Qualité" />
+				 <module num="14" nom="Hygiène sécurité" />
+			</unite>
+			<unite num="UG1" nb="3" >
+	             <module num="15" nom="Expression Ecrite"  />
+	             <module num="16" nom="Expression orale" />
+				 <module num="17" nom="Histoire Géo" />
+			</unite>
+			<unite num="UG2" nb="3" >
+				 <module num="18" nom="Mathématiques" />
+				 <module num="19" nom="Physique" />
+				 <module num="20" nom="Chimie" />
+			</unite>
+		</unites>
+	</diplome>
+	<diplome num="4" nom="Brevet Professionnel Pilote d’installations de productions par procédés  Appliqué à la production textile ou traitement des textiles" abrege="BP PIPP" metier="Responsable de ligne" niveaux="Notion@Maîtrise">
+		<specialites>
+			<specialite num="1" nom="Tissage" code="Ia" option="Production"/>
+			<specialite num="2" nom="Non-tissé" code="Ie" option="Production"/>
+			<specialite num="3" nom="Dentelle" code="Ic" option="Production"/>
+			<specialite num="4" nom="Filature" code="Id" option="Production"/>
+			<specialite num="5" nom="Maille" code="Ib" option="Production"/>
+			<specialite num="6" nom="Complexage" code="If" option="Production"/>
+			<specialite num="7" nom="Non-tissé : voie fondue" code="Ig" option="Production"/>
+			<specialite num="8" nom="Impression et gravure" code="Ka" option="Traitement"/>
+			<specialite num="9" nom="Teinture fils et pièces" code="Kb" option="Traitement"/>
+		</specialites>
+		<epreuves nb="5" >
+			<epreuve num="E1" nom="Analyse d’une installation" >
+				<sous-epreuve unite="U11" nom="Etude de la partie opérative" />
+				<sous-epreuve unite="U12" nom="Etude de l'automatisation" />
+			</epreuve>
+			<epreuve num="E2" nom="" >
+				<sous-epreuve unite="U20" nom="Analyse de gestion d'une production" />
+			</epreuve>
+			<epreuve num="E3" nom="" >
+				<sous-epreuve unite="U30" nom="Activité en milieu professionel" />
+			</epreuve>
+			<epreuve num="E4" nom="Exploitation, pilotage, amélioration" >
+				<sous-epreuve unite="U41 U42 U43" nom="Conduite" />
+				<sous-epreuve unite="U44" nom="Réglages" />
+				<sous-epreuve unite="U45" nom="Amélioration" />
+			</epreuve>
+			<epreuve num="E5" nom="" >
+				<sous-epreuve unite="U50" nom="Français" />
+			</epreuve>
+		</epreuves>
+		<unites nb="10" >
+			<unite num="U11" nb="3" >
+	             <module num="1" nom="Installations équipements"  />
+	             <module num="2" nom="Technologie" />
+				 <module num="3" nom="Procédés" />
+			</unite>
+			<unite num="U12" nb="2" >
+				 <module num="4" nom="Systèmes automatisés" />
+				 <module num="5" nom="Analyse fonctionnelle" />
+			</unite>
+			<unite num="U20" nb="5" >
+				 <module num="6" nom="Gestion de la production" />
+	             <module num="7" nom="Maths. Appliqués"  />
+	             <module num="8" nom="Sciences physiques" />
+				 <module num="9" nom="Matériaux" />
+				 <module num="10" nom="Qualité" />
+			</unite>
+			<unite num="U30" nb="4" >
+				 <module num="11" nom="Organisation de la production" />
+				 <module num="12" nom="Hygiène Sécurité" />
+				 <module num="13" nom="Contrôle" />
+				 <module num="14" nom="Management" />
+			</unite>
+			<unite num="U41" nb="1" >
+				 <module num="15" nom="Préparation de la production"  />
+			</unite>
+			<unite num="U42" nb="1" >
+	             <module num="16" nom="Mode dégradé" />
+			</unite>
+			<unite num="U43" nb="1" >
+				 <module num="17" nom="Maintenance" />
+			</unite>
+			<unite num="U44" nb="3" >
+				 <module num="18" nom="Réglages" />
+				 <module num="19" nom="Mise en route" />
+				 <module num="20" nom="Arrêt" />
+			</unite>
+			<unite num="U45" nb="2" >
+				 <module num="21" nom="Evaluation Résultats" />
+				 <module num="22" nom="Améliorations" />
+			</unite>
+			<unite num="U50" nb="1" >
+				 <module num="23" nom="Expression écrite orale" />
+			</unite>
+		</unites>
+	</diplome>
+</PMQ>
